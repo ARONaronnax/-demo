@@ -1,13 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Demo.Core
 {
-    /// <summary>
-    /// 静态类型安全的发布订阅总线。事件一律为值类型结构体。
-    /// 订阅方必须在 OnDisable 中成对退订。
-    /// </summary>
     public static class EventBus
     {
         private static readonly Dictionary<Type, Delegate> Handlers =
@@ -65,13 +61,8 @@ namespace Demo.Core
                 return;
             }
 
-            // 取快照后调用：处理器在回调中订阅/退订时不会破坏本次派发。
-            Delegate[] snapshot = existing.GetInvocationList();
-
-            for (int i = 0; i < snapshot.Length; i++)
-            {
-                ((Action<T>)snapshot[i]).Invoke(evt);
-            }
+            // Delegates are immutable, so this local value is already a safe dispatch snapshot.
+            ((Action<T>)existing).Invoke(evt);
         }
 
         public static void Clear()
@@ -79,7 +70,6 @@ namespace Demo.Core
             Handlers.Clear();
         }
 
-        // 关闭 Domain Reload 时静态状态会跨 Play 残留，必须清空。
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStaticState()
         {

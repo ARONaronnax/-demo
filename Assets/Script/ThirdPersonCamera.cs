@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [Header("目标角色")]
+    [Header("鐩爣瑙掕壊")]
     public Transform target;
 
-    [Header("相机参数")]
+    [Header("鐩告満鍙傛暟")]
     public float distance = 5f;
     public float height = 2f;
     public float mouseSensitivity = 100f;
     public float smoothTime = 0.1f;
 
-    [Header("俯仰角度限制")]
+    [Header("淇话瑙掑害闄愬埗")]
     public float minPitch = -20f;
     public float maxPitch = 60f;
 
@@ -19,32 +19,48 @@ public class ThirdPersonCamera : MonoBehaviour
     private float pitch;
     private Vector3 cameraVelocity;
 
-    void Start()
+    private void Start()
     {
-        // 初始化相机旋转角度
         yaw = transform.eulerAngles.y;
         pitch = transform.eulerAngles.x;
-        // 锁定鼠标在游戏窗口内
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
-        // 鼠标输入
+        if (target == null)
+        {
+            return;
+        }
+
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         yaw += mouseX;
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+        pitch = Mathf.Clamp(pitch - mouseY, minPitch, maxPitch);
 
-        // 计算相机位置
-        Quaternion cameraRot = Quaternion.Euler(pitch, yaw, 0);
-        Vector3 targetPosition = target.position + cameraRot * new Vector3(0, height, -distance);
+        Vector3 targetPosition = target.position;
+        Quaternion cameraRotation = Quaternion.Euler(pitch, yaw, 0f);
+        Vector3 desiredPosition =
+            targetPosition + cameraRotation * new Vector3(0f, height, -distance);
 
-        // 平滑移动相机
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, smoothTime);
-        // 看向角色上半身
-        transform.LookAt(target.position + Vector3.up * 1.2f);
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            desiredPosition,
+            ref cameraVelocity,
+            smoothTime);
+
+        transform.LookAt(targetPosition + Vector3.up * 1.2f);
+    }
+
+    private void OnValidate()
+    {
+        distance = Mathf.Max(0f, distance);
+        smoothTime = Mathf.Max(0f, smoothTime);
+
+        if (maxPitch < minPitch)
+        {
+            maxPitch = minPitch;
+        }
     }
 }
