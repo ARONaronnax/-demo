@@ -1,25 +1,35 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Demo.Core;
 using Demo.Interaction;
 
 namespace Demo.Player
 {
-    /// <summary>
-    /// 每帧在玩家周围做球形重叠查询，取最近的可交互对象。
-    /// 不使用 Layer / Tag 过滤，靠 IInteractable 组件判定。
-    /// </summary>
     public class PlayerInteractionDetector : MonoBehaviour
     {
-        [SerializeField] private float radius = 2.5f;
+        [SerializeField, Min(0f)] private float radius = 2.5f;
+        [SerializeField] private LayerMask interactableLayers = ~0;
         [SerializeField] private KeyCode interactKey = KeyCode.E;
         [SerializeField] private PlayerController controller;
 
         private readonly Collider[] _buffer = new Collider[32];
         private IInteractable _current;
+        private GameObject _actor;
+        private Transform _cachedTransform;
 
         private void Reset()
         {
             controller = GetComponent<PlayerController>();
+        }
+
+        private void Awake()
+        {
+            _actor = gameObject;
+            _cachedTransform = transform;
+
+            if (controller == null)
+            {
+                controller = GetComponent<PlayerController>();
+            }
         }
 
         private void OnDisable()
@@ -38,21 +48,23 @@ namespace Demo.Player
             IInteractable found = FindNearest();
             SetCurrent(found);
 
-            if (found != null && Input.GetKeyDown(interactKey))
+            if (found != null &&
+                Input.GetKeyDown(interactKey) &&
+                found.CanInteract(_actor))
             {
-                if (found.CanInteract(gameObject))
-                {
-                    found.Interact(gameObject);
-                }
+                found.Interact(_actor);
             }
         }
 
         private IInteractable FindNearest()
         {
+            Vector3 origin = _cachedTransform.position;
             int count = Physics.OverlapSphereNonAlloc(
-                transform.position,
+                origin,
                 radius,
-                _buffer);
+                _buffer,
+                interactableLayers,
+                QueryTriggerInteraction.Collide);
 
             IInteractable best = null;
             float bestSqrDistance = float.MaxValue;
@@ -68,18 +80,19 @@ namespace Demo.Player
 
                 IInteractable candidate = col.GetComponentInParent<IInteractable>();
 
-                if (candidate == null)
+                if (candidate == null || !candidate.CanInteract(_actor))
                 {
                     continue;
                 }
 
-                if (!candidate.CanInteract(gameObject))
+                Transform candidateTransform = candidate.Transform;
+
+                if (candidateTransform == null)
                 {
                     continue;
                 }
 
-                float sqrDistance =
-                    (candidate.Transform.position - transform.position).sqrMagnitude;
+                float sqrDistance = (candidateTransform.position - origin).sqrMagnitude;
 
                 if (sqrDistance < bestSqrDistance)
                 {
@@ -99,15 +112,9 @@ namespace Demo.Player
             }
 
             _current = next;
-
-            if (next == null)
-            {
-                EventBus.Publish(new InteractionPromptChangedEvent(string.Empty, false));
-            }
-            else
-            {
-                EventBus.Publish(new InteractionPromptChangedEvent(next.PromptText, true));
-            }
+            bool isVisible = next != null;
+            string prompt = isVisible ? next.PromptText : string.Empty;
+            EventBus.Publish(new InteractionPromptChangedEvent(prompt, isVisible));
         }
     }
 }
