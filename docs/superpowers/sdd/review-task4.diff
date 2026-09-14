@@ -1,0 +1,638 @@
+# Review package: task4
+
+## Files changed
+Only in _current/Assets: Animator
+Only in _current/Assets: Animator.meta
+Only in _current/Assets/Script/Editor: HeroAnimatorBuilder.cs
+Only in _current/Assets/Script/Editor: HeroAnimatorBuilder.cs.meta
+Only in _current/Assets/Tests/EditMode: HeroAnimatorBuilderTests.cs
+Only in _current/Assets/Tests/EditMode: HeroAnimatorBuilderTests.cs.meta
+
+## Diff
+diff -ruN task4-base/Assets/Animator/Hero_SwordAndShield.controller _current/Assets/Animator/Hero_SwordAndShield.controller
+--- task4-base/Assets/Animator/Hero_SwordAndShield.controller	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Animator/Hero_SwordAndShield.controller	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,313 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1107 &-2764204475417778120
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Reaction
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!91 &9100000
++AnimatorController:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Hero_SwordAndShield
++  serializedVersion: 5
++  m_AnimatorParameters:
++  - m_Name: Speed
++    m_Type: 1
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: MoveDirX
++    m_Type: 1
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: MoveDirZ
++    m_Type: 1
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: IsLockedOn
++    m_Type: 4
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: IsBattleStance
++    m_Type: 4
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: IsGrounded
++    m_Type: 4
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: LightAttack
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: HeavyAttack
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Roll
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Jump
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: IsDefending
++    m_Type: 4
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Hit
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: HitIndex
++    m_Type: 3
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: DefendHit
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Dizzy
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Die
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: GetUp
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: IsDead
++    m_Type: 4
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Victory
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Dance
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: LevelUp
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: Challenging
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  - m_Name: SenseSomething
++    m_Type: 9
++    m_DefaultFloat: 0
++    m_DefaultInt: 0
++    m_DefaultBool: 0
++    m_Controller: {fileID: 9100000}
++  m_AnimatorLayers:
++  - serializedVersion: 5
++    m_Name: Base Layer
++    m_StateMachine: {fileID: 3384195728088564330}
++    m_Mask: {fileID: 0}
++    m_Motions: []
++    m_Behaviours: []
++    m_BlendingMode: 0
++    m_SyncedLayerIndex: -1
++    m_DefaultWeight: 0
++    m_IKPass: 0
++    m_SyncedLayerAffectsTiming: 0
++    m_Controller: {fileID: 9100000}
++--- !u!1107 &3384195728088564330
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Base Layer
++  m_ChildStates: []
++  m_ChildStateMachines:
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 7796646825504126916}
++    m_Position: {x: 300, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 7458110435445532733}
++    m_Position: {x: 700, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 6077687689082970296}
++    m_Position: {x: 1100, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -2764204475417778120}
++    m_Position: {x: 1500, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 7358889685967581495}
++    m_Position: {x: 1900, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 5430760701342099902}
++    m_Position: {x: 2300, y: 0, z: 0}
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1107 &5430760701342099902
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Death
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1107 &6077687689082970296
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Movement
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1107 &7358889685967581495
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Special
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1107 &7458110435445532733
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Combat
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1107 &7796646825504126916
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Locomotion
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
+diff -ruN task4-base/Assets/Animator/Hero_SwordAndShield.controller.meta _current/Assets/Animator/Hero_SwordAndShield.controller.meta
+--- task4-base/Assets/Animator/Hero_SwordAndShield.controller.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Animator/Hero_SwordAndShield.controller.meta	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,8 @@
++fileFormatVersion: 2
++guid: c372bae72ba756c40b30bf3d6399b78e
++NativeFormatImporter:
++  externalObjects: {}
++  mainObjectFileID: 9100000
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN task4-base/Assets/Animator.meta _current/Assets/Animator.meta
+--- task4-base/Assets/Animator.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Animator.meta	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,8 @@
++fileFormatVersion: 2
++guid: 1ede0699c0c8ec0438f44bbc7cafd1ba
++folderAsset: yes
++DefaultImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN task4-base/Assets/Script/Editor/HeroAnimatorBuilder.cs _current/Assets/Script/Editor/HeroAnimatorBuilder.cs
+--- task4-base/Assets/Script/Editor/HeroAnimatorBuilder.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/HeroAnimatorBuilder.cs	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,128 @@
++using System.IO;
++using UnityEditor;
++using UnityEditor.Animations;
++using UnityEngine;
++using Demo;
++
++namespace Demo.EditorTools
++{
++    /// <summary>
++    /// 用 UnityEditor.Animations API 生成主角的 Animator Controller。
++    ///
++    /// 为什么是"生成"而不是"手工改"：
++    /// 原资源控制器有 44 个平铺状态、44 条无条件的退出时间过渡，是作者的宣传片播放器。
++    /// 手工把它改成参数化状态机需要在 Inspector 里连上百条线，既慢又容易出错。
++    /// 用代码生成则快、可重复、可被测试断言。
++    ///
++    /// 原控制器 Hero_SwordAndShield.controller 生成到 Assets/Animator/ 下，
++    /// Assets/RPGTinyHeroWavePBR/ 下的原文件一个字都不动。
++    /// </summary>
++    public static class HeroAnimatorBuilder
++    {
++        /// <summary>连招衔接的退出时间：到达这个进度时允许接下一段。</summary>
++        public const float ComboLinkExitTime = 0.55f;
++
++        /// <summary>一次性动作返回 Locomotion 的退出时间。</summary>
++        public const float ActionReturnExitTime = 0.90f;
++
++        public const string OutputPath = AnimatorParams.ControllerPath;
++
++        private static readonly Vector3 GroupSpacing = new Vector3(400f, 0f, 0f);
++
++        [MenuItem("Tools/角色/生成主角状态机")]
++        public static void BuildFromMenu()
++        {
++            var ctrl = Build();
++            AssetDatabase.SaveAssets();
++            AssetDatabase.Refresh();
++            Selection.activeObject = ctrl;
++            Debug.Log($"[HeroAnimatorBuilder] 已生成 {OutputPath}");
++        }
++
++        /// <summary>
++        /// 生成控制器。幂等：每次调用都会先删除旧资源再重建。
++        /// </summary>
++        public static AnimatorController Build()
++        {
++            DeleteExistingAsset();
++
++            EnsureFolder("Assets/Animator");
++
++            var ctrl = AnimatorController.CreateAnimatorControllerAtPath(OutputPath);
++            ctrl.layers[0].name = AnimatorParams.LayerName;
++
++            AddParameters(ctrl);
++
++            var root = ctrl.layers[0].stateMachine;
++            root.name = AnimatorParams.LayerName;
++
++            CreateGroupStateMachines(root);
++
++            AssetDatabase.SaveAssets();
++            return ctrl;
++        }
++
++        private static void DeleteExistingAsset()
++        {
++            if (AssetDatabase.LoadAssetAtPath<AnimatorController>(OutputPath) != null)
++                AssetDatabase.DeleteAsset(OutputPath);
++        }
++
++        private static void EnsureFolder(string path)
++        {
++            if (AssetDatabase.IsValidFolder(path))
++                return;
++            var parent = Path.GetDirectoryName(path).Replace('\\', '/');
++            var leaf = Path.GetFileName(path);
++            if (!AssetDatabase.IsValidFolder(parent))
++                EnsureFolder(parent);
++            AssetDatabase.CreateFolder(parent, leaf);
++        }
++
++        private static void AddParameters(AnimatorController ctrl)
++        {
++            void F(string n) => ctrl.AddParameter(n, AnimatorControllerParameterType.Float);
++            void B(string n) => ctrl.AddParameter(n, AnimatorControllerParameterType.Bool);
++            void T(string n) => ctrl.AddParameter(n, AnimatorControllerParameterType.Trigger);
++
++            F(AnimatorParams.Speed);
++            F(AnimatorParams.MoveDirX);
++            F(AnimatorParams.MoveDirZ);
++            B(AnimatorParams.IsLockedOn);
++            B(AnimatorParams.IsBattleStance);
++            B(AnimatorParams.IsGrounded);
++
++            T(AnimatorParams.LightAttack);
++            T(AnimatorParams.HeavyAttack);
++            T(AnimatorParams.Roll);
++            T(AnimatorParams.Jump);
++            B(AnimatorParams.IsDefending);
++
++            T(AnimatorParams.Hit);
++            ctrl.AddParameter(AnimatorParams.HitIndex, AnimatorControllerParameterType.Int);
++            T(AnimatorParams.DefendHit);
++            T(AnimatorParams.Dizzy);
++            T(AnimatorParams.Die);
++            T(AnimatorParams.GetUp);
++            B(AnimatorParams.IsDead);
++
++            T(AnimatorParams.Victory);
++            T(AnimatorParams.Dance);
++            T(AnimatorParams.LevelUp);
++            T(AnimatorParams.Challenging);
++            T(AnimatorParams.SenseSomething);
++        }
++
++        /// <summary>建立 6 个空的子状态机，仅作分组容器。</summary>
++        private static void CreateGroupStateMachines(AnimatorStateMachine root)
++        {
++            for (int i = 0; i < AnimatorParams.Groups.All.Length; i++)
++            {
++                var group = root.AddStateMachine(
++                    AnimatorParams.Groups.All[i],
++                    new Vector3(300f + i * GroupSpacing.x, 0f, 0f));
++                group.name = AnimatorParams.Groups.All[i];
++            }
++        }
++    }
++}
+diff -ruN task4-base/Assets/Script/Editor/HeroAnimatorBuilder.cs.meta _current/Assets/Script/Editor/HeroAnimatorBuilder.cs.meta
+--- task4-base/Assets/Script/Editor/HeroAnimatorBuilder.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/HeroAnimatorBuilder.cs.meta	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 6e4d21f0ed1d0284d8c51ef2974fac21
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN task4-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs
+--- task4-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,120 @@
++using System.Collections.Generic;
++using System.Linq;
++using NUnit.Framework;
++using UnityEditor.Animations;
++using UnityEngine;
++using Demo;
++using Demo.EditorTools;
++
++namespace Demo.Tests
++{
++    /// <summary>
++    /// 生成器结构断言。
++    ///
++    /// 这些测试共用一个生成结果：Unity 的 EditMode 测试是按 fixture 实例化的，
++    /// 每个 [Test] 都会重新跑 OneTimeSetUp，所以这里在 OneTimeSetUp 里生成一次。
++    /// 完整生成耗时较长（要加载 40+ 个 fbx），这是可接受的。
++    /// </summary>
++    public class HeroAnimatorBuilderTests
++    {
++        private static AnimatorController _ctrl;
++
++        [OneTimeSetUp]
++        public void GenerateOnce()
++        {
++            _ctrl = HeroAnimatorBuilder.Build();
++        }
++
++        private static IEnumerable<AnimatorStateMachine> AllStateMachines()
++        {
++            var root = _ctrl.layers[0].stateMachine;
++            yield return root;
++            foreach (var child in root.stateMachines)
++                yield return child.stateMachine;
++        }
++
++        private static IEnumerable<AnimatorState> AllStates()
++        {
++            foreach (var sm in AllStateMachines())
++            {
++                foreach (var s in sm.states)
++                    yield return s.state;
++            }
++        }
++
++        [Test]
++        public void 生成了控制器资源()
++        {
++            Assert.IsNotNull(_ctrl);
++            Assert.AreEqual(1, _ctrl.layers.Length, "只需要一个 Base Layer");
++            Assert.AreEqual(AnimatorParams.LayerName, _ctrl.layers[0].name);
++        }
++
++        [Test]
++        public void 参数齐全且类型正确()
++        {
++            var byName = _ctrl.parameters.ToDictionary(p => p.name);
++
++            foreach (var name in AnimatorParams.AllParameters)
++                Assert.IsTrue(byName.ContainsKey(name), $"缺少参数 {name}");
++
++            Assert.AreEqual(AnimatorControllerParameterType.Float, byName[AnimatorParams.Speed].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Float, byName[AnimatorParams.MoveDirX].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Float, byName[AnimatorParams.MoveDirZ].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Bool, byName[AnimatorParams.IsLockedOn].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Bool, byName[AnimatorParams.IsBattleStance].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Bool, byName[AnimatorParams.IsGrounded].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Bool, byName[AnimatorParams.IsDefending].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Bool, byName[AnimatorParams.IsDead].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Int, byName[AnimatorParams.HitIndex].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Trigger, byName[AnimatorParams.LightAttack].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Trigger, byName[AnimatorParams.HeavyAttack].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Trigger, byName[AnimatorParams.Roll].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Trigger, byName[AnimatorParams.Jump].type);
++            Assert.AreEqual(AnimatorControllerParameterType.Trigger, byName[AnimatorParams.Die].type);
++        }
++
++        [Test]
++        public void 六个子状态机全部存在()
++        {
++            var names = _ctrl.layers[0].stateMachine.stateMachines
++                .Select(sm => sm.stateMachine.name).ToList();
++
++            foreach (var g in AnimatorParams.AllGroups)
++                Assert.IsTrue(names.Contains(g), $"缺少子状态机 {g}");
++        }
++
++        [Test]
++        public void 每个状态都被归入某个子状态机()
++        {
++            var root = _ctrl.layers[0].stateMachine;
++            var inGroups = new HashSet<string>(
++                root.stateMachines.SelectMany(sm => sm.stateMachine.states)
++                    .Select(s => s.state.name));
++
++            foreach (var s in AnimatorParams.AllStates)
++                Assert.IsTrue(inGroups.Contains(s), $"状态 {s} 没有被放进任何子状态机");
++        }
++
++        [Test]
++        public void 根状态机上没有游离状态()
++        {
++            Assert.AreEqual(0, _ctrl.layers[0].stateMachine.states.Length,
++                "所有状态都应归入子状态机，根层不应有游离状态");
++        }
++
++        [Test]
++        public void 没有重复状态名()
++        {
++            var names = AllStates().Select(s => s.name).ToList();
++            CollectionAssert.AllItemsAreUnique(names);
++        }
++
++        [Test]
++        public void 状态名已修正拼写错误()
++        {
++            foreach (var s in AllStates())
++                StringAssert.DoesNotContain("Shiled", s.name);
++        }
++    }
++}
+diff -ruN task4-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs.meta _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs.meta
+--- task4-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs.meta	2026-09-12 01:41:34.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 35ddb2b801cf05c44a03c06ca1e64b79
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 

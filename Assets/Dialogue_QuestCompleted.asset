@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b78387cb0a3b546b212439acaf8651, type: 3}
+  m_Name: Dialogue_QuestCompleted
+  m_EditorClassIdentifier: 
+  speakerName: "\u6751\u6C11"
+  lines:
+  - "\u592A\u597D\u4E86\uFF0C\u6751\u5B50\u7EC8\u4E8E\u80FD\u5B89\u751F\u4E86\u3002"
+  options: []

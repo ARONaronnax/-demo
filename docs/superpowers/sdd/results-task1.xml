@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.0510768">
+  <test-suite type="TestSuite" id="1011" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.051077" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="1015" name="Demo.Tests.EditMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.EditMode.dll" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.035537" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="67872" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="1016" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.035138" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1017" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.032036" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1012" name="AssemblySmokeTests" fullname="Demo.Tests.AssemblySmokeTests" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.026699" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1013" name="测试程序集_已正确装配" fullname="Demo.Tests.AssemblySmokeTests.测试程序集_已正确装配" methodname="测试程序集_已正确装配" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="2098955354" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.009661" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1014" name="编辑器程序集_可被测试程序集引用" fullname="Demo.Tests.AssemblySmokeTests.编辑器程序集_可被测试程序集引用" methodname="编辑器程序集_可被测试程序集引用" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="344519448" result="Passed" start-time="2026-09-11 17:12:03Z" end-time="2026-09-11 17:12:03Z" duration="0.001896" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

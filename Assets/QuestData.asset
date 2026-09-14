@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75206b6b55fd89a41a4837c481bca4f7, type: 3}
+  m_Name: QuestData
+  m_EditorClassIdentifier: 
+  id: KillMonsters
+  title: "\u8BA8\u4F10\u9B54\u7269"
+  description: 
+  objectiveText: "\u51FB\u8D25 3 \u53EA\u9B54\u7269"
+  requiredAmount: 3
+  targetEnemyTypeId: 
+  rewardItem: {fileID: 0}
+  rewardAmount: 0

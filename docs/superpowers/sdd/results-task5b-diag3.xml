@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.8425022">
+  <test-suite type="TestSuite" id="1000" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.842502" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1007" name="Demo.Tests.PlayMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.PlayMode.dll" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.836070" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="77872" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1008" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.834882" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1009" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.834207" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="AnimatorEntryTests" fullname="Demo.Tests.AnimatorEntryTests" classname="Demo.Tests.AnimatorEntryTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:06Z" duration="0.465883" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[Importer(NativeFormatImporter) generated inconsistent result for asset(guid:c372bae72ba756c40b30bf3d6399b78e) "Assets/Animator/Hero_SwordAndShield.controller"
+
+IgnoreFailingMessages:true
+]]></output>
+            <test-case id="1002" name="首帧停在Locomotion的混合树状态" fullname="Demo.Tests.AnimatorEntryTests.首帧停在Locomotion的混合树状态" methodname="首帧停在Locomotion的混合树状态" classname="Demo.Tests.AnimatorEntryTests" runstate="Runnable" seed="1485777410" result="Failed" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:06Z" duration="0.022257" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[第 0 层当前状态应为 Tree_Free_Normal（shortNameHash=193745133），实际 shortNameHash=2124725196、fullPathHash=312396153，正在播放：Idle_Normal_SwordAndShield]]></message>
+                <stack-trace><![CDATA[at Demo.Tests.AnimatorEntryTests.AssertCurrentState (UnityEngine.Animator animator, System.String expectedState) [0x00050] in E:\unity\求职demo\Assets\Tests\PlayMode\AnimatorEntryTests.cs:82
+at Demo.Tests.AnimatorEntryTests+<首帧停在Locomotion的混合树状态>d__3.MoveNext () [0x00073] in E:\unity\求职demo\Assets\Tests\PlayMode\AnimatorEntryTests.cs:52
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="TempDiagnostic2" fullname="Demo.Tests.TempDiagnostic2" classname="Demo.Tests.TempDiagnostic2" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.184531" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="诊断2" fullname="Demo.Tests.TempDiagnostic2.诊断2" methodname="诊断2" classname="Demo.Tests.TempDiagnostic2" runstate="Runnable" seed="1269163544" result="Passed" start-time="2026-09-11 18:13:06Z" end-time="2026-09-11 18:13:07Z" duration="0.183170" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[Importer(NativeFormatImporter) generated inconsistent result for asset(guid:c372bae72ba756c40b30bf3d6399b78e) "Assets/Animator/Hero_SwordAndShield.controller"
+DIAG2 asset: loadedEntries=1 entryDst=Locomotion conds=1 rootDefault=Idle_Normal locoName=Locomotion locoDefault=Tree_Free_Normal rootStates=0
+
+IgnoreFailingMessages:true
+DIAG2 runtime: frame=0 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+DIAG2 runtime: frame=1 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+DIAG2 runtime: frame=2 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+DIAG2 runtime: frame=3 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+DIAG2 runtime: frame=4 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+DIAG2 runtime: frame=5 isInit=True short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+
+IgnoreFailingMessages:false
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="TempDiagnostic3" fullname="Demo.Tests.TempDiagnostic3" classname="Demo.Tests.TempDiagnostic3" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-11 18:13:07Z" end-time="2026-09-11 18:13:07Z" duration="0.181863" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1006" name="诊断3" fullname="Demo.Tests.TempDiagnostic3.诊断3" methodname="诊断3" classname="Demo.Tests.TempDiagnostic3" runstate="Runnable" seed="257148306" result="Passed" start-time="2026-09-11 18:13:07Z" end-time="2026-09-11 18:13:07Z" duration="0.181155" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[Importer(NativeFormatImporter) generated inconsistent result for asset(guid:c372bae72ba756c40b30bf3d6399b78e) "Assets/Animator/Hero_SwordAndShield.controller"
+DIAG3 setup: entries=1 rootDefault=Idle_Normal locoDefault=Tree_Free_Normal
+
+IgnoreFailingMessages:true
+DIAG3 RESULT V0_entryOnly_autoDefault: short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+
+IgnoreFailingMessages:false
+DIAG3 V1 applied: rootDefault=Idle_Normal
+
+IgnoreFailingMessages:true
+DIAG3 RESULT V1_entry_nullDefault: short=2124725196 full=312396153 idleNormal=2124725196 treeFreeNormal=193745133
+
+IgnoreFailingMessages:false
+DIAG3 V2 applied: rootDefault=Tree_Free_Normal
+
+IgnoreFailingMessages:true
+DIAG3 RESULT V2_entry_treeFreeDefault: short=193745133 full=-232129677 idleNormal=2124725196 treeFreeNormal=193745133
+
+IgnoreFailingMessages:false
+DIAG3 V3 applied: entries=0 rootDefault=Tree_Free_Normal
+
+IgnoreFailingMessages:true
+DIAG3 RESULT V3_noEntry_treeFreeDefault: short=193745133 full=-232129677 idleNormal=2124725196 treeFreeNormal=193745133
+
+IgnoreFailingMessages:false
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

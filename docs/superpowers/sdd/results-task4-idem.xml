@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Failed(Child)" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.365209">
+  <test-suite type="TestSuite" id="1032" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.365209" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1057" name="Demo.Tests.EditMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.EditMode.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.348474" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79544" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1058" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.347761" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1059" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.344952" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1033" name="AnimationClipLocatorTests" fullname="Demo.Tests.AnimationClipLocatorTests" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.033277" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1034" name="InPlace路径_指向InPlace目录" fullname="Demo.Tests.AnimationClipLocatorTests.InPlace路径_指向InPlace目录" methodname="InPlace路径_指向InPlace目录" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="1730850890" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.007793" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1035" name="RootMotion路径_指向RootMotion目录" fullname="Demo.Tests.AnimationClipLocatorTests.RootMotion路径_指向RootMotion目录" methodname="RootMotion路径_指向RootMotion目录" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="1306334472" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000222" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1036" name="加载InPlace剪辑_返回非空且名称匹配" fullname="Demo.Tests.AnimationClipLocatorTests.加载InPlace剪辑_返回非空且名称匹配" methodname="加载InPlace剪辑_返回非空且名称匹配" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="284832095" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.006048" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1037" name="加载RootMotion剪辑_返回非空" fullname="Demo.Tests.AnimationClipLocatorTests.加载RootMotion剪辑_返回非空" methodname="加载RootMotion剪辑_返回非空" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="726581872" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.002448" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1038" name="加载不存在的剪辑_返回null而非抛异常" fullname="Demo.Tests.AnimationClipLocatorTests.加载不存在的剪辑_返回null而非抛异常" methodname="加载不存在的剪辑_返回null而非抛异常" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="219305540" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000247" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1039" name="同名的InPlace与RootMotion剪辑_是两个不同对象" fullname="Demo.Tests.AnimationClipLocatorTests.同名的InPlace与RootMotion剪辑_是两个不同对象" methodname="同名的InPlace与RootMotion剪辑_是两个不同对象" classname="Demo.Tests.AnimationClipLocatorTests" runstate="Runnable" seed="1211332391" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.002498" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1040" name="AnimatorParamsTests" fullname="Demo.Tests.AnimatorParamsTests" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.009574" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1042" name="参数名_无重复" fullname="Demo.Tests.AnimatorParamsTests.参数名_无重复" methodname="参数名_无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="975175493" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.004041" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1045" name="状态名_不含重复的IdleBattle副本" fullname="Demo.Tests.AnimatorParamsTests.状态名_不含重复的IdleBattle副本" methodname="状态名_不含重复的IdleBattle副本" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="379235930" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.001995" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1044" name="状态名_已修正拼写错误" fullname="Demo.Tests.AnimatorParamsTests.状态名_已修正拼写错误" methodname="状态名_已修正拼写错误" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="1399181705" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.001293" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1043" name="状态名_恰好三十九个且无重复" fullname="Demo.Tests.AnimatorParamsTests.状态名_恰好三十九个且无重复" methodname="状态名_恰好三十九个且无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="583857173" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000541" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1041" name="组名_恰好六个且无重复" fullname="Demo.Tests.AnimatorParamsTests.组名_恰好六个且无重复" methodname="组名_恰好六个且无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="1611093040" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000230" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1046" name="AssemblySmokeTests" fullname="Demo.Tests.AssemblySmokeTests" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.001209" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1047" name="测试程序集_已正确装配" fullname="Demo.Tests.AssemblySmokeTests.测试程序集_已正确装配" methodname="测试程序集_已正确装配" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="1096212943" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000398" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1048" name="编辑器程序集_可被测试程序集引用" fullname="Demo.Tests.AssemblySmokeTests.编辑器程序集_可被测试程序集引用" methodname="编辑器程序集_可被测试程序集引用" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="1793579005" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000146" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="HeroAnimatorBuilderTests" fullname="Demo.Tests.HeroAnimatorBuilderTests" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.296108" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1052" name="六个子状态机全部存在" fullname="Demo.Tests.HeroAnimatorBuilderTests.六个子状态机全部存在" methodname="六个子状态机全部存在" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="104291290" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.001891" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1051" name="参数齐全且类型正确" fullname="Demo.Tests.HeroAnimatorBuilderTests.参数齐全且类型正确" methodname="参数齐全且类型正确" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="1129271356" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.002274" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1054" name="根状态机上没有游离状态" fullname="Demo.Tests.HeroAnimatorBuilderTests.根状态机上没有游离状态" methodname="根状态机上没有游离状态" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="1924239782" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000328" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1053" name="每个状态都被归入某个子状态机" fullname="Demo.Tests.HeroAnimatorBuilderTests.每个状态都被归入某个子状态机" methodname="每个状态都被归入某个子状态机" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="1953103141" result="Failed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.007348" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[  状态 Idle_Normal 没有被放进任何子状态机
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Demo.Tests.HeroAnimatorBuilderTests.每个状态都被归入某个子状态机 () [0x00072] in E:\unity\求职demo\Assets\Tests\EditMode\HeroAnimatorBuilderTests.cs:96
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1055" name="没有重复状态名" fullname="Demo.Tests.HeroAnimatorBuilderTests.没有重复状态名" methodname="没有重复状态名" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="392845613" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.001018" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1056" name="状态名已修正拼写错误" fullname="Demo.Tests.HeroAnimatorBuilderTests.状态名已修正拼写错误" methodname="状态名已修正拼写错误" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="1944819311" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000238" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1050" name="生成了控制器资源" fullname="Demo.Tests.HeroAnimatorBuilderTests.生成了控制器资源" methodname="生成了控制器资源" classname="Demo.Tests.HeroAnimatorBuilderTests" runstate="Runnable" seed="657122461" result="Passed" start-time="2026-09-11 17:40:17Z" end-time="2026-09-11 17:40:17Z" duration="0.000238" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

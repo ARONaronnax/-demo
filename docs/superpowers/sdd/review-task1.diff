@@ -1,0 +1,511 @@
+# Review package: task1
+
+## Files changed
+Only in _current/Assets/Script: Demo.Runtime.asmdef
+Only in _current/Assets/Script: Demo.Runtime.asmdef.meta
+Only in _current/Assets/Script: Editor
+Only in _current/Assets/Script: Editor.meta
+Only in baseline/Assets/Script: PlayerController.cs
+Only in baseline/Assets/Script: PlayerController.cs.meta
+Only in _current/Assets: Tests
+
+## Diff
+diff -ruN baseline/Assets/Script/Demo.Runtime.asmdef _current/Assets/Script/Demo.Runtime.asmdef
+--- baseline/Assets/Script/Demo.Runtime.asmdef	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Demo.Runtime.asmdef	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,14 @@
++{
++    "name": "Demo.Runtime",
++    "rootNamespace": "Demo",
++    "references": [],
++    "includePlatforms": [],
++    "excludePlatforms": [],
++    "allowUnsafeCode": false,
++    "overrideReferences": false,
++    "precompiledReferences": [],
++    "autoReferenced": true,
++    "defineConstraints": [],
++    "versionDefines": [],
++    "noEngineReferences": false
++}
+diff -ruN baseline/Assets/Script/Demo.Runtime.asmdef.meta _current/Assets/Script/Demo.Runtime.asmdef.meta
+--- baseline/Assets/Script/Demo.Runtime.asmdef.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Demo.Runtime.asmdef.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: adb40ed0842d8ea48bec406f8b3a1eac
++AssemblyDefinitionImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Script/Editor/Demo.Editor.asmdef _current/Assets/Script/Editor/Demo.Editor.asmdef
+--- baseline/Assets/Script/Editor/Demo.Editor.asmdef	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/Demo.Editor.asmdef	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,18 @@
++{
++    "name": "Demo.Editor",
++    "rootNamespace": "Demo.EditorTools",
++    "references": [
++        "Demo.Runtime"
++    ],
++    "includePlatforms": [
++        "Editor"
++    ],
++    "excludePlatforms": [],
++    "allowUnsafeCode": false,
++    "overrideReferences": false,
++    "precompiledReferences": [],
++    "autoReferenced": true,
++    "defineConstraints": [],
++    "versionDefines": [],
++    "noEngineReferences": false
++}
+diff -ruN baseline/Assets/Script/Editor/Demo.Editor.asmdef.meta _current/Assets/Script/Editor/Demo.Editor.asmdef.meta
+--- baseline/Assets/Script/Editor/Demo.Editor.asmdef.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/Demo.Editor.asmdef.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 8ef985fa7b85fc54aa4a677d43e8363a
++AssemblyDefinitionImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Script/Editor/NamespaceAnchor.cs _current/Assets/Script/Editor/NamespaceAnchor.cs
+--- baseline/Assets/Script/Editor/NamespaceAnchor.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/NamespaceAnchor.cs	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,9 @@
++namespace Demo.EditorTools
++{
++    /// <summary>
++    /// ‰ªÖÁî®‰∫éÈ™åËØÅ Demo.Editor Á®ãÂ∫èÈõÜÂèØË¢´ÊµãËØïÁ®ãÂ∫èÈõÜÂºïÁî®„ÄÇ
++    /// </summary>
++    public static class NamespaceAnchor
++    {
++    }
++}
+diff -ruN baseline/Assets/Script/Editor/NamespaceAnchor.cs.meta _current/Assets/Script/Editor/NamespaceAnchor.cs.meta
+--- baseline/Assets/Script/Editor/NamespaceAnchor.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/NamespaceAnchor.cs.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 1520a7e54e78a83448f37396221f1af3
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Script/Editor.meta _current/Assets/Script/Editor.meta
+--- baseline/Assets/Script/Editor.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,8 @@
++fileFormatVersion: 2
++guid: 5e17fa32dee3bc947a0eea19c0ee5f04
++folderAsset: yes
++DefaultImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Script/PlayerController.cs _current/Assets/Script/PlayerController.cs
+--- baseline/Assets/Script/PlayerController.cs	2026-09-12 00:37:44.000000000 +0800
++++ _current/Assets/Script/PlayerController.cs	1970-01-01 08:00:00.000000000 +0800
+@@ -1,284 +0,0 @@
+-using UnityEngine;
+-
+-[RequireComponent(typeof(CharacterController))]
+-public class PlayerController : MonoBehaviour
+-{
+-    [Header("========== “∆∂Ø ==========")]
+-    [SerializeField] private float moveSpeed = 3.5f;
+-    [SerializeField] private float sprintSpeed = 6f;
+-
+-    [Header("========== »ÀŒÔ◊™œÚ ==========")]
+-    [SerializeField] private float rotationSpeed = 8f;
+-
+-    [Header("========== Ã¯‘æ ==========")]
+-    [SerializeField] private float jumpHeight = 1.5f;
+-    [SerializeField] private float gravity = -20f;
+-
+-    [Header("========== æµÕ∑ ==========")]
+-    [SerializeField] private Transform cameraTarget;
+-
+-    [Tooltip("æµÕ∑ƒø±Íœ‡∂‘”⁄»ÀŒÔµƒ∏ﬂ∂»")]
+-    [SerializeField] private float cameraHeight = 1.5f;
+-
+-    [Tooltip(" Û±Í◊Û”“¡È√Ù∂»")]
+-    [SerializeField] private float mouseSensitivity = 3f;
+-
+-    [Tooltip(" Û±Í…œœ¬¡È√Ù∂»")]
+-    [SerializeField] private float cameraPitchSpeed = 2f;
+-
+-    [SerializeField] private float minPitch = -30f;
+-    [SerializeField] private float maxPitch = 60f;
+-
+-    [Header("==========  Û±Í ==========")]
+-    [SerializeField] private bool lockCursor = true;
+-
+-    private CharacterController controller;
+-
+-    private Vector3 verticalVelocity;
+-
+-    private float cameraYaw;
+-    private float cameraPitch;
+-
+-    private void Awake()
+-    {
+-        controller = GetComponent<CharacterController>();
+-
+-        // »Áπ˚√ª”– ÷∂Ø÷∏∂® CameraTarget£¨◊‘∂Ø—∞’“
+-        if (cameraTarget == null)
+-        {
+-            GameObject targetObject = GameObject.Find("CameraTarget");
+-
+-            if (targetObject != null)
+-            {
+-                cameraTarget = targetObject.transform;
+-            }
+-        }
+-
+-        if (cameraTarget != null)
+-        {
+-            cameraYaw = cameraTarget.eulerAngles.y;
+-
+-            cameraPitch = cameraTarget.eulerAngles.x;
+-
+-            if (cameraPitch > 180f)
+-            {
+-                cameraPitch -= 360f;
+-            }
+-        }
+-
+-        SetCursorState();
+-    }
+-
+-    private void Update()
+-    {
+-        HandleMouseLook();
+-        HandleMovement();
+-        HandleJumpAndGravity();
+-        HandleCursor();
+-    }
+-
+-    private void LateUpdate()
+-    {
+-        UpdateCameraTargetPosition();
+-    }
+-
+-    // =========================================================
+-    //  Û±Íøÿ÷∆æµÕ∑
+-    // =========================================================
+-
+-    private void HandleMouseLook()
+-    {
+-        if (cameraTarget == null)
+-            return;
+-
+-        if (Cursor.lockState != CursorLockMode.Locked)
+-            return;
+-
+-        float mouseX = Input.GetAxis("Mouse X");
+-        float mouseY = Input.GetAxis("Mouse Y");
+-
+-        // ◊Û”“–˝◊™
+-        cameraYaw += mouseX * mouseSensitivity;
+-
+-        // …œœ¬–˝◊™
+-        cameraPitch -= mouseY * cameraPitchSpeed;
+-
+-        cameraPitch = Mathf.Clamp(
+-            cameraPitch,
+-            minPitch,
+-            maxPitch
+-        );
+-
+-        // ◊¢“‚£∫
+-        // CameraTarget  «∂¿¡¢ŒÔÃÂ£¨À˘“‘≤ªª· ‹µΩ Player –˝◊™”∞œÏ
+-        cameraTarget.rotation = Quaternion.Euler(
+-            cameraPitch,
+-            cameraYaw,
+-            0f
+-        );
+-    }
+-
+-    // =========================================================
+-    // »ÀŒÔ“∆∂Ø
+-    // =========================================================
+-
+-    private void HandleMovement()
+-    {
+-        float horizontal = Input.GetAxis("Horizontal");
+-        float vertical = Input.GetAxis("Vertical");
+-
+-        Vector3 input = new Vector3(
+-            horizontal,
+-            0f,
+-            vertical
+-        );
+-
+-        input = Vector3.ClampMagnitude(input, 1f);
+-
+-        if (input.sqrMagnitude < 0.001f)
+-            return;
+-
+-        // ==========================================
+-        // ∏˘æ›æµÕ∑∑ΩœÚº∆À„“∆∂Ø∑ΩœÚ
+-        // ==========================================
+-
+-        Vector3 cameraForward;
+-
+-        Vector3 cameraRight;
+-
+-        if (cameraTarget != null)
+-        {
+-            cameraForward = cameraTarget.forward;
+-            cameraRight = cameraTarget.right;
+-        }
+-        else
+-        {
+-            cameraForward = transform.forward;
+-            cameraRight = transform.right;
+-        }
+-
+-        // ≤ªøº¬«æµÕ∑…œœ¬Ω«∂»
+-        cameraForward.y = 0f;
+-        cameraRight.y = 0f;
+-
+-        cameraForward.Normalize();
+-        cameraRight.Normalize();
+-
+-        Vector3 moveDirection =
+-            cameraForward * input.z +
+-            cameraRight * input.x;
+-
+-        moveDirection = Vector3.ClampMagnitude(
+-            moveDirection,
+-            1f
+-        );
+-
+-        // ==========================================
+-        // “∆∂ØÀŸ∂»
+-        // ==========================================
+-
+-        bool sprinting = Input.GetKey(KeyCode.LeftShift);
+-
+-        float currentSpeed = sprinting
+-            ? sprintSpeed
+-            : moveSpeed;
+-
+-        controller.Move(
+-            moveDirection *
+-            currentSpeed *
+-            Time.deltaTime
+-        );
+-
+-        // ==========================================
+-        // »ÀŒÔ≥Ø“∆∂Ø∑ΩœÚ∆Ωª¨◊™…Ì
+-        // ==========================================
+-
+-        if (moveDirection.sqrMagnitude > 0.001f)
+-        {
+-            Quaternion targetRotation =
+-                Quaternion.LookRotation(moveDirection);
+-
+-            transform.rotation = Quaternion.Slerp(
+-                transform.rotation,
+-                targetRotation,
+-                rotationSpeed * Time.deltaTime
+-            );
+-        }
+-    }
+-
+-    // =========================================================
+-    // Ã¯‘æ + ÷ÿ¡¶
+-    // =========================================================
+-
+-    private void HandleJumpAndGravity()
+-    {
+-        if (controller.isGrounded && verticalVelocity.y < 0f)
+-        {
+-            verticalVelocity.y = -2f;
+-        }
+-
+-        // Space Ã¯‘æ
+-        if (Input.GetKeyDown(KeyCode.Space) &&
+-            controller.isGrounded)
+-        {
+-            verticalVelocity.y =
+-                Mathf.Sqrt(
+-                    jumpHeight *
+-                    -2f *
+-                    gravity
+-                );
+-        }
+-
+-        verticalVelocity.y +=
+-            gravity *
+-            Time.deltaTime;
+-
+-        controller.Move(
+-            verticalVelocity *
+-            Time.deltaTime
+-        );
+-    }
+-
+-    // =========================================================
+-    // CameraTarget ∏˙ÀÊ»ÀŒÔŒª÷√
+-    // =========================================================
+-
+-    private void UpdateCameraTargetPosition()
+-    {
+-        if (cameraTarget == null)
+-            return;
+-
+-        cameraTarget.position =
+-            transform.position +
+-            Vector3.up * cameraHeight;
+-    }
+-
+-    // =========================================================
+-    //  Û±ÍÀ¯∂®
+-    // =========================================================
+-
+-    private void HandleCursor()
+-    {
+-        // ESC Ω‚À¯ Û±Í
+-        if (Input.GetKeyDown(KeyCode.Escape))
+-        {
+-            Cursor.lockState = CursorLockMode.None;
+-            Cursor.visible = true;
+-        }
+-
+-        //  Û±Í◊Ûº¸÷ÿ–¬À¯∂®
+-        if (Input.GetMouseButtonDown(0))
+-        {
+-            SetCursorState();
+-        }
+-    }
+-
+-    private void SetCursorState()
+-    {
+-        if (!lockCursor)
+-            return;
+-
+-        Cursor.lockState = CursorLockMode.Locked;
+-        Cursor.visible = false;
+-    }
+-}
+\ No newline at end of file
+diff -ruN baseline/Assets/Script/PlayerController.cs.meta _current/Assets/Script/PlayerController.cs.meta
+--- baseline/Assets/Script/PlayerController.cs.meta	2026-09-12 00:37:44.000000000 +0800
++++ _current/Assets/Script/PlayerController.cs.meta	1970-01-01 08:00:00.000000000 +0800
+@@ -1,11 +0,0 @@
+-fileFormatVersion: 2
+-guid: 7ac7f1010ebb9f647b7847ced7248838
+-MonoImporter:
+-  externalObjects: {}
+-  serializedVersion: 2
+-  defaultReferences: []
+-  executionOrder: 0
+-  icon: {instanceID: 0}
+-  userData: 
+-  assetBundleName: 
+-  assetBundleVariant: 
+diff -ruN baseline/Assets/Tests/EditMode/AssemblySmokeTests.cs _current/Assets/Tests/EditMode/AssemblySmokeTests.cs
+--- baseline/Assets/Tests/EditMode/AssemblySmokeTests.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/AssemblySmokeTests.cs	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,22 @@
++using NUnit.Framework;
++
++namespace Demo.Tests
++{
++    public class AssemblySmokeTests
++    {
++        [Test]
++        public void ÊµãËØïÁ®ãÂ∫èÈõÜ_Â∑≤Ê≠£Á°ÆË£ÖÈÖç()
++        {
++            // ËÉΩÁºñËØëÂπ∂Ë∑ëÂà∞ËøôÈáåÔºåÂ∞±ËØ¥Êòé‰∏â‰∏™ asmdef ÁöÑÂºïÁî®ÂÖ≥Á≥ªÊòØÂØπÁöÑ
++            Assert.IsNotNull(typeof(Demo.Tests.AssemblySmokeTests).Assembly);
++        }
++
++        [Test]
++        public void ÁºñËæëÂô®Á®ãÂ∫èÈõÜ_ÂèØË¢´ÊµãËØïÁ®ãÂ∫èÈõÜÂºïÁî®()
++        {
++            var type = typeof(Demo.EditorTools.NamespaceAnchor);
++            Assert.IsNotNull(type);
++            Assert.AreEqual("Demo.EditorTools", type.Namespace);
++        }
++    }
++}
+diff -ruN baseline/Assets/Tests/EditMode/AssemblySmokeTests.cs.meta _current/Assets/Tests/EditMode/AssemblySmokeTests.cs.meta
+--- baseline/Assets/Tests/EditMode/AssemblySmokeTests.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/AssemblySmokeTests.cs.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: ffbf80eda2179104db95b4e502a40a2c
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef _current/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef
+--- baseline/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,25 @@
++{
++    "name": "Demo.Tests.EditMode",
++    "rootNamespace": "Demo.Tests",
++    "references": [
++        "Demo.Runtime",
++        "Demo.Editor",
++        "UnityEngine.TestRunner",
++        "UnityEditor.TestRunner"
++    ],
++    "includePlatforms": [
++        "Editor"
++    ],
++    "excludePlatforms": [],
++    "allowUnsafeCode": false,
++    "overrideReferences": true,
++    "precompiledReferences": [
++        "nunit.framework.dll"
++    ],
++    "autoReferenced": false,
++    "defineConstraints": [
++        "UNITY_INCLUDE_TESTS"
++    ],
++    "versionDefines": [],
++    "noEngineReferences": false
++}
+diff -ruN baseline/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef.meta _current/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef.meta
+--- baseline/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/Demo.Tests.EditMode.asmdef.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 8b69de4cde69edc44b7bea3ce826229e
++AssemblyDefinitionImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN baseline/Assets/Tests/EditMode.meta _current/Assets/Tests/EditMode.meta
+--- baseline/Assets/Tests/EditMode.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode.meta	2026-09-12 00:58:26.000000000 +0800
+@@ -0,0 +1,8 @@
++fileFormatVersion: 2
++guid: caae8539be342a74ba32ee485cf0e7f8
++folderAsset: yes
++DefaultImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 

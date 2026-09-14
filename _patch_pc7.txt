@@ -1,0 +1,25 @@
+###R1S###
+using UnityEngine;
+using Demo.Combat;
+###R1M###
+using UnityEngine;
+using Demo.Combat;
+using Demo.Core;
+###R1E###
+###R2S###
+    private void CheckInputs()
+    {
+###R2M###
+    private void CheckInputs()
+    {
+        // 暂停 / 对话中屏蔽一切操作输入。
+        // 只靠 timeScale = 0 不够：鼠标按键照样会被读到，
+        // 攻击 / 翻滚 / 跳跃会把 Animator Trigger 排进队列，
+        // 解除暂停的瞬间一次性全放出来。举盾状态也要在这里放下。
+        if (InputLock.IsLocked)
+        {
+            animator.SetBool(IsDefendHash, false);
+            return;
+        }
+
+###R2E###

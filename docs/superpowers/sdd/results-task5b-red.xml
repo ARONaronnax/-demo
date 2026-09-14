@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.3275321">
+  <test-suite type="TestSuite" id="1000" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.327532" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1003" name="Demo.Tests.PlayMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.PlayMode.dll" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.319829" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="64864" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1004" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.319369" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1005" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.319151" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="AnimatorEntryTests" fullname="Demo.Tests.AnimatorEntryTests" classname="Demo.Tests.AnimatorEntryTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.317943" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[Importer(NativeFormatImporter) generated inconsistent result for asset(guid:c372bae72ba756c40b30bf3d6399b78e) "Assets/Animator/Hero_SwordAndShield.controller"
+
+IgnoreFailingMessages:true
+]]></output>
+            <test-case id="1002" name="首帧停在Locomotion的混合树状态" fullname="Demo.Tests.AnimatorEntryTests.首帧停在Locomotion的混合树状态" methodname="首帧停在Locomotion的混合树状态" classname="Demo.Tests.AnimatorEntryTests" runstate="Runnable" seed="1987262507" result="Failed" start-time="2026-09-11 18:08:58Z" end-time="2026-09-11 18:08:58Z" duration="0.023040" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <failure>
+                <message><![CDATA[第 0 层当前状态应为 Tree_Free_Normal（shortNameHash=193745133），实际 shortNameHash=2124725196、fullPathHash=312396153，正在播放：Idle_Normal_SwordAndShield]]></message>
+                <stack-trace><![CDATA[at Demo.Tests.AnimatorEntryTests.AssertCurrentState (UnityEngine.Animator animator, System.String expectedState) [0x00050] in E:\unity\求职demo\Assets\Tests\PlayMode\AnimatorEntryTests.cs:82
+at Demo.Tests.AnimatorEntryTests+<首帧停在Locomotion的混合树状态>d__3.MoveNext () [0x00073] in E:\unity\求职demo\Assets\Tests\PlayMode\AnimatorEntryTests.cs:52
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

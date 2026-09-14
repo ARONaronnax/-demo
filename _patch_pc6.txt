@@ -1,0 +1,37 @@
+###R1S###
+        HandleJump();
+
+        // -------------------------
+        // 测试
+        // H / K
+        // -------------------------
+
+        HandleDebugInputs();
+    }
+###R1M###
+        HandleJump();
+    }
+###R1E###
+###R2S###
+    // =========================================================
+    // 测试按键
+    // =========================================================
+
+    private void HandleDebugInputs()
+    {
+        // H = 受击
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            GetHit();
+        }
+
+        // K = 死亡
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Die();
+        }
+    }
+
+
+###R2M###
+###R2E###

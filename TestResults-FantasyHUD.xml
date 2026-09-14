@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="251" result="Passed" total="251" passed="251" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.7525224">
+  <test-suite type="TestSuite" id="1278" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="251" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.752522" total="251" passed="251" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="1549" name="Demo.Tests.EditMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.EditMode.dll" runstate="Runnable" testcasecount="251" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.737308" total="251" passed="251" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31896" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="1550" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="251" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.735070" total="251" passed="251" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1551" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="251" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.729816" total="251" passed="251" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1279" name="ComboChainTests" fullname="Demo.Tests.ComboChainTests" classname="Demo.Tests.ComboChainTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.034132" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1285" name="AfterLastSegment_NextPressWrapsToFirst" fullname="Demo.Tests.ComboChainTests.AfterLastSegment_NextPressWrapsToFirst" methodname="AfterLastSegment_NextPressWrapsToFirst" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="703569846" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.014486" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1290" name="Break_ResetsChainToStart" fullname="Demo.Tests.ComboChainTests.Break_ResetsChainToStart" methodname="Break_ResetsChainToStart" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="553908959" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000640" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1291" name="Break_WhilePlaying_DropsQueuedInput" fullname="Demo.Tests.ComboChainTests.Break_WhilePlaying_DropsQueuedInput" methodname="Break_WhilePlaying_DropsQueuedInput" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="62084409" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000205" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1292" name="DamageMultiplier_IsOneOnEverySegmentExceptLast" fullname="Demo.Tests.ComboChainTests.DamageMultiplier_IsOneOnEverySegmentExceptLast" methodname="DamageMultiplier_IsOneOnEverySegmentExceptLast" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="695060153" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001014" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1293" name="DamageMultiplier_IsOneWhenNotInCombo" fullname="Demo.Tests.ComboChainTests.DamageMultiplier_IsOneWhenNotInCombo" methodname="DamageMultiplier_IsOneWhenNotInCombo" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="714282845" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000215" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1280" name="FirstPress_StartsAtFirstCombo" fullname="Demo.Tests.ComboChainTests.FirstPress_StartsAtFirstCombo" methodname="FirstPress_StartsAtFirstCombo" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="49929060" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000331" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1284" name="FullChain_AdvancesToLastSegment" fullname="Demo.Tests.ComboChainTests.FullChain_AdvancesToLastSegment" methodname="FullChain_AdvancesToLastSegment" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="925871914" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000341" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1294" name="LengthBelowOne_IsClampedToSingleSegment" fullname="Demo.Tests.ComboChainTests.LengthBelowOne_IsClampedToSingleSegment" methodname="LengthBelowOne_IsClampedToSingleSegment" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="99292124" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000212" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1287" name="PressAfterWindowElapsed_RestartsFromFirst" fullname="Demo.Tests.ComboChainTests.PressAfterWindowElapsed_RestartsFromFirst" methodname="PressAfterWindowElapsed_RestartsFromFirst" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="312386871" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000208" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1281" name="PressWhilePlaying_IsQueued_NotPlayedImmediately" fullname="Demo.Tests.ComboChainTests.PressWhilePlaying_IsQueued_NotPlayedImmediately" methodname="PressWhilePlaying_IsQueued_NotPlayedImmediately" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="819652233" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000147" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1286" name="PressWithinWindowAfterRelease_Advances" fullname="Demo.Tests.ComboChainTests.PressWithinWindowAfterRelease_Advances" methodname="PressWithinWindowAfterRelease_Advances" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="633150527" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000125" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1282" name="Release_WithoutQueuedInput_EndsChain" fullname="Demo.Tests.ComboChainTests.Release_WithoutQueuedInput_EndsChain" methodname="Release_WithoutQueuedInput_EndsChain" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="1776160755" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000115" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1283" name="Release_WithQueuedInput_AdvancesExactlyOne" fullname="Demo.Tests.ComboChainTests.Release_WithQueuedInput_AdvancesExactlyOne" methodname="Release_WithQueuedInput_AdvancesExactlyOne" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="1618145172" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000130" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1288" name="Tick_PastWindowWhileIdle_ResetsChain" fullname="Demo.Tests.ComboChainTests.Tick_PastWindowWhileIdle_ResetsChain" methodname="Tick_PastWindowWhileIdle_ResetsChain" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="1510862948" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000110" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1289" name="Tick_WhilePlaying_DoesNotReset" fullname="Demo.Tests.ComboChainTests.Tick_WhilePlaying_DoesNotReset" methodname="Tick_WhilePlaying_DoesNotReset" classname="Demo.Tests.ComboChainTests" runstate="Runnable" seed="82713150" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000114" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1295" name="DamageCalculatorTests" fullname="Demo.Tests.DamageCalculatorTests" classname="Demo.Tests.DamageCalculatorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.005436" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1298" name="NegativeBaseDamage_ClampsToZero" fullname="Demo.Tests.DamageCalculatorTests.NegativeBaseDamage_ClampsToZero" methodname="NegativeBaseDamage_ClampsToZero" classname="Demo.Tests.DamageCalculatorTests" runstate="Runnable" seed="1292173469" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001651" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1299" name="NegativeWeaponDamage_ClampsToBaseDamage" fullname="Demo.Tests.DamageCalculatorTests.NegativeWeaponDamage_ClampsToBaseDamage" methodname="NegativeWeaponDamage_ClampsToBaseDamage" classname="Demo.Tests.DamageCalculatorTests" runstate="Runnable" seed="1739337179" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000447" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1296" name="NoWeapon_ReturnsBaseDamage" fullname="Demo.Tests.DamageCalculatorTests.NoWeapon_ReturnsBaseDamage" methodname="NoWeapon_ReturnsBaseDamage" classname="Demo.Tests.DamageCalculatorTests" runstate="Runnable" seed="1423447878" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000154" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1297" name="WithWeapon_AddsWeaponDamage" fullname="Demo.Tests.DamageCalculatorTests.WithWeapon_AddsWeaponDamage" methodname="WithWeapon_AddsWeaponDamage" classname="Demo.Tests.DamageCalculatorTests" runstate="Runnable" seed="805237853" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000180" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1300" name="DataAssetTests" fullname="Demo.Tests.DataAssetTests" classname="Demo.Tests.DataAssetTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.007279" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1304" name="DialogueData_EmptyOptionsByDefault" fullname="Demo.Tests.DataAssetTests.DialogueData_EmptyOptionsByDefault" methodname="DialogueData_EmptyOptionsByDefault" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="1106194816" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000666" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1305" name="EnemyDiedEvent_CarriesDropPayload" fullname="Demo.Tests.DataAssetTests.EnemyDiedEvent_CarriesDropPayload" methodname="EnemyDiedEvent_CarriesDropPayload" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="56944581" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000655" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1306" name="InteractionPromptChangedEvent_HoldsTextAndVisibility" fullname="Demo.Tests.DataAssetTests.InteractionPromptChangedEvent_HoldsTextAndVisibility" methodname="InteractionPromptChangedEvent_HoldsTextAndVisibility" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="738491737" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000203" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1303" name="QuestData_DefaultsToThreeRequired" fullname="Demo.Tests.DataAssetTests.QuestData_DefaultsToThreeRequired" methodname="QuestData_DefaultsToThreeRequired" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="1520461913" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000280" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1302" name="WeaponData_Defaults" fullname="Demo.Tests.DataAssetTests.WeaponData_Defaults" methodname="WeaponData_Defaults" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="1502220465" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002055" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1301" name="WeaponData_IsAssignableToItemDataField" fullname="Demo.Tests.DataAssetTests.WeaponData_IsAssignableToItemDataField" methodname="WeaponData_IsAssignableToItemDataField" classname="Demo.Tests.DataAssetTests" runstate="Runnable" seed="511052867" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002236" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1307" name="DialogueSystemTests" fullname="Demo.Tests.DialogueSystemTests" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.008183" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1309" name="Start_RaisesStartedEvent" fullname="Demo.Tests.DialogueSystemTests.Start_RaisesStartedEvent" methodname="Start_RaisesStartedEvent" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="193595467" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001323" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1308" name="Start_ShowsFirstLine" fullname="Demo.Tests.DialogueSystemTests.Start_ShowsFirstLine" methodname="Start_ShowsFirstLine" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="1012765713" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000522" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1318" name="Start_WhileRunning_Restarts" fullname="Demo.Tests.DialogueSystemTests.Start_WhileRunning_Restarts" methodname="Start_WhileRunning_Restarts" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="1034073412" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000414" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1310" name="TryAdvance_MovesToNextLine" fullname="Demo.Tests.DialogueSystemTests.TryAdvance_MovesToNextLine" methodname="TryAdvance_MovesToNextLine" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="697971178" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000406" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1317" name="TryAdvance_OnStartFrame_IsIgnored" fullname="Demo.Tests.DialogueSystemTests.TryAdvance_OnStartFrame_IsIgnored" methodname="TryAdvance_OnStartFrame_IsIgnored" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="280367459" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000331" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1311" name="TryAdvance_PastLastLine_WithNoOptions_Ends" fullname="Demo.Tests.DialogueSystemTests.TryAdvance_PastLastLine_WithNoOptions_Ends" methodname="TryAdvance_PastLastLine_WithNoOptions_Ends" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="671622075" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000442" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1312" name="TryAdvance_PastLastLine_WithOptions_PresentsOptions" fullname="Demo.Tests.DialogueSystemTests.TryAdvance_PastLastLine_WithOptions_PresentsOptions" methodname="TryAdvance_PastLastLine_WithOptions_PresentsOptions" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="1394613786" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000632" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1315" name="TrySelectOption_OutOfRange_ReturnsFalse" fullname="Demo.Tests.DialogueSystemTests.TrySelectOption_OutOfRange_ReturnsFalse" methodname="TrySelectOption_OutOfRange_ReturnsFalse" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="1939359849" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000598" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1316" name="TrySelectOption_WhenNoOptionsPresented_ReturnsFalse" fullname="Demo.Tests.DialogueSystemTests.TrySelectOption_WhenNoOptionsPresented_ReturnsFalse" methodname="TrySelectOption_WhenNoOptionsPresented_ReturnsFalse" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="1734325213" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000240" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1313" name="TrySelectOption_WithNextDialogue_JumpsToIt" fullname="Demo.Tests.DialogueSystemTests.TrySelectOption_WithNextDialogue_JumpsToIt" methodname="TrySelectOption_WithNextDialogue_JumpsToIt" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="489194782" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000365" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1314" name="TrySelectOption_WithoutNextDialogue_Ends" fullname="Demo.Tests.DialogueSystemTests.TrySelectOption_WithoutNextDialogue_Ends" methodname="TrySelectOption_WithoutNextDialogue_Ends" classname="Demo.Tests.DialogueSystemTests" runstate="Runnable" seed="657463045" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000362" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1319" name="EnemyBrainTests" fullname="Demo.Tests.EnemyBrainTests" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.011002" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1329" name="Any_OnDamaged_EntersHit" fullname="Demo.Tests.EnemyBrainTests.Any_OnDamaged_EntersHit" methodname="Any_OnDamaged_EntersHit" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="221849576" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000772" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1326" name="Attack_DoesNotMove" fullname="Demo.Tests.EnemyBrainTests.Attack_DoesNotMove" methodname="Attack_DoesNotMove" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="559992198" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000485" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1327" name="Attack_OnAttackEnded_ReturnsToChase" fullname="Demo.Tests.EnemyBrainTests.Attack_OnAttackEnded_ReturnsToChase" methodname="Attack_OnAttackEnded_ReturnsToChase" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1406414279" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000373" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1336" name="AttackEnded_BlocksReattackUntilCooldownElapses" fullname="Demo.Tests.EnemyBrainTests.AttackEnded_BlocksReattackUntilCooldownElapses" methodname="AttackEnded_BlocksReattackUntilCooldownElapses" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1478598724" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000425" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1328" name="Chase_BeyondLeash_ReturnsToIdle" fullname="Demo.Tests.EnemyBrainTests.Chase_BeyondLeash_ReturnsToIdle" methodname="Chase_BeyondLeash_ReturnsToIdle" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="319597805" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000387" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1325" name="Chase_WithinAttackRange_EntersAttack_AndTriggersOnce" fullname="Demo.Tests.EnemyBrainTests.Chase_WithinAttackRange_EntersAttack_AndTriggersOnce" methodname="Chase_WithinAttackRange_EntersAttack_AndTriggersOnce" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="299626617" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000280" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1339" name="Cooldown_DoesNotBlockFirstAttack" fullname="Demo.Tests.EnemyBrainTests.Cooldown_DoesNotBlockFirstAttack" methodname="Cooldown_DoesNotBlockFirstAttack" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1597262099" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000186" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1337" name="Cooldown_KeepsCountingDownWhileHit" fullname="Demo.Tests.EnemyBrainTests.Cooldown_KeepsCountingDownWhileHit" methodname="Cooldown_KeepsCountingDownWhileHit" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="524379139" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000400" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1338" name="CooldownZero_AttacksAgainImmediately" fullname="Demo.Tests.EnemyBrainTests.CooldownZero_AttacksAgainImmediately" methodname="CooldownZero_AttacksAgainImmediately" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="886632985" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000235" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1334" name="Dead_IsTerminal_IgnoresDamagedAndAttackEnded" fullname="Demo.Tests.EnemyBrainTests.Dead_IsTerminal_IgnoresDamagedAndAttackEnded" methodname="Dead_IsTerminal_IgnoresDamagedAndAttackEnded" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1622741500" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000297" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1335" name="Dead_NoTarget_StaysDead" fullname="Demo.Tests.EnemyBrainTests.Dead_NoTarget_StaysDead" methodname="Dead_NoTarget_StaysDead" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1728000803" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000209" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1330" name="Hit_DoesNotMove" fullname="Demo.Tests.EnemyBrainTests.Hit_DoesNotMove" methodname="Hit_DoesNotMove" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="141725134" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000213" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1331" name="Hit_OnHitEnded_ReturnsToChaseWhenTargetPresent" fullname="Demo.Tests.EnemyBrainTests.Hit_OnHitEnded_ReturnsToChaseWhenTargetPresent" methodname="Hit_OnHitEnded_ReturnsToChaseWhenTargetPresent" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="340400306" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000324" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1332" name="Hit_OnHitEnded_ThenTickWithoutTarget_FallsBackToIdle" fullname="Demo.Tests.EnemyBrainTests.Hit_OnHitEnded_ThenTickWithoutTarget_FallsBackToIdle" methodname="Hit_OnHitEnded_ThenTickWithoutTarget_FallsBackToIdle" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="403125744" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000287" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1321" name="Idle_NoTarget_StaysIdle_WithNoIntents" fullname="Demo.Tests.EnemyBrainTests.Idle_NoTarget_StaysIdle_WithNoIntents" methodname="Idle_NoTarget_StaysIdle_WithNoIntents" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="2036336570" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000231" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1324" name="Idle_RequireLineOfSight_AndBlocked_StaysIdle" fullname="Demo.Tests.EnemyBrainTests.Idle_RequireLineOfSight_AndBlocked_StaysIdle" methodname="Idle_RequireLineOfSight_AndBlocked_StaysIdle" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="613237075" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002047" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1323" name="Idle_TargetBeyondDetectRange_StaysIdle" fullname="Demo.Tests.EnemyBrainTests.Idle_TargetBeyondDetectRange_StaysIdle" methodname="Idle_TargetBeyondDetectRange_StaysIdle" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1537677064" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000266" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1322" name="Idle_TargetInRange_EntersChase" fullname="Demo.Tests.EnemyBrainTests.Idle_TargetInRange_EntersChase" methodname="Idle_TargetInRange_EntersChase" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="1434912673" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000231" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1333" name="Kill_EntersDead" fullname="Demo.Tests.EnemyBrainTests.Kill_EntersDead" methodname="Kill_EntersDead" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="375818938" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000179" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1320" name="StartsInIdle" fullname="Demo.Tests.EnemyBrainTests.StartsInIdle" methodname="StartsInIdle" classname="Demo.Tests.EnemyBrainTests" runstate="Runnable" seed="522874330" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000147" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1340" name="EquipmentComponentTests" fullname="Demo.Tests.EquipmentComponentTests" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.013231" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1344" name="Equip_DifferentWeapon_ReplacesDamageInsteadOfStacking" fullname="Demo.Tests.EquipmentComponentTests.Equip_DifferentWeapon_ReplacesDamageInsteadOfStacking" methodname="Equip_DifferentWeapon_ReplacesDamageInsteadOfStacking" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="62009116" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002795" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1345" name="Equip_Null_IsIgnored" fullname="Demo.Tests.EquipmentComponentTests.Equip_Null_IsIgnored" methodname="Equip_Null_IsIgnored" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1517548067" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000416" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1348" name="Equip_PublishesWeaponEquippedEvent" fullname="Demo.Tests.EquipmentComponentTests.Equip_PublishesWeaponEquippedEvent" methodname="Equip_PublishesWeaponEquippedEvent" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="724085522" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000329" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1347" name="Equip_SameWeaponTwice_OnlyNotifiesOnce" fullname="Demo.Tests.EquipmentComponentTests.Equip_SameWeaponTwice_OnlyNotifiesOnce" methodname="Equip_SameWeaponTwice_OnlyNotifiesOnce" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1168902415" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000330" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1342" name="Equip_SetsMainHand" fullname="Demo.Tests.EquipmentComponentTests.Equip_SetsMainHand" methodname="Equip_SetsMainHand" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1151418535" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000312" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1343" name="Equip_UpdatesPlayerStats" fullname="Demo.Tests.EquipmentComponentTests.Equip_UpdatesPlayerStats" methodname="Equip_UpdatesPlayerStats" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="359075217" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000343" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1353" name="Equip_WithoutPlayerStats_StillPublishesEvent" fullname="Demo.Tests.EquipmentComponentTests.Equip_WithoutPlayerStats_StillPublishesEvent" methodname="Equip_WithoutPlayerStats_StillPublishesEvent" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1728246718" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000316" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1350" name="EquipRequestedEvent_OnBus_EquipsTheWeapon" fullname="Demo.Tests.EquipmentComponentTests.EquipRequestedEvent_OnBus_EquipsTheWeapon" methodname="EquipRequestedEvent_OnBus_EquipsTheWeapon" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1942479911" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000525" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1351" name="EquipRequestedEvent_WithNullWeapon_IsIgnored" fullname="Demo.Tests.EquipmentComponentTests.EquipRequestedEvent_WithNullWeapon_IsIgnored" methodname="EquipRequestedEvent_WithNullWeapon_IsIgnored" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1797573002" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000500" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1356" name="EquipStartingWeapon_PublishesWeaponEquippedEvent" fullname="Demo.Tests.EquipmentComponentTests.EquipStartingWeapon_PublishesWeaponEquippedEvent" methodname="EquipStartingWeapon_PublishesWeaponEquippedEvent" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1625247432" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000375" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1354" name="EquipStartingWeapon_PutsItInTheHand" fullname="Demo.Tests.EquipmentComponentTests.EquipStartingWeapon_PutsItInTheHand" methodname="EquipStartingWeapon_PutsItInTheHand" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="225778391" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000314" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1358" name="EquipStartingWeapon_Twice_DoesNotChangeAnything" fullname="Demo.Tests.EquipmentComponentTests.EquipStartingWeapon_Twice_DoesNotChangeAnything" methodname="EquipStartingWeapon_Twice_DoesNotChangeAnything" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="246070775" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000348" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1355" name="EquipStartingWeapon_UpdatesPlayerStats" fullname="Demo.Tests.EquipmentComponentTests.EquipStartingWeapon_UpdatesPlayerStats" methodname="EquipStartingWeapon_UpdatesPlayerStats" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1177942357" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000345" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1357" name="EquipStartingWeapon_WithoutStartingWeapon_StaysEmpty" fullname="Demo.Tests.EquipmentComponentTests.EquipStartingWeapon_WithoutStartingWeapon_StaysEmpty" methodname="EquipStartingWeapon_WithoutStartingWeapon_StaysEmpty" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1173770266" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000995" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1341" name="StartsEmpty" fullname="Demo.Tests.EquipmentComponentTests.StartsEmpty" methodname="StartsEmpty" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1010807753" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000399" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1352" name="StopListening_StopsReactingToBus" fullname="Demo.Tests.EquipmentComponentTests.StopListening_StopsReactingToBus" methodname="StopListening_StopsReactingToBus" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1715441933" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000512" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1346" name="Unequip_GoesBackToBaseDamage" fullname="Demo.Tests.EquipmentComponentTests.Unequip_GoesBackToBaseDamage" methodname="Unequip_GoesBackToBaseDamage" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1711104108" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000608" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1349" name="Unequip_PublishesEventWithNoWeapon" fullname="Demo.Tests.EquipmentComponentTests.Unequip_PublishesEventWithNoWeapon" methodname="Unequip_PublishesEventWithNoWeapon" classname="Demo.Tests.EquipmentComponentTests" runstate="Runnable" seed="1055717745" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000498" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1359" name="EquipmentSystemTests" fullname="Demo.Tests.EquipmentSystemTests" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.005000" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1370" name="Equip_AfterUnequip_Works" fullname="Demo.Tests.EquipmentSystemTests.Equip_AfterUnequip_Works" methodname="Equip_AfterUnequip_Works" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1834604032" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000471" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1371" name="Equip_AfterUnequipSameWeapon_RaisesChangedAgain" fullname="Demo.Tests.EquipmentSystemTests.Equip_AfterUnequipSameWeapon_RaisesChangedAgain" methodname="Equip_AfterUnequipSameWeapon_RaisesChangedAgain" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1613024171" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000237" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1363" name="Equip_DifferentWeapon_ReplacesIt" fullname="Demo.Tests.EquipmentSystemTests.Equip_DifferentWeapon_ReplacesIt" methodname="Equip_DifferentWeapon_ReplacesIt" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="791641362" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000232" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1365" name="Equip_Null_IsIgnored" fullname="Demo.Tests.EquipmentSystemTests.Equip_Null_IsIgnored" methodname="Equip_Null_IsIgnored" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="113619297" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000240" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1366" name="Equip_NullWhileArmed_KeepsTheWeapon" fullname="Demo.Tests.EquipmentSystemTests.Equip_NullWhileArmed_KeepsTheWeapon" methodname="Equip_NullWhileArmed_KeepsTheWeapon" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1225587770" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000264" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1362" name="Equip_RaisesChanged" fullname="Demo.Tests.EquipmentSystemTests.Equip_RaisesChanged" methodname="Equip_RaisesChanged" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1459935625" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000192" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1364" name="Equip_SameWeaponTwice_RaisesChangedOnce" fullname="Demo.Tests.EquipmentSystemTests.Equip_SameWeaponTwice_RaisesChangedOnce" methodname="Equip_SameWeaponTwice_RaisesChangedOnce" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1643400392" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000197" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1361" name="Equip_SetsMainHand" fullname="Demo.Tests.EquipmentSystemTests.Equip_SetsMainHand" methodname="Equip_SetsMainHand" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1509378237" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000170" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1360" name="StartsEmpty" fullname="Demo.Tests.EquipmentSystemTests.StartsEmpty" methodname="StartsEmpty" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1784633282" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000158" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1367" name="Unequip_ClearsMainHand" fullname="Demo.Tests.EquipmentSystemTests.Unequip_ClearsMainHand" methodname="Unequip_ClearsMainHand" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="197009940" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000185" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1368" name="Unequip_RaisesChanged" fullname="Demo.Tests.EquipmentSystemTests.Unequip_RaisesChanged" methodname="Unequip_RaisesChanged" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1912218454" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000183" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1369" name="Unequip_WhenEmpty_DoesNothing" fullname="Demo.Tests.EquipmentSystemTests.Unequip_WhenEmpty_DoesNothing" methodname="Unequip_WhenEmpty_DoesNothing" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="433155041" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000212" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1372" name="Unsubscribed_StopsGettingNotified" fullname="Demo.Tests.EquipmentSystemTests.Unsubscribed_StopsGettingNotified" methodname="Unsubscribed_StopsGettingNotified" classname="Demo.Tests.EquipmentSystemTests" runstate="Runnable" seed="1394237870" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000220" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1373" name="EventBusTests" fullname="Demo.Tests.EventBusTests" classname="Demo.Tests.EventBusTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004834" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1379" name="Clear_RemovesAllSubscribers" fullname="Demo.Tests.EventBusTests.Clear_RemovesAllSubscribers" methodname="Clear_RemovesAllSubscribers" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="1019614952" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000546" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1376" name="Publish_OnlyNotifiesMatchingType" fullname="Demo.Tests.EventBusTests.Publish_OnlyNotifiesMatchingType" methodname="Publish_OnlyNotifiesMatchingType" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="553198287" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000599" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1378" name="Publish_WhenHandlerUnsubscribesDuringDispatch_DoesNotThrow" fullname="Demo.Tests.EventBusTests.Publish_WhenHandlerUnsubscribesDuringDispatch_DoesNotThrow" methodname="Publish_WhenHandlerUnsubscribesDuringDispatch_DoesNotThrow" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="1580033004" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000621" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1377" name="Publish_WithMultipleSubscribers_NotifiesAll" fullname="Demo.Tests.EventBusTests.Publish_WithMultipleSubscribers_NotifiesAll" methodname="Publish_WithMultipleSubscribers_NotifiesAll" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="1030341425" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000488" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1374" name="Subscribe_ThenPublish_ReceivesEvent" fullname="Demo.Tests.EventBusTests.Subscribe_ThenPublish_ReceivesEvent" methodname="Subscribe_ThenPublish_ReceivesEvent" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="934204113" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000304" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1375" name="Unsubscribe_ThenPublish_DoesNotReceive" fullname="Demo.Tests.EventBusTests.Unsubscribe_ThenPublish_DoesNotReceive" methodname="Unsubscribe_ThenPublish_DoesNotReceive" classname="Demo.Tests.EventBusTests" runstate="Runnable" seed="1588777467" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000222" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1380" name="GamePauseTests" fullname="Demo.Tests.GamePauseTests" classname="Demo.Tests.GamePauseTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.005452" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1382" name="Acquire_Pauses" fullname="Demo.Tests.GamePauseTests.Acquire_Pauses" methodname="Acquire_Pauses" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="580202911" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000794" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1387" name="Acquire_WithNull_IsIgnored" fullname="Demo.Tests.GamePauseTests.Acquire_WithNull_IsIgnored" methodname="Acquire_WithNull_IsIgnored" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="124903976" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000225" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1384" name="AcquireTwice_FromSameOwner_StillOnePause" fullname="Demo.Tests.GamePauseTests.AcquireTwice_FromSameOwner_StillOnePause" methodname="AcquireTwice_FromSameOwner_StillOnePause" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="2125245166" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000578" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1389" name="Clear_ResumesAndForgetsOwners" fullname="Demo.Tests.GamePauseTests.Clear_ResumesAndForgetsOwners" methodname="Clear_ResumesAndForgetsOwners" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="817901884" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000406" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1381" name="NotPaused_ByDefault" fullname="Demo.Tests.GamePauseTests.NotPaused_ByDefault" methodname="NotPaused_ByDefault" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="260295606" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000291" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1383" name="Release_Resumes" fullname="Demo.Tests.GamePauseTests.Release_Resumes" methodname="Release_Resumes" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="2100426550" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000227" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1386" name="Release_UnknownOwner_DoesNotResume" fullname="Demo.Tests.GamePauseTests.Release_UnknownOwner_DoesNotResume" methodname="Release_UnknownOwner_DoesNotResume" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="496323185" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000223" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1388" name="Release_WithNull_IsIgnored" fullname="Demo.Tests.GamePauseTests.Release_WithNull_IsIgnored" methodname="Release_WithNull_IsIgnored" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="29070590" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000205" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1390" name="RestoresPreviousTimeScale_NotHardcodedOne" fullname="Demo.Tests.GamePauseTests.RestoresPreviousTimeScale_NotHardcodedOne" methodname="RestoresPreviousTimeScale_NotHardcodedOne" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="497678856" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000209" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1385" name="TwoOwners_StayPausedUntilBothRelease" fullname="Demo.Tests.GamePauseTests.TwoOwners_StayPausedUntilBothRelease" methodname="TwoOwners_StayPausedUntilBothRelease" classname="Demo.Tests.GamePauseTests" runstate="Runnable" seed="1152985020" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000261" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1391" name="InputLockTests" fullname="Demo.Tests.InputLockTests" classname="Demo.Tests.InputLockTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002396" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1393" name="Acquire_Locks" fullname="Demo.Tests.InputLockTests.Acquire_Locks" methodname="Acquire_Locks" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="2044789081" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000326" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1397" name="DoubleRelease_DoesNotThrow" fullname="Demo.Tests.InputLockTests.DoubleRelease_DoesNotThrow" methodname="DoubleRelease_DoesNotThrow" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="893023001" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000294" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1392" name="Initially_IsNotLocked" fullname="Demo.Tests.InputLockTests.Initially_IsNotLocked" methodname="Initially_IsNotLocked" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="451863847" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000156" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1396" name="Release_FromNonOwner_DoesNotUnlock" fullname="Demo.Tests.InputLockTests.Release_FromNonOwner_DoesNotUnlock" methodname="Release_FromNonOwner_DoesNotUnlock" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="1556364212" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000161" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1394" name="Release_Unlocks" fullname="Demo.Tests.InputLockTests.Release_Unlocks" methodname="Release_Unlocks" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="1269987244" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000153" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1395" name="TwoOwners_OneReleases_RemainsLocked" fullname="Demo.Tests.InputLockTests.TwoOwners_OneReleases_RemainsLocked" methodname="TwoOwners_OneReleases_RemainsLocked" classname="Demo.Tests.InputLockTests" runstate="Runnable" seed="421589224" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000162" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1398" name="InteractionDetectionTests" fullname="Demo.Tests.InteractionDetectionTests" classname="Demo.Tests.InteractionDetectionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004608" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1400" name="GetComponentInParent_ResolvesIInteractable_OnParentObject" fullname="Demo.Tests.InteractionDetectionTests.GetComponentInParent_ResolvesIInteractable_OnParentObject" methodname="GetComponentInParent_ResolvesIInteractable_OnParentObject" classname="Demo.Tests.InteractionDetectionTests" runstate="Runnable" seed="1015033595" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001330" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1399" name="GetComponentInParent_ResolvesIInteractable_OnSameObject" fullname="Demo.Tests.InteractionDetectionTests.GetComponentInParent_ResolvesIInteractable_OnSameObject" methodname="GetComponentInParent_ResolvesIInteractable_OnSameObject" classname="Demo.Tests.InteractionDetectionTests" runstate="Runnable" seed="988278124" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000420" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1401" name="OverlapSphere_FindsNpcCollider_WithinRadius" fullname="Demo.Tests.InteractionDetectionTests.OverlapSphere_FindsNpcCollider_WithinRadius" methodname="OverlapSphere_FindsNpcCollider_WithinRadius" classname="Demo.Tests.InteractionDetectionTests" runstate="Runnable" seed="992848795" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001765" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1402" name="InventoryComponentTests" fullname="Demo.Tests.InventoryComponentTests" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.014736" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1404" name="Equip_LeavesOtherItemsAlone" fullname="Demo.Tests.InventoryComponentTests.Equip_LeavesOtherItemsAlone" methodname="Equip_LeavesOtherItemsAlone" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1646406178" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002668" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1411" name="Equip_PublishesInventoryChanged" fullname="Demo.Tests.InventoryComponentTests.Equip_PublishesInventoryChanged" methodname="Equip_PublishesInventoryChanged" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1074868327" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003250" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1403" name="Equip_RemovesTheWeaponFromTheBag" fullname="Demo.Tests.InventoryComponentTests.Equip_RemovesTheWeaponFromTheBag" methodname="Equip_RemovesTheWeaponFromTheBag" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="628719103" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000545" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1405" name="Equip_TwoCopiesInTheBag_RemovesOnlyOne" fullname="Demo.Tests.InventoryComponentTests.Equip_TwoCopiesInTheBag_RemovesOnlyOne" methodname="Equip_TwoCopiesInTheBag_RemovesOnlyOne" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="36477505" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000467" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1409" name="Equip_WeaponNotInTheBag_DoesNotAddIt" fullname="Demo.Tests.InventoryComponentTests.Equip_WeaponNotInTheBag_DoesNotAddIt" methodname="Equip_WeaponNotInTheBag_DoesNotAddIt" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1437657698" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000575" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1406" name="EquipAnotherWeapon_ReturnsThePreviousOneToTheBag" fullname="Demo.Tests.InventoryComponentTests.EquipAnotherWeapon_ReturnsThePreviousOneToTheBag" methodname="EquipAnotherWeapon_ReturnsThePreviousOneToTheBag" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="940224073" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000494" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1408" name="EquipTheSameWeaponAgain_LeavesTheSpareCopyAlone" fullname="Demo.Tests.InventoryComponentTests.EquipTheSameWeaponAgain_LeavesTheSpareCopyAlone" methodname="EquipTheSameWeaponAgain_LeavesTheSpareCopyAlone" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1702847328" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000427" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1412" name="PickUp_StillAddsToTheBag" fullname="Demo.Tests.InventoryComponentTests.PickUp_StillAddsToTheBag" methodname="PickUp_StillAddsToTheBag" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1066548126" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000633" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1413" name="StopListening_StopsReactingToTheBus" fullname="Demo.Tests.InventoryComponentTests.StopListening_StopsReactingToTheBus" methodname="StopListening_StopsReactingToTheBus" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1218357280" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000412" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1407" name="Unequip_ReturnsTheWeaponToTheBag" fullname="Demo.Tests.InventoryComponentTests.Unequip_ReturnsTheWeaponToTheBag" methodname="Unequip_ReturnsTheWeaponToTheBag" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="701875757" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000397" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1410" name="Unequip_WhenNothingWasEquipped_DoesNothing" fullname="Demo.Tests.InventoryComponentTests.Unequip_WhenNothingWasEquipped_DoesNothing" methodname="Unequip_WhenNothingWasEquipped_DoesNothing" classname="Demo.Tests.InventoryComponentTests" runstate="Runnable" seed="1056748000" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000376" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1414" name="InventorySlotUITests" fullname="Demo.Tests.InventorySlotUITests" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.085500" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1417" name="Clear_BlanksEverything" fullname="Demo.Tests.InventorySlotUITests.Clear_BlanksEverything" methodname="Clear_BlanksEverything" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="2138909262" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.072844" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1425" name="Click_AfterClear_RaisesNothing" fullname="Demo.Tests.InventorySlotUITests.Click_AfterClear_RaisesNothing" methodname="Click_AfterClear_RaisesNothing" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1297864305" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001195" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1424" name="Click_OnEmptySlot_RaisesNothing" fullname="Demo.Tests.InventorySlotUITests.Click_OnEmptySlot_RaisesNothing" methodname="Click_OnEmptySlot_RaisesNothing" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1091200639" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001186" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1423" name="Click_OnFilledSlot_RaisesClicked" fullname="Demo.Tests.InventorySlotUITests.Click_OnFilledSlot_RaisesClicked" methodname="Click_OnFilledSlot_RaisesClicked" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1510621656" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000977" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1422" name="Item_ExposesWhatWasSet" fullname="Demo.Tests.InventorySlotUITests.Item_ExposesWhatWasSet" methodname="Item_ExposesWhatWasSet" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1161635410" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000830" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1421" name="SetItem_AmountGreaterThanOne_ShowsAmount" fullname="Demo.Tests.InventorySlotUITests.SetItem_AmountGreaterThanOne_ShowsAmount" methodname="SetItem_AmountGreaterThanOne_ShowsAmount" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1124137565" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001051" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1420" name="SetItem_AmountOne_HidesAmount" fullname="Demo.Tests.InventorySlotUITests.SetItem_AmountOne_HidesAmount" methodname="SetItem_AmountOne_HidesAmount" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="351312439" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000946" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1415" name="SetItem_ShowsDisplayName" fullname="Demo.Tests.InventorySlotUITests.SetItem_ShowsDisplayName" methodname="SetItem_ShowsDisplayName" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1795680981" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000935" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1419" name="SetItem_WithIcon_ShowsIconImage" fullname="Demo.Tests.InventorySlotUITests.SetItem_WithIcon_ShowsIconImage" methodname="SetItem_WithIcon_ShowsIconImage" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="2019958631" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001339" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1416" name="SetItem_WithNull_ShowsNothing" fullname="Demo.Tests.InventorySlotUITests.SetItem_WithNull_ShowsNothing" methodname="SetItem_WithNull_ShowsNothing" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="1969658054" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001152" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1418" name="SetItem_WithoutIcon_HidesIconImage" fullname="Demo.Tests.InventorySlotUITests.SetItem_WithoutIcon_HidesIconImage" methodname="SetItem_WithoutIcon_HidesIconImage" classname="Demo.Tests.InventorySlotUITests" runstate="Runnable" seed="2074099363" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000982" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1426" name="InventorySystemTests" fullname="Demo.Tests.InventorySystemTests" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.013318" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1434" name="AddItem_AmountSpanningSeveralStacks_SplitsEvenly" fullname="Demo.Tests.InventorySystemTests.AddItem_AmountSpanningSeveralStacks_SplitsEvenly" methodname="AddItem_AmountSpanningSeveralStacks_SplitsEvenly" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="703794156" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000625" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1433" name="AddItem_BeyondMaxStack_StartsNewEntry" fullname="Demo.Tests.InventorySystemTests.AddItem_BeyondMaxStack_StartsNewEntry" methodname="AddItem_BeyondMaxStack_StartsNewEntry" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="66897565" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000355" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1430" name="AddItem_RaisesChanged" fullname="Demo.Tests.InventorySystemTests.AddItem_RaisesChanged" methodname="AddItem_RaisesChanged" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1293639849" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000425" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1431" name="AddItem_SameNonStackableItem_CreatesSeparateEntries" fullname="Demo.Tests.InventorySystemTests.AddItem_SameNonStackableItem_CreatesSeparateEntries" methodname="AddItem_SameNonStackableItem_CreatesSeparateEntries" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="315892291" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000290" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1432" name="AddItem_StackableItem_FillsExistingEntry" fullname="Demo.Tests.InventorySystemTests.AddItem_StackableItem_FillsExistingEntry" methodname="AddItem_StackableItem_FillsExistingEntry" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1020566524" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000561" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1428" name="AddItem_StoresOneEntry" fullname="Demo.Tests.InventorySystemTests.AddItem_StoresOneEntry" methodname="AddItem_StoresOneEntry" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="905277826" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000529" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1429" name="AddItem_WithCount_StoresThatAmount" fullname="Demo.Tests.InventorySystemTests.AddItem_WithCount_StoresThatAmount" methodname="AddItem_WithCount_StoresThatAmount" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="646390232" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000388" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1436" name="AddItem_WithNonPositiveAmount_ReturnsFalseAndDoesNotChange" fullname="Demo.Tests.InventorySystemTests.AddItem_WithNonPositiveAmount_ReturnsFalseAndDoesNotChange" methodname="AddItem_WithNonPositiveAmount_ReturnsFalseAndDoesNotChange" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1646819101" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000287" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1435" name="AddItem_WithNull_ReturnsFalseAndDoesNotChange" fullname="Demo.Tests.InventorySystemTests.AddItem_WithNull_ReturnsFalseAndDoesNotChange" methodname="AddItem_WithNull_ReturnsFalseAndDoesNotChange" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="166389930" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000299" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1446" name="GetItems_PreservesInsertionOrder" fullname="Demo.Tests.InventorySystemTests.GetItems_PreservesInsertionOrder" methodname="GetItems_PreservesInsertionOrder" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1222849955" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000264" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1447" name="GetItems_ReturnsLiveList_NotACopy" fullname="Demo.Tests.InventorySystemTests.GetItems_ReturnsLiveList_NotACopy" methodname="GetItems_ReturnsLiveList_NotACopy" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="2136598410" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000272" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1444" name="HasItem_ChecksAgainstRequestedAmount" fullname="Demo.Tests.InventorySystemTests.HasItem_ChecksAgainstRequestedAmount" methodname="HasItem_ChecksAgainstRequestedAmount" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1524018981" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000245" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1445" name="HasItem_WithNull_ReturnsFalse" fullname="Demo.Tests.InventorySystemTests.HasItem_WithNull_ReturnsFalse" methodname="HasItem_WithNull_ReturnsFalse" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="266585657" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000216" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1427" name="NewInventory_IsEmpty" fullname="Demo.Tests.InventorySystemTests.NewInventory_IsEmpty" methodname="NewInventory_IsEmpty" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="389801108" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000246" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1441" name="RemoveItem_AbsentItem_ReturnsFalse" fullname="Demo.Tests.InventorySystemTests.RemoveItem_AbsentItem_ReturnsFalse" methodname="RemoveItem_AbsentItem_ReturnsFalse" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="2070327219" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000280" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1437" name="RemoveItem_DecrementsAmount" fullname="Demo.Tests.InventorySystemTests.RemoveItem_DecrementsAmount" methodname="RemoveItem_DecrementsAmount" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="372583575" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000230" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1443" name="RemoveItem_FromEarlierStack_LeavesLaterStacksIntact" fullname="Demo.Tests.InventorySystemTests.RemoveItem_FromEarlierStack_LeavesLaterStacksIntact" methodname="RemoveItem_FromEarlierStack_LeavesLaterStacksIntact" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="134976849" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000298" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1440" name="RemoveItem_MoreThanHeld_ReturnsFalseAndKeepsEverything" fullname="Demo.Tests.InventorySystemTests.RemoveItem_MoreThanHeld_ReturnsFalseAndKeepsEverything" methodname="RemoveItem_MoreThanHeld_ReturnsFalseAndKeepsEverything" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1822860064" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000252" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1439" name="RemoveItem_RaisesChanged" fullname="Demo.Tests.InventorySystemTests.RemoveItem_RaisesChanged" methodname="RemoveItem_RaisesChanged" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="536934330" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000380" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1438" name="RemoveItem_RemovingLastUnit_DropsEntry" fullname="Demo.Tests.InventorySystemTests.RemoveItem_RemovingLastUnit_DropsEntry" methodname="RemoveItem_RemovingLastUnit_DropsEntry" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="2125016712" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000618" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1442" name="RemoveItem_WithNull_ReturnsFalse" fullname="Demo.Tests.InventorySystemTests.RemoveItem_WithNull_ReturnsFalse" methodname="RemoveItem_WithNull_ReturnsFalse" classname="Demo.Tests.InventorySystemTests" runstate="Runnable" seed="1424937735" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000323" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1448" name="InventoryUITests" fullname="Demo.Tests.InventoryUITests" classname="Demo.Tests.InventoryUITests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.109182" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1451" name="Close_HidesPanelAndResumes" fullname="Demo.Tests.InventoryUITests.Close_HidesPanelAndResumes" methodname="Close_HidesPanelAndResumes" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1549869967" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.011882" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1454" name="Close_WhenNeverOpened_LeavesOtherPeoplesPauseAlone" fullname="Demo.Tests.InventoryUITests.Close_WhenNeverOpened_LeavesOtherPeoplesPauseAlone" methodname="Close_WhenNeverOpened_LeavesOtherPeoplesPauseAlone" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="2039570118" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003800" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1455" name="CloseThenOpenAgain_WorksNormally" fullname="Demo.Tests.InventoryUITests.CloseThenOpenAgain_WorksNormally" methodname="CloseThenOpenAgain_WorksNormally" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="394096233" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.006671" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1463" name="FewerItemsThanSlots_StillShowsTheFullGrid" fullname="Demo.Tests.InventoryUITests.FewerItemsThanSlots_StillShowsTheFullGrid" methodname="FewerItemsThanSlots_StillShowsTheFullGrid" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="692571811" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004238" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1458" name="InventoryChangedEvent_AfterClose_IsIgnored" fullname="Demo.Tests.InventoryUITests.InventoryChangedEvent_AfterClose_IsIgnored" methodname="InventoryChangedEvent_AfterClose_IsIgnored" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="372686638" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004519" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1457" name="InventoryChangedEvent_WhileOpen_UpdatesSlots" fullname="Demo.Tests.InventoryUITests.InventoryChangedEvent_WhileOpen_UpdatesSlots" methodname="InventoryChangedEvent_WhileOpen_UpdatesSlots" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="15396956" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003858" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1464" name="ItemsShrink_ExtraSlotsAreHidden" fullname="Demo.Tests.InventoryUITests.ItemsShrink_ExtraSlotsAreHidden" methodname="ItemsShrink_ExtraSlotsAreHidden" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1570770242" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.008281" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1461" name="MoreItemsThanSlots_GrowsTheGrid" fullname="Demo.Tests.InventoryUITests.MoreItemsThanSlots_GrowsTheGrid" methodname="MoreItemsThanSlots_GrowsTheGrid" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1795020786" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004920" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1462" name="MoreItemsThanSlots_ShowsEveryItem" fullname="Demo.Tests.InventoryUITests.MoreItemsThanSlots_ShowsEveryItem" methodname="MoreItemsThanSlots_ShowsEveryItem" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1356504234" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.005433" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1452" name="Open_AlsoLocksInput" fullname="Demo.Tests.InventoryUITests.Open_AlsoLocksInput" methodname="Open_AlsoLocksInput" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="2105242538" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003869" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1469" name="Open_ClearsTheDetailPane" fullname="Demo.Tests.InventoryUITests.Open_ClearsTheDetailPane" methodname="Open_ClearsTheDetailPane" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1335164442" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004420" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1456" name="Open_FillsSlotsInOrder" fullname="Demo.Tests.InventoryUITests.Open_FillsSlotsInOrder" methodname="Open_FillsSlotsInOrder" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1559891888" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003813" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1450" name="Open_ShowsPanelAndPauses" fullname="Demo.Tests.InventoryUITests.Open_ShowsPanelAndPauses" methodname="Open_ShowsPanelAndPauses" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1300743366" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003850" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1460" name="Open_Twice_RefreshesAgain" fullname="Demo.Tests.InventoryUITests.Open_Twice_RefreshesAgain" methodname="Open_Twice_RefreshesAgain" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1417514747" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004389" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1459" name="Open_WithEmptyInventory_ShowsAllSlotsEmpty" fullname="Demo.Tests.InventoryUITests.Open_WithEmptyInventory_ShowsAllSlotsEmpty" methodname="Open_WithEmptyInventory_ShowsAllSlotsEmpty" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1864439663" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003907" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1453" name="OpenTwice_ThenClose_StillResumes" fullname="Demo.Tests.InventoryUITests.OpenTwice_ThenClose_StillResumes" methodname="OpenTwice_ThenClose_StillResumes" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="652418427" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003987" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1467" name="SlotClick_OnEmptySlot_LeavesDetailAlone" fullname="Demo.Tests.InventoryUITests.SlotClick_OnEmptySlot_LeavesDetailAlone" methodname="SlotClick_OnEmptySlot_LeavesDetailAlone" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="981044498" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004043" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1468" name="SlotClick_OnGrownSlot_ShowsDetail" fullname="Demo.Tests.InventoryUITests.SlotClick_OnGrownSlot_ShowsDetail" methodname="SlotClick_OnGrownSlot_ShowsDetail" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="220740807" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004412" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1466" name="SlotClick_ShowsThatItemInDetail" fullname="Demo.Tests.InventoryUITests.SlotClick_ShowsThatItemInDetail" methodname="SlotClick_ShowsThatItemInDetail" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1569441389" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.004211" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1465" name="SlotsGrowThenShrinkThenGrow_DoesNotDuplicate" fullname="Demo.Tests.InventoryUITests.SlotsGrowThenShrinkThenGrow_DoesNotDuplicate" methodname="SlotsGrowThenShrinkThenGrow_DoesNotDuplicate" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="1213178388" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.005408" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1449" name="StartsClosed" fullname="Demo.Tests.InventoryUITests.StartsClosed" methodname="StartsClosed" classname="Demo.Tests.InventoryUITests" runstate="Runnable" seed="257425183" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003566" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1470" name="QuestSystemTests" fullname="Demo.Tests.QuestSystemTests" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.007592" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1472" name="Accept_MovesToInProgress" fullname="Demo.Tests.QuestSystemTests.Accept_MovesToInProgress" methodname="Accept_MovesToInProgress" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="1845375373" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001075" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1473" name="Accept_RaisesAcceptedEvent" fullname="Demo.Tests.QuestSystemTests.Accept_RaisesAcceptedEvent" methodname="Accept_RaisesAcceptedEvent" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="1231222622" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000570" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1474" name="Accept_Twice_SecondReturnsFalse" fullname="Demo.Tests.QuestSystemTests.Accept_Twice_SecondReturnsFalse" methodname="Accept_Twice_SecondReturnsFalse" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="2115016087" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000257" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1482" name="Accept_WithNullQuest_ReturnsFalse" fullname="Demo.Tests.QuestSystemTests.Accept_WithNullQuest_ReturnsFalse" methodname="Accept_WithNullQuest_ReturnsFalse" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="2124533295" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000258" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1481" name="GetStatus_WithNullQuest_ReturnsNotStarted" fullname="Demo.Tests.QuestSystemTests.GetStatus_WithNullQuest_ReturnsNotStarted" methodname="GetStatus_WithNullQuest_ReturnsNotStarted" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="1788553867" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000374" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1471" name="NewQuest_IsNotStarted" fullname="Demo.Tests.QuestSystemTests.NewQuest_IsNotStarted" methodname="NewQuest_IsNotStarted" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="1974166256" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000319" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1480" name="ProgressChanged_ReportsCurrentAndRequired" fullname="Demo.Tests.QuestSystemTests.ProgressChanged_ReportsCurrentAndRequired" methodname="ProgressChanged_ReportsCurrentAndRequired" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="581526800" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000783" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1476" name="ReportKill_AfterAccept_IncrementsProgress" fullname="Demo.Tests.QuestSystemTests.ReportKill_AfterAccept_IncrementsProgress" methodname="ReportKill_AfterAccept_IncrementsProgress" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="265418272" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000265" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1478" name="ReportKill_AfterCompleted_DoesNotCountFurther" fullname="Demo.Tests.QuestSystemTests.ReportKill_AfterCompleted_DoesNotCountFurther" methodname="ReportKill_AfterCompleted_DoesNotCountFurther" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="416790209" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000437" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1475" name="ReportKill_BeforeAccept_DoesNotCount" fullname="Demo.Tests.QuestSystemTests.ReportKill_BeforeAccept_DoesNotCount" methodname="ReportKill_BeforeAccept_DoesNotCount" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="802184486" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000234" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1477" name="ReportKill_ReachingRequired_Completes" fullname="Demo.Tests.QuestSystemTests.ReportKill_ReachingRequired_Completes" methodname="ReportKill_ReachingRequired_Completes" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="303722455" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000327" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1479" name="ReportKill_WithTargetFilter_IgnoresOtherTypes" fullname="Demo.Tests.QuestSystemTests.ReportKill_WithTargetFilter_IgnoresOtherTypes" methodname="ReportKill_WithTargetFilter_IgnoresOtherTypes" classname="Demo.Tests.QuestSystemTests" runstate="Runnable" seed="1255075575" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000286" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1483" name="SceneWiringTests" fullname="Demo.Tests.SceneWiringTests" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.332018" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1505" name="DebugHud_ReferencesAreWired" fullname="Demo.Tests.SceneWiringTests.DebugHud_ReferencesAreWired" methodname="DebugHud_ReferencesAreWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="953286223" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.003201" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1493" name="EquipButton_IsWiredToEquipClicked" fullname="Demo.Tests.SceneWiringTests.EquipButton_IsWiredToEquipClicked" methodname="EquipButton_IsWiredToEquipClicked" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1338005413" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001673" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1499" name="EquipmentComponent_IsOnGameSystems" fullname="Demo.Tests.SceneWiringTests.EquipmentComponent_IsOnGameSystems" methodname="EquipmentComponent_IsOnGameSystems" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="402300128" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000456" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1497" name="EquipmentComponent_IsPresent" fullname="Demo.Tests.SceneWiringTests.EquipmentComponent_IsPresent" methodname="EquipmentComponent_IsPresent" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="604185932" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000241" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1498" name="EquipmentComponent_PlayerStatsIsWired" fullname="Demo.Tests.SceneWiringTests.EquipmentComponent_PlayerStatsIsWired" methodname="EquipmentComponent_PlayerStatsIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1093412139" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000350" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1507" name="EquipmentComponent_StartingWeaponIsTheSwordOnTheBone" fullname="Demo.Tests.SceneWiringTests.EquipmentComponent_StartingWeaponIsTheSwordOnTheBone" methodname="EquipmentComponent_StartingWeaponIsTheSwordOnTheBone" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1386116103" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000380" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1506" name="EquipmentComponent_StartingWeaponIsWired" fullname="Demo.Tests.SceneWiringTests.EquipmentComponent_StartingWeaponIsWired" methodname="EquipmentComponent_StartingWeaponIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1535861536" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000323" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1495" name="EverySlot_HasItsLabelsWired" fullname="Demo.Tests.SceneWiringTests.EverySlot_HasItsLabelsWired" methodname="EverySlot_HasItsLabelsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1811410129" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002147" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1492" name="EverySlotButton_IsWiredToClick" fullname="Demo.Tests.SceneWiringTests.EverySlotButton_IsWiredToClick" methodname="EverySlotButton_IsWiredToClick" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1707242647" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000792" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1494" name="InventoryComponent_IsPresent" fullname="Demo.Tests.SceneWiringTests.InventoryComponent_IsPresent" methodname="InventoryComponent_IsPresent" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="635956422" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000329" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1496" name="InventoryPanel_StartsHidden" fullname="Demo.Tests.SceneWiringTests.InventoryPanel_StartsHidden" methodname="InventoryPanel_StartsHidden" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1277112174" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000310" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1491" name="InventoryUI_DetailPaneIsWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_DetailPaneIsWired" methodname="InventoryUI_DetailPaneIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="26128269" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000282" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1487" name="InventoryUI_HasTwelveSlots_AllWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_HasTwelveSlots_AllWired" methodname="InventoryUI_HasTwelveSlots_AllWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="415556349" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000498" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1486" name="InventoryUI_InventoryIsWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_InventoryIsWired" methodname="InventoryUI_InventoryIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="644806127" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000285" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1485" name="InventoryUI_PanelIsWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_PanelIsWired" methodname="InventoryUI_PanelIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1496603366" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000261" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1489" name="InventoryUI_ScrollRectIsWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_ScrollRectIsWired" methodname="InventoryUI_ScrollRectIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="2090227186" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000273" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1488" name="InventoryUI_SlotContainerIsWired" fullname="Demo.Tests.SceneWiringTests.InventoryUI_SlotContainerIsWired" methodname="InventoryUI_SlotContainerIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="2054815428" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000253" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1500" name="PlayerStats_IsPresent" fullname="Demo.Tests.SceneWiringTests.PlayerStats_IsPresent" methodname="PlayerStats_IsPresent" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1852691103" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000317" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1484" name="Scene_IsLoaded" fullname="Demo.Tests.SceneWiringTests.Scene_IsLoaded" methodname="Scene_IsLoaded" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1693781644" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000380" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1490" name="Slots_LiveUnderTheSlotContainer" fullname="Demo.Tests.SceneWiringTests.Slots_LiveUnderTheSlotContainer" methodname="Slots_LiveUnderTheSlotContainer" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="450855180" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000559" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1504" name="WeaponSocket_IsOnGameSystems" fullname="Demo.Tests.SceneWiringTests.WeaponSocket_IsOnGameSystems" methodname="WeaponSocket_IsOnGameSystems" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1828056698" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000343" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1501" name="WeaponSocket_IsPresent" fullname="Demo.Tests.SceneWiringTests.WeaponSocket_IsPresent" methodname="WeaponSocket_IsPresent" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="1244811314" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000217" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1503" name="WeaponSocket_PointsAtTheHandBone" fullname="Demo.Tests.SceneWiringTests.WeaponSocket_PointsAtTheHandBone" methodname="WeaponSocket_PointsAtTheHandBone" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="992942018" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000392" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1502" name="WeaponSocket_SocketIsWired" fullname="Demo.Tests.SceneWiringTests.WeaponSocket_SocketIsWired" methodname="WeaponSocket_SocketIsWired" classname="Demo.Tests.SceneWiringTests" runstate="Runnable" seed="791764513" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000278" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1508" name="WeaponDetailUITests" fullname="Demo.Tests.WeaponDetailUITests" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.032218" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1518" name="Clear_ShowsEmptyHintAndHidesEquipButton" fullname="Demo.Tests.WeaponDetailUITests.Clear_ShowsEmptyHintAndHidesEquipButton" methodname="Clear_ShowsEmptyHintAndHidesEquipButton" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="315996962" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002666" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1524" name="EquipClicked_AfterSwitchingToNonWeapon_PublishesNothing" fullname="Demo.Tests.WeaponDetailUITests.EquipClicked_AfterSwitchingToNonWeapon_PublishesNothing" methodname="EquipClicked_AfterSwitchingToNonWeapon_PublishesNothing" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="59423089" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001417" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1522" name="EquipClicked_WithNonWeapon_PublishesNothing" fullname="Demo.Tests.WeaponDetailUITests.EquipClicked_WithNonWeapon_PublishesNothing" methodname="EquipClicked_WithNonWeapon_PublishesNothing" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="943910045" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001211" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1523" name="EquipClicked_WithNothingSelected_PublishesNothing" fullname="Demo.Tests.WeaponDetailUITests.EquipClicked_WithNothingSelected_PublishesNothing" methodname="EquipClicked_WithNothingSelected_PublishesNothing" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="916354687" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001195" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1521" name="EquipClicked_WithWeapon_PublishesEquipRequest" fullname="Demo.Tests.WeaponDetailUITests.EquipClicked_WithWeapon_PublishesEquipRequest" methodname="EquipClicked_WithWeapon_PublishesEquipRequest" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1230200383" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001328" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1514" name="Show_NonWeapon_HidesDamageAndEquipButton" fullname="Demo.Tests.WeaponDetailUITests.Show_NonWeapon_HidesDamageAndEquipButton" methodname="Show_NonWeapon_HidesDamageAndEquipButton" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="105029619" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001155" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1515" name="Show_NonWeapon_StillShowsNameAndDescription" fullname="Demo.Tests.WeaponDetailUITests.Show_NonWeapon_StillShowsNameAndDescription" methodname="Show_NonWeapon_StillShowsNameAndDescription" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1143732320" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001273" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1512" name="Show_Weapon_ExposesCurrentWeapon" fullname="Demo.Tests.WeaponDetailUITests.Show_Weapon_ExposesCurrentWeapon" methodname="Show_Weapon_ExposesCurrentWeapon" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="758391102" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001164" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1513" name="Show_Weapon_HidesEmptyHint" fullname="Demo.Tests.WeaponDetailUITests.Show_Weapon_HidesEmptyHint" methodname="Show_Weapon_HidesEmptyHint" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1585949948" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001472" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1510" name="Show_Weapon_ShowsDamage" fullname="Demo.Tests.WeaponDetailUITests.Show_Weapon_ShowsDamage" methodname="Show_Weapon_ShowsDamage" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="664827175" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.002760" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1511" name="Show_Weapon_ShowsEquipButton" fullname="Demo.Tests.WeaponDetailUITests.Show_Weapon_ShowsEquipButton" methodname="Show_Weapon_ShowsEquipButton" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="100418740" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001274" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1509" name="Show_Weapon_ShowsNameAndDescription" fullname="Demo.Tests.WeaponDetailUITests.Show_Weapon_ShowsNameAndDescription" methodname="Show_Weapon_ShowsNameAndDescription" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="104750847" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001236" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1517" name="Show_WithIcon_ShowsIconAndSprite" fullname="Demo.Tests.WeaponDetailUITests.Show_WithIcon_ShowsIconAndSprite" methodname="Show_WithIcon_ShowsIconAndSprite" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1124721789" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001254" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1519" name="Show_WithNull_Clears" fullname="Demo.Tests.WeaponDetailUITests.Show_WithNull_Clears" methodname="Show_WithNull_Clears" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1794867083" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001230" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1516" name="Show_WithoutIcon_HidesIconImage" fullname="Demo.Tests.WeaponDetailUITests.Show_WithoutIcon_HidesIconImage" methodname="Show_WithoutIcon_HidesIconImage" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="1404888086" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001392" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1520" name="StartsEmpty" fullname="Demo.Tests.WeaponDetailUITests.StartsEmpty" methodname="StartsEmpty" classname="Demo.Tests.WeaponDetailUITests" runstate="Runnable" seed="472654100" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.001277" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1525" name="WeaponSocketTests" fullname="Demo.Tests.WeaponSocketTests" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.024687" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1533" name="Clear_DoesNotMoveTheSocket" fullname="Demo.Tests.WeaponSocketTests.Clear_DoesNotMoveTheSocket" methodname="Clear_DoesNotMoveTheSocket" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1031527049" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.007319" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1538" name="Clear_RemovesAModelTheArtAlreadyPutThere" fullname="Demo.Tests.WeaponSocketTests.Clear_RemovesAModelTheArtAlreadyPutThere" methodname="Clear_RemovesAModelTheArtAlreadyPutThere" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="619141936" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000734" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1536" name="Clear_RemovesTheModel" fullname="Demo.Tests.WeaponSocketTests.Clear_RemovesTheModel" methodname="Clear_RemovesTheModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="55808863" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000609" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1537" name="Clear_WhenEmpty_DoesNothing" fullname="Demo.Tests.WeaponSocketTests.Clear_WhenEmpty_DoesNothing" methodname="Clear_WhenEmpty_DoesNothing" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="83576379" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000460" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1534" name="Show_AnotherWeapon_ReplacesTheModel" fullname="Demo.Tests.WeaponSocketTests.Show_AnotherWeapon_ReplacesTheModel" methodname="Show_AnotherWeapon_ReplacesTheModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="23608848" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000659" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1529" name="Show_AppliesTheSocketTransform" fullname="Demo.Tests.WeaponSocketTests.Show_AppliesTheSocketTransform" methodname="Show_AppliesTheSocketTransform" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="732320496" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000804" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1541" name="Show_ArtModel_ThenSwapTwice_LeavesOneModel" fullname="Demo.Tests.WeaponSocketTests.Show_ArtModel_ThenSwapTwice_LeavesOneModel" methodname="Show_ArtModel_ThenSwapTwice_LeavesOneModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1206975283" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000622" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1539" name="Show_ClearsTheModelTheArtAlreadyPutThere" fullname="Demo.Tests.WeaponSocketTests.Show_ClearsTheModelTheArtAlreadyPutThere" methodname="Show_ClearsTheModelTheArtAlreadyPutThere" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="2063346006" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000581" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1531" name="Show_DoesNotMoveTheSocket" fullname="Demo.Tests.WeaponSocketTests.Show_DoesNotMoveTheSocket" methodname="Show_DoesNotMoveTheSocket" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1104306629" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000953" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1532" name="Show_DoesNotReparentTheSocket" fullname="Demo.Tests.WeaponSocketTests.Show_DoesNotReparentTheSocket" methodname="Show_DoesNotReparentTheSocket" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1155035769" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000663" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1545" name="Show_EmptyPrefab_DoesNotThrow" fullname="Demo.Tests.WeaponSocketTests.Show_EmptyPrefab_DoesNotThrow" methodname="Show_EmptyPrefab_DoesNotThrow" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="2038130598" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000722" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1527" name="Show_InstantiatesTheModel" fullname="Demo.Tests.WeaponSocketTests.Show_InstantiatesTheModel" methodname="Show_InstantiatesTheModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1744330906" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000544" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1528" name="Show_ParentsTheModelToTheSocket" fullname="Demo.Tests.WeaponSocketTests.Show_ParentsTheModelToTheSocket" methodname="Show_ParentsTheModelToTheSocket" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="471192780" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000499" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1530" name="Show_SocketTransformWinsOverThePrefabsOwn" fullname="Demo.Tests.WeaponSocketTests.Show_SocketTransformWinsOverThePrefabsOwn" methodname="Show_SocketTransformWinsOverThePrefabsOwn" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="250456819" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000772" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1535" name="Show_TheSameWeaponTwice_LeavesOneModel" fullname="Demo.Tests.WeaponSocketTests.Show_TheSameWeaponTwice_LeavesOneModel" methodname="Show_TheSameWeaponTwice_LeavesOneModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="2092935716" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000672" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1543" name="Show_WeaponWithoutModel_AfterAnotherWeapon_ClearsTheOld" fullname="Demo.Tests.WeaponSocketTests.Show_WeaponWithoutModel_AfterAnotherWeapon_ClearsTheOld" methodname="Show_WeaponWithoutModel_AfterAnotherWeapon_ClearsTheOld" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="214858993" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000537" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1540" name="Show_WeaponWithoutModel_AlsoClearsTheArtModel" fullname="Demo.Tests.WeaponSocketTests.Show_WeaponWithoutModel_AlsoClearsTheArtModel" methodname="Show_WeaponWithoutModel_AlsoClearsTheArtModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="168580752" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000507" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1542" name="Show_WeaponWithoutModel_ShowsNothing" fullname="Demo.Tests.WeaponSocketTests.Show_WeaponWithoutModel_ShowsNothing" methodname="Show_WeaponWithoutModel_ShowsNothing" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1900477113" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000478" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1544" name="Show_WithoutSocket_DoesNotThrow" fullname="Demo.Tests.WeaponSocketTests.Show_WithoutSocket_DoesNotThrow" methodname="Show_WithoutSocket_DoesNotThrow" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1549482077" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000493" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1526" name="StartsEmpty" fullname="Demo.Tests.WeaponSocketTests.StartsEmpty" methodname="StartsEmpty" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1761863997" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000362" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1548" name="StopListening_StopsReactingToBus" fullname="Demo.Tests.WeaponSocketTests.StopListening_StopsReactingToBus" methodname="StopListening_StopsReactingToBus" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="1726879766" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000427" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1546" name="WeaponEquippedEvent_OnBus_ShowsTheModel" fullname="Demo.Tests.WeaponSocketTests.WeaponEquippedEvent_OnBus_ShowsTheModel" methodname="WeaponEquippedEvent_OnBus_ShowsTheModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="549409877" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000563" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1547" name="WeaponEquippedEvent_WithNull_ClearsTheModel" fullname="Demo.Tests.WeaponSocketTests.WeaponEquippedEvent_WithNull_ClearsTheModel" methodname="WeaponEquippedEvent_WithNull_ClearsTheModel" classname="Demo.Tests.WeaponSocketTests" runstate="Runnable" seed="628704628" result="Passed" start-time="2026-09-14 11:38:49Z" end-time="2026-09-14 11:38:49Z" duration="0.000505" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

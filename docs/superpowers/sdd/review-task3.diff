@@ -1,0 +1,164 @@
+# Review package: task3
+
+## Files changed
+Only in _current/Assets/Script/Editor: AnimationClipLocator.cs
+Only in _current/Assets/Script/Editor: AnimationClipLocator.cs.meta
+Only in _current/Assets/Tests/EditMode: AnimationClipLocatorTests.cs
+Only in _current/Assets/Tests/EditMode: AnimationClipLocatorTests.cs.meta
+
+## Diff
+diff -ruN task3-base/Assets/Script/Editor/AnimationClipLocator.cs _current/Assets/Script/Editor/AnimationClipLocator.cs
+--- task3-base/Assets/Script/Editor/AnimationClipLocator.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/AnimationClipLocator.cs	2026-09-12 01:36:52.000000000 +0800
+@@ -0,0 +1,61 @@
++using UnityEditor;
++using UnityEngine;
++
++namespace Demo.EditorTools
++{
++    /// <summary>
++    /// 从资源的 fbx 文件中定位并加载 AnimationClip。
++    ///
++    /// 资源里每个位移类动作都同时提供两套同名剪辑：
++    ///   Animation/SwordAndShield/InPlace/&lt;名字&gt;.fbx
++    ///   Animation/SwordAndShield/RootMotion/&lt;名字&gt;.fbx
++    /// 因此必须显式指定目录，不能只靠名字查找。
++    /// </summary>
++    public static class AnimationClipLocator
++    {
++        public const string HeroAnimationRoot = "Assets/RPGTinyHeroWavePBR/Animation/SwordAndShield";
++        public const string InPlaceDir = HeroAnimationRoot + "/InPlace";
++        public const string RootMotionDir = HeroAnimationRoot + "/RootMotion";
++
++        public static string InPlacePath(string clipName) => $"{InPlaceDir}/{clipName}.fbx";
++
++        public static string RootMotionPath(string clipName) => $"{RootMotionDir}/{clipName}.fbx";
++
++        public static AnimationClip LoadInPlace(string clipName) => LoadClip(InPlacePath(clipName));
++
++        public static AnimationClip LoadRootMotion(string clipName) => LoadClip(RootMotionPath(clipName));
++
++        /// <summary>
++        /// 加载 fbx 中的主 AnimationClip。
++        /// fbx 里可能含多个子资源（网格、材质、多个 take），
++        /// 这里取名字最匹配的那个，并跳过 Unity 生成的 __preview__ 剪辑。
++        /// </summary>
++        public static AnimationClip LoadClip(string fbxPath)
++        {
++            var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
++            if (assets == null || assets.Length == 0)
++                return null;
++
++            string wanted = System.IO.Path.GetFileNameWithoutExtension(fbxPath);
++
++            AnimationClip best = null;
++            foreach (var asset in assets)
++            {
++                if (asset is not AnimationClip clip)
++                    continue;
++                if (clip.name.StartsWith("__preview__"))
++                    continue;
++
++                // 完全同名，直接采用
++                if (clip.name == wanted)
++                    return clip;
++
++                // 否则记住第一个候选，作为兜底
++                if (best == null)
++                    best = clip;
++            }
++
++            return best;
++        }
++    }
++}
+diff -ruN task3-base/Assets/Script/Editor/AnimationClipLocator.cs.meta _current/Assets/Script/Editor/AnimationClipLocator.cs.meta
+--- task3-base/Assets/Script/Editor/AnimationClipLocator.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Script/Editor/AnimationClipLocator.cs.meta	2026-09-12 01:36:52.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 8fe52a470097ae5449868043e51ec494
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff -ruN task3-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs
+--- task3-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs	2026-09-12 01:36:52.000000000 +0800
+@@ -0,0 +1,56 @@
++using NUnit.Framework;
++using UnityEngine;
++using Demo.EditorTools;
++
++namespace Demo.Tests
++{
++    public class AnimationClipLocatorTests
++    {
++        [Test]
++        public void InPlace路径_指向InPlace目录()
++        {
++            var p = AnimationClipLocator.InPlacePath("MoveFWD_Battle_InPlace_SwordAndShield");
++            StringAssert.Contains("/InPlace/", p);
++            StringAssert.EndsWith(".fbx", p);
++        }
++
++        [Test]
++        public void RootMotion路径_指向RootMotion目录()
++        {
++            var p = AnimationClipLocator.RootMotionPath("RollFWD_Battle_RM_SwordAndShield");
++            StringAssert.Contains("/RootMotion/", p);
++        }
++
++        [Test]
++        public void 加载InPlace剪辑_返回非空且名称匹配()
++        {
++            var clip = AnimationClipLocator.LoadInPlace("MoveFWD_Battle_InPlace_SwordAndShield");
++            Assert.IsNotNull(clip, "找不到剪辑，检查 fbx 路径或剪辑命名");
++            StringAssert.Contains("MoveFWD_Battle_InPlace_SwordAndShield", clip.name);
++        }
++
++        [Test]
++        public void 加载RootMotion剪辑_返回非空()
++        {
++            var clip = AnimationClipLocator.LoadRootMotion("RollFWD_Battle_RM_SwordAndShield");
++            Assert.IsNotNull(clip);
++        }
++
++        [Test]
++        public void 加载不存在的剪辑_返回null而非抛异常()
++        {
++            var clip = AnimationClipLocator.LoadInPlace("完全不存在的剪辑名");
++            Assert.IsNull(clip);
++        }
++
++        [Test]
++        public void 同名的InPlace与RootMotion剪辑_是两个不同对象()
++        {
++            var a = AnimationClipLocator.LoadInPlace("MoveFWD_Battle_InPlace_SwordAndShield");
++            var b = AnimationClipLocator.LoadRootMotion("MoveFWD_Battle_RM_SwordAndShield");
++            Assert.IsNotNull(a);
++            Assert.IsNotNull(b);
++            Assert.AreNotSame(a, b);
++        }
++    }
++}
+diff -ruN task3-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs.meta _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs.meta
+--- task3-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs.meta	1970-01-01 08:00:00.000000000 +0800
++++ _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs.meta	2026-09-12 01:36:52.000000000 +0800
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 06694eb7df96860458fab9c921ae3a17
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 

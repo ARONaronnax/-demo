@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# 在命令行跑 EditMode 测试。
+#
+# 为什么这么写：实测本工程在 batchmode 下**跑完测试后关闭阶段会挂起**，
+# 进程一直不退出，并且继续占着 Temp/UnityLockfile ——
+# 导致下一次运行直接报「另一个 Unity 实例已打开了此项目」。
+# 所以这里以「结果 XML 落地」作为完成信号，不等进程自己退，随后强制收尾。
+#
+# Usage: run-tests LABEL [EditMode|PlayMode]
+#   结果: docs/superpowers/sdd/results-<LABEL>.xml
+#   日志: docs/superpowers/sdd/test-<LABEL>.log
+# 退出码: 0=全部通过  1=有测试失败  2=压根没跑起来
+#
+# PLATFORM 默认 EditMode（老调用方式 run-tests LABEL 保持不变）。
+# Task 5b 起有 PlayMode 测试，那时传第二个参数。
+set -uo pipefail
+
+PROJ="E:/unity/求职demo"
+WS="$PROJ/docs/superpowers/sdd"
+UNITY="/c/Program Files/Unity/Hub/Editor/2022.3.62f3c1/Editor/Unity.exe"
+
+label=${1:?usage: run-tests LABEL [EditMode|PlayMode]}
+platform=${2:-EditMode}
+xml="$WS/results-$label.xml"
+log="$WS/test-$label.log"
+
+# 不要直接删掉上一次的日志和结果 —— TDD 的 RED 证据就靠它们留档。
+# 同一标签重复运行时，把旧的挪成 .prev。
+[ -f "$log" ] && mv -f "$log" "$log.prev"
+[ -f "$xml" ] && mv -f "$xml" "$xml.prev"
+
+"$UNITY" -batchmode -nographics \
+  -projectPath "$PROJ" \
+  -runTests -testPlatform "$platform" \
+  -testResults "$xml" \
+  -logFile "$log" &
+child=$!
+
+# 等结果文件落地（最多 20 分钟）。
+# 注意：脚本编译失败时 Unity 会提前退出且**不产出结果 XML**，
+# 所以必须同时盯着子进程是否还活着，否则会白等满 20 分钟。
+for _ in $(seq 1 240); do
+  [ -s "$xml" ] && break
+  if ! kill -0 "$child" 2>/dev/null; then
+    # 进程没了，再给文件一点落盘时间，然后收工
+    sleep 3
+    break
+  fi
+  sleep 5
+done
+
+# ---- 收尾：确保不留下占着项目锁的进程 ----
+#
+# 两个曾经踩过的坑，别再改回去：
+#  1. `$child` 是 Git Bash 的 MSYS PID，**不等于 Windows PID**，
+#     `taskkill //PID $child` 打不中目标（旧版就是这么静默失效的）。
+#     所以这里完全不按 PID 杀，一律按命令行匹配。
+#  2. `wmic` 在新版 Win11 上已被移除。旧版拿它做兜底，命令不存在、
+#     错误又被 `2>/dev/null` 吞掉，于是兜底从未生效，Unity 残留下来占着锁。
+#     改用 PowerShell 的 Get-CimInstance（受支持且字段一致）。
+sleep 3
+
+ps_kill_batchmode() {
+  powershell -NoProfile -Command \
+    "Get-CimInstance Win32_Process -Filter \"Name='Unity.exe'\" |
+       Where-Object { \$_.CommandLine -match '-batchmode' } |
+       ForEach-Object { Stop-Process -Id \$_.ProcessId -Force -ErrorAction SilentlyContinue }" \
+    >/dev/null 2>&1 || true
+}
+ps_unity_count() {
+  powershell -NoProfile -Command \
+    "@(Get-Process Unity -ErrorAction SilentlyContinue).Count" 2>/dev/null | tr -d '\r\n '
+}
+
+ps_kill_batchmode
+sleep 2
+ps_kill_batchmode   # 补一次：首次 kill 时进程可能还没进入可终止状态
+
+# 被强制结束的 Unity 不会自己删锁文件，而残留的锁会让下一次运行直接报
+# 「另一个 Unity 实例已打开了此项目」。只有在确认没有任何 Unity 进程时才清，
+# 避免误删你手动打开的编辑器正持有的锁。
+#
+# 注意这里**不再静默**：清不掉就明确报出来。旧版把失败藏起来，
+# 结果问题拖到下一个任务才以「项目被占用」的形式爆出来，很难定位。
+remaining=$(ps_unity_count)
+if [ "$remaining" = "0" ]; then
+  rm -f "$PROJ/Temp/UnityLockfile" 2>/dev/null || true
+else
+  echo "⚠ 收尾后仍有 ${remaining} 个 Unity 进程存活，未清理锁文件。" >&2
+  echo "  下一次运行可能报「另一个 Unity 实例已打开了此项目」。请手动关闭 Unity。" >&2
+fi
+
+if [ ! -s "$xml" ]; then
+  echo "✗ 测试没有产生结果文件。日志：$log"
+  exit 2
+fi
+
+# ---- 汇总 ----
+line=$(grep -o '<test-run [^>]*>' "$xml" | head -1)
+get() { echo "$line" | grep -o "$1=\"[^\"]*\"" | head -1 | cut -d'"' -f2; }
+
+echo "platform=$platform  total=$(get total)  passed=$(get passed)  failed=$(get failed)  result=$(get result)"
+echo "结果文件：$xml"
+
+[ "$(get result)" = "Passed" ] && exit 0 || exit 1

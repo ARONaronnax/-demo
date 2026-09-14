@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.056133">
+  <test-suite type="TestSuite" id="1017" name="求职demo" fullname="求职demo" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.056133" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="1027" name="Demo.Tests.EditMode.dll" fullname="E:/unity/求职demo/Library/ScriptAssemblies/Demo.Tests.EditMode.dll" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.040642" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="80816" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="1028" name="Demo" fullname="Demo" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.040222" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1029" name="Tests" fullname="Demo.Tests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.037064" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1018" name="AnimatorParamsTests" fullname="Demo.Tests.AnimatorParamsTests" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.030730" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1020" name="参数名_无重复" fullname="Demo.Tests.AnimatorParamsTests.参数名_无重复" methodname="参数名_无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="971282732" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.010374" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1023" name="状态名_不含重复的IdleBattle副本" fullname="Demo.Tests.AnimatorParamsTests.状态名_不含重复的IdleBattle副本" methodname="状态名_不含重复的IdleBattle副本" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="1359973278" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.001966" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1022" name="状态名_已修正拼写错误" fullname="Demo.Tests.AnimatorParamsTests.状态名_已修正拼写错误" methodname="状态名_已修正拼写错误" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="10602458" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.004048" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1021" name="状态名_恰好三十九个且无重复" fullname="Demo.Tests.AnimatorParamsTests.状态名_恰好三十九个且无重复" methodname="状态名_恰好三十九个且无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="58655053" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.000527" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1019" name="组名_恰好六个且无重复" fullname="Demo.Tests.AnimatorParamsTests.组名_恰好六个且无重复" methodname="组名_恰好六个且无重复" classname="Demo.Tests.AnimatorParamsTests" runstate="Runnable" seed="755700086" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.000207" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1024" name="AssemblySmokeTests" fullname="Demo.Tests.AssemblySmokeTests" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.001712" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1025" name="测试程序集_已正确装配" fullname="Demo.Tests.AssemblySmokeTests.测试程序集_已正确装配" methodname="测试程序集_已正确装配" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="410726030" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.000198" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1026" name="编辑器程序集_可被测试程序集引用" fullname="Demo.Tests.AssemblySmokeTests.编辑器程序集_可被测试程序集引用" methodname="编辑器程序集_可被测试程序集引用" classname="Demo.Tests.AssemblySmokeTests" runstate="Runnable" seed="1204373804" result="Passed" start-time="2026-09-11 17:14:44Z" end-time="2026-09-11 17:14:44Z" duration="0.000454" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

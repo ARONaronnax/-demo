@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# 证明两个第三方资源包未被改动。
+#
+# 为什么用哈希清单而不是快照复制：两个包合计约 1.27 GB / 2624 个文件，
+# 每次任务都整包复制进快照不现实。哈希清单同样能证明内容一致，
+# 且不受 mtime 影响 —— 只有内容真的变了才会报差异。
+#
+# 背景：Unity 首次以 2022.3 导入本工程时，会自行重新序列化
+# Assets/RPGTinyHeroWavePBR/Animator/ 下的两个 .controller（实测发生在 00:37:36）。
+# 那是 Unity 打开工程的固有行为，不是任何脚本改的。此清单用于确保**之后**不再有改动。
+#
+# Usage: check-assetpack
+# 退出码: 0 = 与基线一致   1 = 有差异
+set -uo pipefail
+
+PROJ="E:/unity/求职demo"
+WS="$PROJ/docs/superpowers/sdd"
+base="$WS/assetpack-baseline.md5"
+
+[ -f "$base" ] || { echo "缺少基线清单：$base" >&2; exit 2; }
+
+cur=$(mktemp)
+cd "$PROJ"
+find Assets/RPGTinyHeroWavePBR Assets/RPGMonsterWave02PBR -type f -print0 2>/dev/null \
+  | sort -z | xargs -0 md5sum 2>/dev/null | sort > "$cur"
+
+if diff -q <(sort "$base") "$cur" >/dev/null 2>&1; then
+  echo "✓ 资源包与基线一致（$(wc -l < "$base" | tr -d ' ') 个文件）"
+  rm -f "$cur"
+  exit 0
+fi
+
+echo "✗ 资源包相对基线有改动："
+echo "--- 左=基线  右=当前 ---"
+diff <(sort "$base") "$cur" | head -40
+rm -f "$cur"
+exit 1

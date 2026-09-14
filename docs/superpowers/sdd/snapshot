@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# 本项目不使用 git，所以 SDD 的 review-package 改为「快照 + diff」。
+# 该脚本把任务可能写入的源码目录整体复制到 OUTDIR。
+#
+# 只快照源码/资源文本文件，不含 Library 等生成物。
+#
+# Usage: snapshot OUTDIR
+set -euo pipefail
+
+PROJ="E:/unity/求职demo"
+
+if [ $# -ne 1 ]; then
+  echo "usage: snapshot OUTDIR" >&2
+  exit 2
+fi
+
+out=$1
+rm -rf "$out"
+mkdir -p "$out"
+
+# 计划中所有生成产物的落点（Global Constraints 规定）
+for d in Assets/Script Assets/Tests Assets/Animator Assets/Scenes Assets/Prefabs Assets/Settings Packages ProjectSettings; do
+  if [ -d "$PROJ/$d" ]; then
+    mkdir -p "$out/$d"
+    cp -r "$PROJ/$d/." "$out/$d/" 2>/dev/null || true
+  fi
+done
+
+# 上面只递归拷了各目录的**内容**，目录自身的 .meta（Assets/Script.meta 等）
+# 落在 Assets/ 下，不在任何被拷目录里，会被整轮漏掉。
+# 这些 meta 记录文件夹 GUID，遗漏会让审查包看不出 GUID 变动。
+mkdir -p "$out/Assets"
+for f in "$PROJ"/Assets/*.meta; do
+  [ -f "$f" ] && cp "$f" "$out/Assets/" 2>/dev/null || true
+done
+
+echo "snapshot -> $out ($(find "$out" -type f | wc -l | tr -d ' ') files)"

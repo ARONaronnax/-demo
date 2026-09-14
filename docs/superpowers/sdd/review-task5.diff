@@ -1,0 +1,965 @@
+# Review package: task5
+
+## Files changed
+Files task5-base/Assets/Animator/Hero_SwordAndShield.controller and _current/Assets/Animator/Hero_SwordAndShield.controller differ
+Files task5-base/Assets/Script/Editor/AnimationClipLocator.cs and _current/Assets/Script/Editor/AnimationClipLocator.cs differ
+Files task5-base/Assets/Script/Editor/HeroAnimatorBuilder.cs and _current/Assets/Script/Editor/HeroAnimatorBuilder.cs differ
+Files task5-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs and _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs differ
+Files task5-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs and _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs differ
+
+## Diff
+diff -ruN task5-base/Assets/Animator/Hero_SwordAndShield.controller _current/Assets/Animator/Hero_SwordAndShield.controller
+--- task5-base/Assets/Animator/Hero_SwordAndShield.controller	2026-09-12 01:43:10.000000000 +0800
++++ _current/Assets/Animator/Hero_SwordAndShield.controller	2026-09-12 01:53:04.000000000 +0800
+@@ -1,6 +1,96 @@
+ %YAML 1.1
+ %TAG !u! tag:unity3d.com,2011:
+---- !u!1107 &-2764204475417778120
++--- !u!1107 &-8865261605448693230
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Special
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1102 &-7182206361790739863
++AnimatorState:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Idle_Battle
++  m_Speed: 1
++  m_CycleOffset: 0
++  m_Transitions: []
++  m_StateMachineBehaviours: []
++  m_Position: {x: 50, y: 50, z: 0}
++  m_IKOnFeet: 0
++  m_WriteDefaultValues: 1
++  m_Mirror: 0
++  m_SpeedParameterActive: 0
++  m_MirrorParameterActive: 0
++  m_CycleOffsetParameterActive: 0
++  m_TimeParameterActive: 0
++  m_Motion: {fileID: 1827226128182048838, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
++  m_Tag: 
++  m_SpeedParameter: 
++  m_MirrorParameter: 
++  m_CycleOffsetParameter: 
++  m_TimeParameter: 
++--- !u!1107 &-4979466809714788314
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Death
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1102 &-4501389154386948140
++AnimatorState:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Idle_Normal
++  m_Speed: 1
++  m_CycleOffset: 0
++  m_Transitions: []
++  m_StateMachineBehaviours: []
++  m_Position: {x: 50, y: 50, z: 0}
++  m_IKOnFeet: 0
++  m_WriteDefaultValues: 1
++  m_Mirror: 0
++  m_SpeedParameterActive: 0
++  m_MirrorParameterActive: 0
++  m_CycleOffsetParameterActive: 0
++  m_TimeParameterActive: 0
++  m_Motion: {fileID: 1827226128182048838, guid: 423aabfede0896f4db862ab8e54dde30, type: 3}
++  m_Tag: 
++  m_SpeedParameter: 
++  m_MirrorParameter: 
++  m_CycleOffsetParameter: 
++  m_TimeParameter: 
++--- !u!1107 &-4501066277790976283
+ AnimatorStateMachine:
+   serializedVersion: 6
+   m_ObjectHideFlags: 1
+@@ -19,6 +109,161 @@
+   m_ExitPosition: {x: 800, y: 120, z: 0}
+   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+   m_DefaultState: {fileID: 0}
++--- !u!1107 &-3581901419197604102
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Base Layer
++  m_ChildStates: []
++  m_ChildStateMachines:
++  - serializedVersion: 1
++    m_StateMachine: {fileID: 1794416094861874538}
++    m_Position: {x: 300, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -664847413902410160}
++    m_Position: {x: 700, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -1241878689329700587}
++    m_Position: {x: 1100, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -4501066277790976283}
++    m_Position: {x: 1500, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -8865261605448693230}
++    m_Position: {x: 1900, y: 0, z: 0}
++  - serializedVersion: 1
++    m_StateMachine: {fileID: -4979466809714788314}
++    m_Position: {x: 2300, y: 0, z: 0}
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: -4501389154386948140}
++--- !u!1102 &-2953203172785322152
++AnimatorState:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Tree_Free_Battle
++  m_Speed: 1
++  m_CycleOffset: 0
++  m_Transitions:
++  - {fileID: -2182349698143077877}
++  - {fileID: 8879876697587945467}
++  m_StateMachineBehaviours: []
++  m_Position: {x: 50, y: 50, z: 0}
++  m_IKOnFeet: 0
++  m_WriteDefaultValues: 1
++  m_Mirror: 0
++  m_SpeedParameterActive: 0
++  m_MirrorParameterActive: 0
++  m_CycleOffsetParameterActive: 0
++  m_TimeParameterActive: 0
++  m_Motion: {fileID: 1291307554258462265}
++  m_Tag: 
++  m_SpeedParameter: 
++  m_MirrorParameter: 
++  m_CycleOffsetParameter: 
++  m_TimeParameter: 
++--- !u!1101 &-2182349698143077877
++AnimatorStateTransition:
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: 
++  m_Conditions:
++  - m_ConditionMode: 2
++    m_ConditionEvent: IsBattleStance
++    m_EventTreshold: 0
++  m_DstStateMachine: {fileID: 0}
++  m_DstState: {fileID: 3668249618733785456}
++  m_Solo: 0
++  m_Mute: 0
++  m_IsExit: 0
++  serializedVersion: 3
++  m_TransitionDuration: 0.15
++  m_TransitionOffset: 0
++  m_ExitTime: 1
++  m_HasExitTime: 1
++  m_HasFixedDuration: 1
++  m_InterruptionSource: 0
++  m_OrderedInterruption: 1
++  m_CanTransitionToSelf: 0
++--- !u!1107 &-1241878689329700587
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Movement
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
++--- !u!1102 &-928541886023625317
++AnimatorState:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Tree_Locked
++  m_Speed: 1
++  m_CycleOffset: 0
++  m_Transitions:
++  - {fileID: 6890827014311474264}
++  m_StateMachineBehaviours: []
++  m_Position: {x: 50, y: 50, z: 0}
++  m_IKOnFeet: 0
++  m_WriteDefaultValues: 1
++  m_Mirror: 0
++  m_SpeedParameterActive: 0
++  m_MirrorParameterActive: 0
++  m_CycleOffsetParameterActive: 0
++  m_TimeParameterActive: 0
++  m_Motion: {fileID: 7044542745328622877}
++  m_Tag: 
++  m_SpeedParameter: 
++  m_MirrorParameter: 
++  m_CycleOffsetParameter: 
++  m_TimeParameter: 
++--- !u!1107 &-664847413902410160
++AnimatorStateMachine:
++  serializedVersion: 6
++  m_ObjectHideFlags: 1
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Combat
++  m_ChildStates: []
++  m_ChildStateMachines: []
++  m_AnyStateTransitions: []
++  m_EntryTransitions: []
++  m_StateMachineTransitions: {}
++  m_StateMachineBehaviours: []
++  m_AnyStatePosition: {x: 50, y: 20, z: 0}
++  m_EntryPosition: {x: 50, y: 120, z: 0}
++  m_ExitPosition: {x: 800, y: 120, z: 0}
++  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
++  m_DefaultState: {fileID: 0}
+ --- !u!91 &9100000
+ AnimatorController:
+   m_ObjectHideFlags: 0
+@@ -169,7 +414,7 @@
+   m_AnimatorLayers:
+   - serializedVersion: 5
+     m_Name: Base Layer
+-    m_StateMachine: {fileID: 3384195728088564330}
++    m_StateMachine: {fileID: -3581901419197604102}
+     m_Mask: {fileID: 0}
+     m_Motions: []
+     m_Behaviours: []
+@@ -179,34 +424,70 @@
+     m_IKPass: 0
+     m_SyncedLayerAffectsTiming: 0
+     m_Controller: {fileID: 9100000}
+---- !u!1107 &3384195728088564330
++--- !u!206 &1291307554258462265
++BlendTree:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Locomotion_Free_Battle
++  m_Childs:
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
++    m_Threshold: 0
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 7d4f9e9da55a3bd4f958a63308a522a1, type: 3}
++    m_Threshold: 0.5
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 5eee3d6dbfbcef04ab20b548575d7b9d, type: 3}
++    m_Threshold: 1
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  m_BlendParameter: Speed
++  m_BlendParameterY: Blend
++  m_MinThreshold: 0
++  m_MaxThreshold: 1
++  m_UseAutomaticThresholds: 0
++  m_NormalizedBlendValues: 0
++  m_BlendType: 0
++--- !u!1107 &1794416094861874538
+ AnimatorStateMachine:
+   serializedVersion: 6
+   m_ObjectHideFlags: 1
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Base Layer
+-  m_ChildStates: []
+-  m_ChildStateMachines:
+-  - serializedVersion: 1
+-    m_StateMachine: {fileID: 7796646825504126916}
+-    m_Position: {x: 300, y: 0, z: 0}
++  m_Name: Locomotion
++  m_ChildStates:
+   - serializedVersion: 1
+-    m_StateMachine: {fileID: 7458110435445532733}
+-    m_Position: {x: 700, y: 0, z: 0}
++    m_State: {fileID: -4501389154386948140}
++    m_Position: {x: 0, y: 0, z: 0}
+   - serializedVersion: 1
+-    m_StateMachine: {fileID: 6077687689082970296}
+-    m_Position: {x: 1100, y: 0, z: 0}
++    m_State: {fileID: -7182206361790739863}
++    m_Position: {x: 0, y: 80, z: 0}
+   - serializedVersion: 1
+-    m_StateMachine: {fileID: -2764204475417778120}
+-    m_Position: {x: 1500, y: 0, z: 0}
++    m_State: {fileID: 3668249618733785456}
++    m_Position: {x: 0, y: 160, z: 0}
+   - serializedVersion: 1
+-    m_StateMachine: {fileID: 7358889685967581495}
+-    m_Position: {x: 1900, y: 0, z: 0}
++    m_State: {fileID: -2953203172785322152}
++    m_Position: {x: 0, y: 240, z: 0}
+   - serializedVersion: 1
+-    m_StateMachine: {fileID: 5430760701342099902}
+-    m_Position: {x: 2300, y: 0, z: 0}
++    m_State: {fileID: -928541886023625317}
++    m_Position: {x: 0, y: 320, z: 0}
++  m_ChildStateMachines: []
+   m_AnyStateTransitions: []
+   m_EntryTransitions: []
+   m_StateMachineTransitions: {}
+@@ -215,99 +496,192 @@
+   m_EntryPosition: {x: 50, y: 120, z: 0}
+   m_ExitPosition: {x: 800, y: 120, z: 0}
+   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
+---- !u!1107 &5430760701342099902
+-AnimatorStateMachine:
++  m_DefaultState: {fileID: 3668249618733785456}
++--- !u!1102 &3668249618733785456
++AnimatorState:
+   serializedVersion: 6
+   m_ObjectHideFlags: 1
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Death
+-  m_ChildStates: []
+-  m_ChildStateMachines: []
+-  m_AnyStateTransitions: []
+-  m_EntryTransitions: []
+-  m_StateMachineTransitions: {}
++  m_Name: Tree_Free_Normal
++  m_Speed: 1
++  m_CycleOffset: 0
++  m_Transitions:
++  - {fileID: 5347661322171789668}
+   m_StateMachineBehaviours: []
+-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+-  m_EntryPosition: {x: 50, y: 120, z: 0}
+-  m_ExitPosition: {x: 800, y: 120, z: 0}
+-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
+---- !u!1107 &6077687689082970296
+-AnimatorStateMachine:
+-  serializedVersion: 6
+-  m_ObjectHideFlags: 1
++  m_Position: {x: 50, y: 50, z: 0}
++  m_IKOnFeet: 0
++  m_WriteDefaultValues: 1
++  m_Mirror: 0
++  m_SpeedParameterActive: 0
++  m_MirrorParameterActive: 0
++  m_CycleOffsetParameterActive: 0
++  m_TimeParameterActive: 0
++  m_Motion: {fileID: 5231806958370365890}
++  m_Tag: 
++  m_SpeedParameter: 
++  m_MirrorParameter: 
++  m_CycleOffsetParameter: 
++  m_TimeParameter: 
++--- !u!206 &5231806958370365890
++BlendTree:
++  m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Movement
+-  m_ChildStates: []
+-  m_ChildStateMachines: []
+-  m_AnyStateTransitions: []
+-  m_EntryTransitions: []
+-  m_StateMachineTransitions: {}
+-  m_StateMachineBehaviours: []
+-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+-  m_EntryPosition: {x: 50, y: 120, z: 0}
+-  m_ExitPosition: {x: 800, y: 120, z: 0}
+-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
+---- !u!1107 &7358889685967581495
+-AnimatorStateMachine:
+-  serializedVersion: 6
++  m_Name: Locomotion_Free_Normal
++  m_Childs:
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 423aabfede0896f4db862ab8e54dde30, type: 3}
++    m_Threshold: 0
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 0791e523b7f1b2740a3b1cde42b6aeac, type: 3}
++    m_Threshold: 0.5
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  m_BlendParameter: Speed
++  m_BlendParameterY: Blend
++  m_MinThreshold: 0
++  m_MaxThreshold: 1
++  m_UseAutomaticThresholds: 0
++  m_NormalizedBlendValues: 0
++  m_BlendType: 0
++--- !u!1101 &5347661322171789668
++AnimatorStateTransition:
+   m_ObjectHideFlags: 1
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Special
+-  m_ChildStates: []
+-  m_ChildStateMachines: []
+-  m_AnyStateTransitions: []
+-  m_EntryTransitions: []
+-  m_StateMachineTransitions: {}
+-  m_StateMachineBehaviours: []
+-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+-  m_EntryPosition: {x: 50, y: 120, z: 0}
+-  m_ExitPosition: {x: 800, y: 120, z: 0}
+-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
+---- !u!1107 &7458110435445532733
+-AnimatorStateMachine:
+-  serializedVersion: 6
++  m_Name: 
++  m_Conditions:
++  - m_ConditionMode: 1
++    m_ConditionEvent: IsBattleStance
++    m_EventTreshold: 0
++  m_DstStateMachine: {fileID: 0}
++  m_DstState: {fileID: -2953203172785322152}
++  m_Solo: 0
++  m_Mute: 0
++  m_IsExit: 0
++  serializedVersion: 3
++  m_TransitionDuration: 0.15
++  m_TransitionOffset: 0
++  m_ExitTime: 1
++  m_HasExitTime: 1
++  m_HasFixedDuration: 1
++  m_InterruptionSource: 0
++  m_OrderedInterruption: 1
++  m_CanTransitionToSelf: 0
++--- !u!1101 &6890827014311474264
++AnimatorStateTransition:
+   m_ObjectHideFlags: 1
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Combat
+-  m_ChildStates: []
+-  m_ChildStateMachines: []
+-  m_AnyStateTransitions: []
+-  m_EntryTransitions: []
+-  m_StateMachineTransitions: {}
+-  m_StateMachineBehaviours: []
+-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+-  m_EntryPosition: {x: 50, y: 120, z: 0}
+-  m_ExitPosition: {x: 800, y: 120, z: 0}
+-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
+---- !u!1107 &7796646825504126916
+-AnimatorStateMachine:
+-  serializedVersion: 6
++  m_Name: 
++  m_Conditions:
++  - m_ConditionMode: 2
++    m_ConditionEvent: IsLockedOn
++    m_EventTreshold: 0
++  m_DstStateMachine: {fileID: 0}
++  m_DstState: {fileID: -2953203172785322152}
++  m_Solo: 0
++  m_Mute: 0
++  m_IsExit: 0
++  serializedVersion: 3
++  m_TransitionDuration: 0.15
++  m_TransitionOffset: 0
++  m_ExitTime: 1
++  m_HasExitTime: 1
++  m_HasFixedDuration: 1
++  m_InterruptionSource: 0
++  m_OrderedInterruption: 1
++  m_CanTransitionToSelf: 0
++--- !u!206 &7044542745328622877
++BlendTree:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_Name: Locomotion_Locked
++  m_Childs:
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
++    m_Threshold: 0
++    m_Position: {x: 0, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 7d4f9e9da55a3bd4f958a63308a522a1, type: 3}
++    m_Threshold: 0.25
++    m_Position: {x: 0, y: 1}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 4897d9e1e93439744a78d1cebdef17ff, type: 3}
++    m_Threshold: 0.5
++    m_Position: {x: 0, y: -1}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: 048a541568c52514c9996fea7b37d6e0, type: 3}
++    m_Threshold: 0.75
++    m_Position: {x: -1, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  - serializedVersion: 2
++    m_Motion: {fileID: 1827226128182048838, guid: f531fd2d5a6a8a440b5d450e029c4041, type: 3}
++    m_Threshold: 1
++    m_Position: {x: 1, y: 0}
++    m_TimeScale: 1
++    m_CycleOffset: 0
++    m_DirectBlendParameter: Blend
++    m_Mirror: 0
++  m_BlendParameter: MoveDirX
++  m_BlendParameterY: MoveDirZ
++  m_MinThreshold: 0
++  m_MaxThreshold: 1
++  m_UseAutomaticThresholds: 1
++  m_NormalizedBlendValues: 0
++  m_BlendType: 1
++--- !u!1101 &8879876697587945467
++AnimatorStateTransition:
+   m_ObjectHideFlags: 1
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_Name: Locomotion
+-  m_ChildStates: []
+-  m_ChildStateMachines: []
+-  m_AnyStateTransitions: []
+-  m_EntryTransitions: []
+-  m_StateMachineTransitions: {}
+-  m_StateMachineBehaviours: []
+-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+-  m_EntryPosition: {x: 50, y: 120, z: 0}
+-  m_ExitPosition: {x: 800, y: 120, z: 0}
+-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+-  m_DefaultState: {fileID: 0}
++  m_Name: 
++  m_Conditions:
++  - m_ConditionMode: 1
++    m_ConditionEvent: IsLockedOn
++    m_EventTreshold: 0
++  m_DstStateMachine: {fileID: 0}
++  m_DstState: {fileID: -928541886023625317}
++  m_Solo: 0
++  m_Mute: 0
++  m_IsExit: 0
++  serializedVersion: 3
++  m_TransitionDuration: 0.15
++  m_TransitionOffset: 0
++  m_ExitTime: 1
++  m_HasExitTime: 1
++  m_HasFixedDuration: 1
++  m_InterruptionSource: 0
++  m_OrderedInterruption: 1
++  m_CanTransitionToSelf: 0
+diff -ruN task5-base/Assets/Script/Editor/AnimationClipLocator.cs _current/Assets/Script/Editor/AnimationClipLocator.cs
+--- task5-base/Assets/Script/Editor/AnimationClipLocator.cs	2026-09-12 01:43:10.000000000 +0800
++++ _current/Assets/Script/Editor/AnimationClipLocator.cs	2026-09-12 01:53:04.000000000 +0800
+@@ -21,7 +21,21 @@
+ 
+         public static string RootMotionPath(string clipName) => $"{RootMotionDir}/{clipName}.fbx";
+ 
+-        public static AnimationClip LoadInPlace(string clipName) => LoadClip(InPlacePath(clipName));
++        // 架势根目录：动作类剪辑唯一的一份就放在这里
++        public static string StanceRootPath(string clipName) => $"{HeroAnimationRoot}/{clipName}.fbx";
++
++        /// <summary>
++        /// 加载"无位移"剪辑。
++        ///
++        /// 资源包里有三种并存的布局，同一个名字只会出现在其中一处：
++        ///   位移类（Move/Sprint/Jump）只在 InPlace/ 下；
++        ///   动作类（Idle/Defend/DefendHit/GetHit/Dizzy/Die/GetUp…）只在架势根目录；
++        ///   连招类（Combo）两处都有、各有分工。
++        /// 因此先找 InPlace/，落空再回退到架势根目录 —— 否则动作类剪辑会全部加载失败。
++        /// 名字在两处互斥，回退不会造成歧义。
++        /// </summary>
++        public static AnimationClip LoadInPlace(string clipName) =>
++            LoadClip(InPlacePath(clipName)) ?? LoadClip(StanceRootPath(clipName));
+ 
+         public static AnimationClip LoadRootMotion(string clipName) => LoadClip(RootMotionPath(clipName));
+ 
+diff -ruN task5-base/Assets/Script/Editor/HeroAnimatorBuilder.cs _current/Assets/Script/Editor/HeroAnimatorBuilder.cs
+--- task5-base/Assets/Script/Editor/HeroAnimatorBuilder.cs	2026-09-12 01:43:10.000000000 +0800
++++ _current/Assets/Script/Editor/HeroAnimatorBuilder.cs	2026-09-12 01:53:04.000000000 +0800
+@@ -58,6 +58,9 @@
+ 
+             CreateGroupStateMachines(root);
+ 
++            var groups = GetGroups(root);
++            BuildLocomotion(root, groups[AnimatorParams.Groups.Locomotion], ctrl);
++
+             AssetDatabase.SaveAssets();
+             return ctrl;
+         }
+@@ -124,5 +127,151 @@
+                 group.name = AnimatorParams.Groups.All[i];
+             }
+         }
++
++        /// <summary>子状态机名 → 子状态机，供各 BuildXxx 取用自己那一组。</summary>
++        private static System.Collections.Generic.Dictionary<string, AnimatorStateMachine> GetGroups(
++            AnimatorStateMachine root)
++        {
++            var map = new System.Collections.Generic.Dictionary<string, AnimatorStateMachine>();
++            foreach (var child in root.stateMachines)
++                map[child.stateMachine.name] = child.stateMachine;
++            return map;
++        }
++
++        /// <summary>
++        /// 移动组：两个待机状态 + 三套混合树（自由非战斗 / 自由战斗 / 锁定）。
++        ///
++        /// 锁定混合树是锁定机制的核心：锁定时角色不转向，四个方向的位移只能靠
++        /// 四个独立的方向剪辑表达，因此它必须是二维方向混合树而不是原地转身。
++        /// </summary>
++        private static void BuildLocomotion(AnimatorStateMachine root, AnimatorStateMachine locomotion, AnimatorController ctrl)
++        {
++            // ---- 两个待机状态 ----
++            var idleNormal = locomotion.AddState(AnimatorParams.States.IdleNormal, new Vector3(0, 0, 0));
++            idleNormal.motion = AnimationClipLocator.LoadInPlace("Idle_Normal_SwordAndShield");
++
++            var idleBattle = locomotion.AddState(AnimatorParams.States.IdleBattle, new Vector3(0, 80, 0));
++            idleBattle.motion = AnimationClipLocator.LoadInPlace("Idle_Battle_SwordAndShiled");
++
++            // ---- 三个混合树 ----
++            var treeFreeNormal = Create1DTree(ctrl, AnimatorParams.BlendTrees.FreeNormal, new[]
++            {
++                (AnimationClipLocator.LoadInPlace("Idle_Normal_SwordAndShield"), 0f),
++                (AnimationClipLocator.LoadInPlace("MoveFWD_Normal_InPlace_SwordAndShield"), 0.5f),
++            });
++
++            var treeFreeBattle = Create1DTree(ctrl, AnimatorParams.BlendTrees.FreeBattle, new[]
++            {
++                (AnimationClipLocator.LoadInPlace("Idle_Battle_SwordAndShiled"), 0f),
++                (AnimationClipLocator.LoadInPlace("MoveFWD_Battle_InPlace_SwordAndShield"), 0.5f),
++                (AnimationClipLocator.LoadInPlace("SprintFWD_Battle_InPlace_SwordAndShield"), 1f),
++            });
++
++            var treeLocked = CreateDirectional2DTree(ctrl, AnimatorParams.BlendTrees.Locked, new[]
++            {
++                (AnimationClipLocator.LoadInPlace("Idle_Battle_SwordAndShiled"),        new Vector2(0f, 0f)),
++                (AnimationClipLocator.LoadInPlace("MoveFWD_Battle_InPlace_SwordAndShield"), new Vector2(0f, 1f)),
++                (AnimationClipLocator.LoadInPlace("MoveBWD_Battle_InPlace_SwordAndShield"), new Vector2(0f, -1f)),
++                (AnimationClipLocator.LoadInPlace("MoveLFT_Battle_InPlace_SwordAndShield"), new Vector2(-1f, 0f)),
++                (AnimationClipLocator.LoadInPlace("MoveRGT_Battle_InPlace_SwordAndShield"), new Vector2(1f, 0f)),
++            });
++
++            // 混合树也要作为状态存在
++            var stFreeNormal = locomotion.AddState(AnimatorParams.States.TreeFreeNormal, new Vector3(0, 160, 0));
++            stFreeNormal.motion = treeFreeNormal;
++
++            var stFreeBattle = locomotion.AddState(AnimatorParams.States.TreeFreeBattle, new Vector3(0, 240, 0));
++            stFreeBattle.motion = treeFreeBattle;
++
++            var stLocked = locomotion.AddState(AnimatorParams.States.TreeLocked, new Vector3(0, 320, 0));
++            stLocked.motion = treeLocked;
++
++            locomotion.defaultState = stFreeNormal;
++
++            // ---- 组内转换 ----
++            // 非战斗 → 战斗姿态
++            AddTransition(stFreeNormal, stFreeBattle, 1f, true,
++                (AnimatorParams.IsBattleStance, AnimatorConditionMode.If));
++
++            // 战斗姿态 → 非战斗（必须先停下来）
++            AddTransition(stFreeBattle, stFreeNormal, 1f, true,
++                (AnimatorParams.IsBattleStance, AnimatorConditionMode.IfNot));
++
++            // 自由 → 锁定
++            AddTransition(stFreeBattle, stLocked, 1f, true,
++                (AnimatorParams.IsLockedOn, AnimatorConditionMode.If));
++
++            // 锁定 → 自由
++            AddTransition(stLocked, stFreeBattle, 1f, true,
++                (AnimatorParams.IsLockedOn, AnimatorConditionMode.IfNot));
++        }
++
++        private static BlendTree Create1DTree(
++            AnimatorController ctrl, string name,
++            (AnimationClip clip, float threshold)[] children)
++        {
++            var tree = new BlendTree
++            {
++                name = name,
++                blendType = BlendTreeType.Simple1D,
++                blendParameter = AnimatorParams.Speed,
++                useAutomaticThresholds = false,
++            };
++            AssetDatabase.AddObjectToAsset(tree, ctrl);
++
++            foreach (var (clip, threshold) in children)
++            {
++                if (clip == null)
++                {
++                    Debug.LogError($"[HeroAnimatorBuilder] {name} 有剪辑加载失败");
++                    continue;
++                }
++                tree.AddChild(clip, threshold);
++            }
++            return tree;
++        }
++
++        private static BlendTree CreateDirectional2DTree(
++            AnimatorController ctrl, string name,
++            (AnimationClip clip, Vector2 pos)[] children)
++        {
++            var tree = new BlendTree
++            {
++                name = name,
++                blendType = BlendTreeType.SimpleDirectional2D,
++                blendParameter = AnimatorParams.MoveDirX,
++                blendParameterY = AnimatorParams.MoveDirZ,
++            };
++            AssetDatabase.AddObjectToAsset(tree, ctrl);
++
++            foreach (var (clip, pos) in children)
++            {
++                if (clip == null)
++                {
++                    Debug.LogError($"[HeroAnimatorBuilder] {name} 有剪辑加载失败");
++                    continue;
++                }
++                tree.AddChild(clip, pos);
++            }
++            return tree;
++        }
++
++        private static AnimatorStateTransition AddTransition(
++            AnimatorState from, AnimatorState to,
++            float exitTime, bool hasExitTime,
++            params (string param, AnimatorConditionMode mode)[] conditions)
++        {
++            var t = from.AddTransition(to);
++            t.hasExitTime = hasExitTime;
++            t.exitTime = exitTime;
++            t.hasFixedDuration = true;
++            t.duration = 0.15f;
++            t.canTransitionToSelf = false;
++
++            foreach (var (param, mode) in conditions)
++                t.AddCondition(mode, 0f, param);
++
++            return t;
++        }
+     }
+ }
+diff -ruN task5-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs
+--- task5-base/Assets/Tests/EditMode/AnimationClipLocatorTests.cs	2026-09-12 01:43:10.000000000 +0800
++++ _current/Assets/Tests/EditMode/AnimationClipLocatorTests.cs	2026-09-12 01:53:04.000000000 +0800
+@@ -44,6 +44,36 @@
+         }
+ 
+         [Test]
++        public void StanceRoot路径_指向架势根目录()
++        {
++            var p = AnimationClipLocator.StanceRootPath("Idle_Normal_SwordAndShield");
++            StringAssert.Contains("/SwordAndShield/", p);
++            StringAssert.DoesNotContain("/InPlace/", p);
++            StringAssert.DoesNotContain("/RootMotion/", p);
++            StringAssert.EndsWith(".fbx", p);
++        }
++
++        [Test]
++        public void 加载只在架势根目录的动作剪辑_回退后返回非空且名称匹配()
++        {
++            // Idle 类动作剪辑不在 InPlace/ 下，只有架势根目录那一份，靠回退才拿得到
++            Assert.IsNull(AnimationClipLocator.LoadClip(
++                    AnimationClipLocator.InPlacePath("Idle_Normal_SwordAndShield")),
++                "前提：InPlace/ 下确实没有这个剪辑，否则本条测不到回退");
++
++            var clip = AnimationClipLocator.LoadInPlace("Idle_Normal_SwordAndShield");
++            Assert.IsNotNull(clip, "回退到架势根目录后仍加载失败");
++            StringAssert.Contains("Idle_Normal_SwordAndShield", clip.name);
++        }
++
++        [Test]
++        public void 不存在的剪辑_回退也不会误命中()
++        {
++            // 回退只应按精确文件名命中，不能把拼错的名字吞掉
++            Assert.IsNull(AnimationClipLocator.LoadInPlace("Idle_Battle_SwordAndShield"));
++        }
++
++        [Test]
+         public void 同名的InPlace与RootMotion剪辑_是两个不同对象()
+         {
+             var a = AnimationClipLocator.LoadInPlace("MoveFWD_Battle_InPlace_SwordAndShield");
+diff -ruN task5-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs
+--- task5-base/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs	2026-09-12 01:43:10.000000000 +0800
++++ _current/Assets/Tests/EditMode/HeroAnimatorBuilderTests.cs	2026-09-12 01:53:04.000000000 +0800
+@@ -116,5 +116,92 @@
+             foreach (var s in AllStates())
+                 StringAssert.DoesNotContain("Shiled", s.name);
+         }
++
++        private AnimatorStateMachine Group(string name) =>
++            _ctrl.layers[0].stateMachine.stateMachines
++                .First(sm => sm.stateMachine.name == name).stateMachine;
++
++        [Test]
++        public void Locomotion组_含两个待机状态()
++        {
++            var names = Group(AnimatorParams.Groups.Locomotion).states
++                .Select(s => s.state.name).ToList();
++            CollectionAssert.Contains(names, AnimatorParams.States.IdleNormal);
++            CollectionAssert.Contains(names, AnimatorParams.States.IdleBattle);
++        }
++
++        [Test]
++        public void Locomotion组_含三个混合树()
++        {
++            var trees = new List<BlendTree>();
++            foreach (var child in Group(AnimatorParams.Groups.Locomotion).states)
++            {
++                if (child.state.motion is BlendTree bt)
++                    trees.Add(bt);
++            }
++
++            Assert.AreEqual(3, trees.Count, "应恰好有 3 个混合树");
++            var names = trees.Select(t => t.name).ToList();
++            foreach (var expected in AnimatorParams.AllBlendTrees)
++                CollectionAssert.Contains(names, expected);
++        }
++
++        [Test]
++        public void 自由姿态混合树_是一维且用Speed参数()
++        {
++            var bt = FindTree(AnimatorParams.BlendTrees.FreeBattle);
++            Assert.AreEqual(BlendTreeType.Simple1D, bt.blendType);
++            Assert.AreEqual(AnimatorParams.Speed, bt.blendParameter);
++        }
++
++        [Test]
++        public void 锁定混合树_是二维且用方向参数()
++        {
++            var bt = FindTree(AnimatorParams.BlendTrees.Locked);
++            Assert.AreEqual(BlendTreeType.SimpleDirectional2D, bt.blendType);
++            Assert.AreEqual(AnimatorParams.MoveDirX, bt.blendParameter);
++            Assert.AreEqual(AnimatorParams.MoveDirZ, bt.blendParameterY);
++        }
++
++        [Test]
++        public void 锁定混合树_含中心待机与四个方向()
++        {
++            var bt = FindTree(AnimatorParams.BlendTrees.Locked);
++            Assert.AreEqual(5, bt.children.Length,
++                "锁定混合树应含 1 个中心待机 + 4 个方向移动");
++        }
++
++        [Test]
++        public void 待机与锁定切换由IsLockedOn驱动()
++        {
++            var loco = Group(AnimatorParams.Groups.Locomotion);
++            bool found = false;
++            foreach (var s in loco.states)
++            {
++                foreach (var t in s.state.transitions)
++                {
++                    foreach (var c in t.conditions)
++                    {
++                        if (c.parameter == AnimatorParams.IsLockedOn)
++                            found = true;
++                    }
++                }
++            }
++            Assert.IsTrue(found, "Locomotion 组内应有由 IsLockedOn 驱动的转换");
++        }
++
++        private BlendTree FindTree(string name)
++        {
++            foreach (var sm in AllStateMachines())
++            {
++                foreach (var s in sm.states)
++                {
++                    if (s.state.motion is BlendTree bt && bt.name == name)
++                        return bt;
++                }
++            }
++            Assert.Fail($"找不到混合树 {name}");
++            return null;
++        }
+     }
+ }

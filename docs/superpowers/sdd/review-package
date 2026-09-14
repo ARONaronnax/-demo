@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# 无 git 版的 review-package：对比 BASE 快照与当前工程状态，
+# 产出「变更文件清单 + 带上下文的 unified diff」，写到一个文件里供审查者一次读完。
+#
+# 关键设计：从 snaps/ 目录用**相对路径**跑 diff。
+# 本工程路径含中文（E:/unity/求职demo），若直接传绝对路径，
+# diff 会把文件名转义成 $'\346\261\202...'，产出的审查包没法读。
+# 用相对路径（baseline/... 与 _current/...）就完全绕开了这个问题。
+#
+# Usage: review-package BASE_SNAP LABEL
+# 输出: <WS>/review-<LABEL>.diff
+set -uo pipefail
+
+PROJ="E:/unity/求职demo"
+WS="$PROJ/docs/superpowers/sdd"
+
+if [ $# -ne 2 ]; then
+  echo "usage: review-package BASE_SNAP LABEL" >&2
+  exit 2
+fi
+
+base=$1
+label=$2
+
+[ -d "$base" ] || { echo "bad BASE snapshot: $base" >&2; exit 2; }
+
+# 取快照后要对比的当前状态
+cur="$WS/snaps/_current"
+"$WS/snapshot" "$cur" >/dev/null
+
+# 把 base 归置到 snaps/ 下，好让两边都能用相对路径表示
+case "$base" in
+  */snaps/*)
+    base_rel=$(basename "$base")
+    ;;
+  *)
+    base_rel="_base_$label"
+    rm -rf "$WS/snaps/$base_rel"
+    cp -r "$base" "$WS/snaps/$base_rel"
+    ;;
+esac
+cur_rel="_current"
+
+out="$WS/review-$label.diff"
+
+cd "$WS/snaps"
+{
+  echo "# Review package: $label"
+  echo
+  echo "## Files changed"
+  diff -rq "$base_rel" "$cur_rel" 2>/dev/null || true
+  echo
+  echo "## Diff"
+  diff -ruN "$base_rel" "$cur_rel" 2>/dev/null || true
+} > "$out"
+
+changed=$(diff -rq "$base_rel" "$cur_rel" 2>/dev/null | wc -l | tr -d ' ')
+echo "wrote $out: ${changed} path(s) changed, $(wc -c < "$out" | tr -d ' ') bytes"

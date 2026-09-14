@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c716aef07057b4b9062e91e9132bd5, type: 3}
+  m_Name: Weapon_LizardWarriorBlade
+  m_EditorClassIdentifier: 
+  id: LizardWarriorBlade
+  displayName: "\u8725\u8734\u6218\u58EB\u4E4B\u5203"
+  description: 
+  icon: {fileID: 0}
+  maxStack: 1
+  itemType: 0
+  damage: 7
+  weaponPrefab: {fileID: 7276324876920867949, guid: 35f5f10a72f743c59c39ce20c4d1882d, type: 3}
+  socketLocalPosition: {x: 0, y: 0, z: 0}
+  socketLocalEuler: {x: 0, y: 90, z: 0}
+  socketLocalScale: {x: 0.6, y: 0.6, z: 0.6}
