@@ -34,6 +34,25 @@ namespace Demo.Enemy
         [SerializeField] private float detectRange = 12f;
         [SerializeField] private float attackRange = 2f;
 
+        [Header("战斗走位")]
+        [Tooltip("发现玩家后进入追击前的反应时间，让玩家能看懂怪物已经警觉。")]
+        [SerializeField, Min(0f)] private float detectionReactionTime = 0.22f;
+
+        [Tooltip("进入攻击前允许的最大朝向夹角，避免怪物背对玩家瞬间出手。")]
+        [SerializeField, Range(1f, 90f)] private float attackFacingAngle = 28f;
+
+        [Tooltip("攻击冷却期间，处于这个距离比例内会侧移或后撤，而不是一直贴脸。")]
+        [SerializeField, Range(.5f, 2f)] private float footworkRangeMultiplier = 1.35f;
+
+        [SerializeField, Range(.1f, 1f)] private float strafeSpeedMultiplier = .58f;
+        [SerializeField, Min(.1f)] private float strafeDirectionInterval = 1.15f;
+
+        [Tooltip("需要视线时，短暂丢失目标仍会继续搜索的时间。")]
+        [SerializeField, Min(0f)] private float lostSightGrace = 1.5f;
+
+        [Tooltip("两次受击硬直之间的最小间隔。伤害仍正常结算，只防止无限硬直。")]
+        [SerializeField, Min(0f)] private float hitReactionCooldown = .45f;
+
         [Tooltip("脱战距离。追击中一旦离玩家超过这个距离就放弃，退回待机。\n" +
                  "必须大于 detectRange，两者之差就是\"脱战后再靠近多少米才会重新追\"。")]
         [SerializeField] private float leashRange = 15f;
@@ -105,6 +124,9 @@ namespace Demo.Enemy
                  "调大 = 攻击频率降低。与攻击动画长度、AttackEnd 事件都无关。")]
         [SerializeField] private float attackCooldown = 1.5f;
 
+        [Tooltip("Attack1/2/3 的伤害倍率。第三段默认更慢、更重。")]
+        [SerializeField] private Vector3 attackDamageMultipliers = new Vector3(.85f, 1f, 1.25f);
+
         private static readonly int SpeedHash = Animator.StringToHash("Speed");
         private static readonly int GetHitHash = Animator.StringToHash("GetHit");
         private static readonly int DieHash = Animator.StringToHash("Die");
@@ -137,6 +159,13 @@ namespace Demo.Enemy
 
         // 本次出手选中的攻击序号，0 起算
         private int _attackIndex;
+        private int _lastAttackIndex = -1;
+        private float _awarenessTimer;
+        private float _strafeTimer;
+        private float _hitReactionTimer;
+        private int _strafeSign;
+
+        private readonly RaycastHit[] _obstacleHits = new RaycastHit[8];
 
         /// <summary>
         /// 攻击是否由动画事件驱动。
@@ -186,7 +215,10 @@ namespace Demo.Enemy
                 attackRange,
                 leashRange,
                 requireLineOfSight,
-                attackCooldown);
+                attackCooldown,
+                lostSightGrace);
+
+            _strafeSign = Random.value < .5f ? -1 : 1;
         }
 
         private void Start()
@@ -240,6 +272,8 @@ namespace Demo.Enemy
 
         private void Update()
         {
+            if (_hitReactionTimer > 0f) _hitReactionTimer -= Time.deltaTime;
+
             // attackHitbox 缺失不再让整只怪停摆，否则测不了 AI。
             if (attackHitbox == null)
             {
@@ -286,11 +320,18 @@ namespace Demo.Enemy
         {
             if (playerTarget == null)
             {
-                return new EnemySensors(false, 0f, false);
+                return new EnemySensors(false, 0f, false, false);
             }
 
             Vector3 toTarget = playerTarget.position - transform.position;
             float distance = toTarget.magnitude;
+
+            // 拉怪范围以出生点为准，避免玩家一路贴着怪把它带遍整张地图。
+            if (_brain.State != EnemyState.Idle &&
+                Vector3.Distance(transform.position, _homePosition) > leashRange)
+            {
+                return new EnemySensors(false, distance, false, false);
+            }
 
             bool los = true;
 
@@ -302,7 +343,22 @@ namespace Demo.Enemy
                 los = !Physics.Linecast(origin, target, obstacleLayers, QueryTriggerInteraction.Ignore);
             }
 
-            return new EnemySensors(true, distance, los);
+            Vector3 flat = toTarget; flat.y = 0f;
+            bool facing = flat.sqrMagnitude < .0001f ||
+                          Vector3.Angle(transform.forward, flat.normalized) <= attackFacingAngle;
+
+            if (_brain.State == EnemyState.Idle)
+            {
+                bool noticed = distance <= detectRange && (!requireLineOfSight || los);
+                _awarenessTimer = noticed
+                    ? Mathf.Min(detectionReactionTime, _awarenessTimer + Time.deltaTime)
+                    : Mathf.Max(0f, _awarenessTimer - Time.deltaTime * 2f);
+
+                if (_awarenessTimer < detectionReactionTime)
+                    return new EnemySensors(false, distance, los, facing);
+            }
+
+            return new EnemySensors(true, distance, los, facing);
         }
 
         private void ApplyIntents(in EnemyIntents intents, in EnemySensors sensors)
@@ -337,19 +393,73 @@ namespace Demo.Enemy
                 Vector3 flat = playerTarget.position - transform.position;
                 flat.y = 0f;
 
-                if (flat.sqrMagnitude > 0.0001f)
+                bool waitingToFace = sensors.DistanceToTarget <= attackRange &&
+                                     _brain.CooldownRemaining <= 0f &&
+                                     !sensors.IsFacingTarget;
+
+                if (!waitingToFace && flat.sqrMagnitude > 0.0001f)
                 {
-                    Vector3 step = flat.normalized * moveSpeed * Time.deltaTime;
-                    transform.position += step;
+                    Vector3 direction = ChooseCombatDirection(flat.normalized, sensors.DistanceToTarget);
+                    direction = SteerAroundObstacle(direction);
+                    float speedScale = IsFootworking(sensors.DistanceToTarget) ? strafeSpeedMultiplier : 1f;
+                    transform.position += direction * moveSpeed * speedScale * Time.deltaTime;
                 }
             }
 
-            SetSpeed(intents.Move ? 1f : 0f);
+            bool holdForFacing = intents.Move && sensors.DistanceToTarget <= attackRange &&
+                                 _brain.CooldownRemaining <= 0f && !sensors.IsFacingTarget;
+            SetSpeed(intents.Move && !holdForFacing
+                ? (IsFootworking(sensors.DistanceToTarget) ? strafeSpeedMultiplier : 1f)
+                : 0f);
 
             if (intents.TriggerAttack)
             {
                 BeginAttack();
             }
+        }
+
+        private bool IsFootworking(float distance)
+        {
+            return _brain.State == EnemyState.Chase &&
+                   _brain.CooldownRemaining > 0f &&
+                   distance <= attackRange * footworkRangeMultiplier;
+        }
+
+        private Vector3 ChooseCombatDirection(Vector3 towardTarget, float distance)
+        {
+            if (!IsFootworking(distance)) return towardTarget;
+
+            float retreatDistance = attackRange * .62f;
+            if (distance < retreatDistance) return -towardTarget;
+
+            _strafeTimer -= Time.deltaTime;
+            if (_strafeTimer <= 0f)
+            {
+                _strafeTimer = strafeDirectionInterval * Random.Range(.75f, 1.25f);
+                if (Random.value < .55f) _strafeSign *= -1;
+            }
+
+            Vector3 side = Vector3.Cross(Vector3.up, towardTarget) * _strafeSign;
+            return (side + towardTarget * .12f).normalized;
+        }
+
+        private Vector3 SteerAroundObstacle(Vector3 desired)
+        {
+            Vector3 origin = transform.position + Vector3.up * .55f;
+            int count = Physics.RaycastNonAlloc(origin, desired, _obstacleHits, .85f,
+                obstacleLayers, QueryTriggerInteraction.Ignore);
+
+            for (int i = 0; i < count; i++)
+            {
+                Transform hit = _obstacleHits[i].transform;
+                if (hit == null || hit.root == transform.root) continue;
+
+                Vector3 left = Quaternion.Euler(0f, -55f, 0f) * desired;
+                Vector3 right = Quaternion.Euler(0f, 55f, 0f) * desired;
+                return _strafeSign < 0 ? left : right;
+            }
+
+            return desired;
         }
 
         // ---------- 贴地 ----------
@@ -523,6 +633,9 @@ namespace Demo.Enemy
             // 三段攻击随机挑一段。
             // 计时器模式下没有动画也要挑，否则击倒标记拿不到攻击序号。
             _attackIndex = Random.Range(0, AttackHashes.Length);
+            if (_attackIndex == _lastAttackIndex)
+                _attackIndex = (_attackIndex + Random.Range(1, AttackHashes.Length)) % AttackHashes.Length;
+            _lastAttackIndex = _attackIndex;
 
             // 必须在判定窗打开之前设置：OpenWindow 只覆盖倍率，不动击倒标记
             SetKnockdown(_attackIndex == knockdownAttackIndex);
@@ -596,15 +709,18 @@ namespace Demo.Enemy
 
         private void OnDamaged(DamageInfo info)
         {
-            _attackTimer = 0f;
-            _hitTimer = 0f;
-            _hitboxOpened = false;
-
-            _brain.OnDamaged();
-
-            CloseHitbox();
-
-            SetTrigger(GetHitHash);
+            // 伤害永远生效，但硬直有短暂抗性，避免轻攻击把怪永久锁死。
+            bool react = _hitReactionTimer <= 0f;
+            if (react)
+            {
+                _attackTimer = 0f;
+                _hitTimer = 0f;
+                _hitboxOpened = false;
+                _brain.OnDamaged();
+                _hitReactionTimer = hitReactionCooldown;
+                CloseHitbox();
+                SetTrigger(GetHitHash);
+            }
         }
 
         private void OnDied(DamageInfo info)
@@ -660,8 +776,15 @@ namespace Demo.Enemy
         {
             if (attackHitbox != null)
             {
-                attackHitbox.OpenWindow();
+                attackHitbox.OpenWindow(AttackDamageMultiplier());
             }
+        }
+
+        private float AttackDamageMultiplier()
+        {
+            if (_attackIndex == 0) return Mathf.Max(0f, attackDamageMultipliers.x);
+            if (_attackIndex == 1) return Mathf.Max(0f, attackDamageMultipliers.y);
+            return Mathf.Max(0f, attackDamageMultipliers.z);
         }
 
         private void CloseHitbox()

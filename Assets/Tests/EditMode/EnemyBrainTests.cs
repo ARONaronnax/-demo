@@ -100,6 +100,35 @@ namespace Demo.Tests
         }
 
         [Test]
+        public void Chase_InRangeButNotFacing_DoesNotAttackUntilFacing()
+        {
+            EnemyBrain brain = MakeBrain();
+            brain.Tick(Sensors(5f), Frame);
+
+            EnemyIntents turning = brain.Tick(new EnemySensors(true, 1.5f, true, false), Frame);
+            Assert.AreEqual(EnemyState.Chase, brain.State);
+            Assert.IsFalse(turning.TriggerAttack);
+            Assert.IsTrue(turning.FaceTarget);
+
+            EnemyIntents attack = brain.Tick(new EnemySensors(true, 1.5f, true, true), Frame);
+            Assert.AreEqual(EnemyState.Attack, brain.State);
+            Assert.IsTrue(attack.TriggerAttack);
+        }
+
+        [Test]
+        public void Chase_LostSight_UsesGraceBeforeReturningIdle()
+        {
+            EnemyBrain brain = MakeBrain(requireLineOfSight: true);
+            brain.Tick(Sensors(5f), Frame);
+
+            brain.Tick(Sensors(5f, los: false), .5f);
+            Assert.AreEqual(EnemyState.Chase, brain.State);
+
+            brain.Tick(Sensors(5f, los: false), 1.1f);
+            Assert.AreEqual(EnemyState.Idle, brain.State);
+        }
+
+        [Test]
         public void Attack_DoesNotMove()
         {
             EnemyBrain brain = MakeBrain();

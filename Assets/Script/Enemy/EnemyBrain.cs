@@ -15,24 +15,29 @@
         private readonly float _leashRange;
         private readonly bool _requireLineOfSight;
         private readonly float _attackCooldown;
+        private readonly float _lostSightGrace;
 
         // 剩余冷却秒数，大于 0 时不许进入 Attack
         private float _cooldownTimer;
+        private float _lostSightTimer;
 
         public EnemyState State { get; private set; }
+        public float CooldownRemaining { get { return _cooldownTimer; } }
 
         public EnemyBrain(
             float detectRange,
             float attackRange,
             float leashRange,
             bool requireLineOfSight,
-            float attackCooldown)
+            float attackCooldown,
+            float lostSightGrace = 1.5f)
         {
             _detectRange = detectRange;
             _attackRange = attackRange;
             _leashRange = leashRange;
             _requireLineOfSight = requireLineOfSight;
             _attackCooldown = attackCooldown;
+            _lostSightGrace = lostSightGrace;
 
             State = EnemyState.Idle;
         }
@@ -52,7 +57,7 @@
                     return TickIdle(sensors);
 
                 case EnemyState.Chase:
-                    return TickChase(sensors);
+                    return TickChase(sensors, deltaTime);
 
                 case EnemyState.Attack:
                     return TickAttack(sensors);
@@ -82,6 +87,7 @@
             }
 
             State = EnemyState.Chase;
+            _lostSightTimer = 0f;
 
             // 收招即开始冷却。放在这里而不是进入 Attack 时，
             // 保证"两次出手之间"恒定间隔，与攻击动画多长无关。
@@ -139,15 +145,34 @@
             return new EnemyIntents(true, true, false);
         }
 
-        private EnemyIntents TickChase(in EnemySensors sensors)
+        private EnemyIntents TickChase(in EnemySensors sensors, float deltaTime)
         {
             if (!sensors.HasTarget || sensors.DistanceToTarget > _leashRange)
             {
                 State = EnemyState.Idle;
+                _lostSightTimer = 0f;
                 return EnemyIntents.None;
             }
 
-            if (sensors.DistanceToTarget <= _attackRange && _cooldownTimer <= 0f)
+            if (_requireLineOfSight && !sensors.HasLineOfSight)
+            {
+                _lostSightTimer += deltaTime;
+                if (_lostSightTimer >= _lostSightGrace)
+                {
+                    State = EnemyState.Idle;
+                    _lostSightTimer = 0f;
+                    return EnemyIntents.None;
+                }
+            }
+            else
+            {
+                _lostSightTimer = 0f;
+            }
+
+            if (sensors.DistanceToTarget <= _attackRange &&
+                sensors.IsFacingTarget &&
+                (!_requireLineOfSight || sensors.HasLineOfSight) &&
+                _cooldownTimer <= 0f)
             {
                 State = EnemyState.Attack;
 

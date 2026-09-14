@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEditor.Events;
@@ -7,519 +9,174 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Demo.Inventory;
+using Demo.Equipment;
+using Demo.Player;
 using Demo.UI;
 
-/// <summary>
-/// 一次性把背包 UI 搭进 Desert 场景。
-///
-/// 为什么用脚本而不是手改 .unity：场景有 1.1MB，fileID 引用全是手写的 YAML，
-/// 手改一次错一次。让 Unity 自己序列化，出来的东西一定是它认得的。
-///
-/// 幂等：重复执行会先删掉上次生成的 Canvas / EventSystem 再重建，
-/// 所以改完布局参数直接重跑就行。
-///
-/// 层级：
-///     InventoryCanvas
-///       InventoryPanel
-///         Title
-///         ScrollArea (ScrollRect)
-///           Viewport (RectMask2D)
-///             Content (GridLayoutGroup + ContentSizeFitter)   <- 格子往这里塞
-///           Scrollbar
-///         WeaponDetail
-///           EmptyHint / Icon / Name / Damage / Description / EquipButton
-///         Hint
-///
-/// 按钮的点击用 UnityEventTools.AddPersistentListener 挂成**持久化监听**。
-/// 这样它会被序列化进场景，Play 模式直接生效，不依赖 Awake / OnEnable
-/// 那套运行时生命周期回调 —— 那套在 EditMode 下不触发，测不了。
-/// </summary>
+/// <summary>按参考图重建背包 View；库存与装备数据系统保持不变。</summary>
 public static class BuildInventoryUI
 {
     private const string ScenePath = "Assets/Lowpoly Style/Desert/DemoScene/Desert.unity";
-    private const string SystemsObjectName = "GameSystems";
+    private const string AtlasPath = "Assets/UI/FantasyHUD/Source/InventoryUI_Atlas.png";
+    private const int Columns = 6;
+    private const int Rows = 4;
+    private static TMP_FontAsset _font;
+    private static readonly Color Ink = new Color(.25f,.13f,.06f,1f);
+    private static readonly Color Cream = new Color(1f,.92f,.72f,1f);
 
-    private const int Columns = 4;
-    private const int Rows = 3;
-    private const float CellSize = 116f;
-    private const float Spacing = 10f;
-    private const float SidePadding = 18f;
-
-    private const float PanelWidth = 920f;
-    private const float PanelHeight = 480f;
-    private const float DetailWidth = 300f;
-    private const float DetailGap = 20f;
-
-    private const float TitleHeight = 44f;
-    private const float HintHeight = 28f;
-    private const float ScrollbarWidth = 12f;
-
-    /// <summary>面板顶 / 底留给标题和提示的空间。</summary>
-    private const float TopInset = 60f;
-    private const float BottomInset = 40f;
-
-    private static readonly Color PanelColor = new Color(0.07f, 0.08f, 0.10f, 0.95f);
-    private static readonly Color SlotColor = new Color(0.16f, 0.17f, 0.21f, 1f);
-    private static readonly Color TextColor = new Color(0.92f, 0.93f, 0.95f, 1f);
-    private static readonly Color MutedColor = new Color(0.60f, 0.63f, 0.70f, 1f);
-    private static readonly Color DamageColor = new Color(0.95f, 0.72f, 0.32f, 1f);
-    private static readonly Color ButtonColor = new Color(0.24f, 0.42f, 0.72f, 1f);
-    private static readonly Color ScrollbarTrackColor = new Color(0.12f, 0.13f, 0.16f, 1f);
-    private static readonly Color ScrollbarHandleColor = new Color(0.34f, 0.36f, 0.42f, 1f);
+    [InitializeOnLoadMethod]
+    private static void RebuildOnceForNewAtlas()
+    {
+        EditorApplication.delayCall += () =>
+        {
+            if (Application.isBatchMode || SceneManager.GetActiveScene().path != ScenePath) return;
+            GameObject panel = GameObject.Find("InventoryPanel");
+            if (panel != null && panel.transform.Find("CharacterPreviewArea") != null && panel.transform.Find("CategoryTabs") != null) return;
+            Build();
+        };
+    }
 
     [MenuItem("Demo/构建背包 UI")]
     public static void Build()
     {
         Scene scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+        // 图集已由用户在 Sprite Editor 中手动切片；这里只读，绝不修改 importer/.meta。
+        _font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/UI/Fonts/NotoSansSC SDF.asset");
 
-        GameObject systems = GameObject.Find(SystemsObjectName);
-        if (systems == null)
+        GameObject systems = GameObject.Find("GameSystems");
+        InventoryComponent inventory = systems != null ? systems.GetComponent<InventoryComponent>() : null;
+        EquipmentComponent equipment = systems != null ? systems.GetComponent<EquipmentComponent>() : null;
+        PlayerStats player = Object.FindObjectsOfType<PlayerStats>(true).FirstOrDefault();
+        if (systems == null || inventory == null || player == null)
         {
-            Debug.LogError("[BuildInventoryUI] 场景里找不到 " + SystemsObjectName + "，中止");
+            Debug.LogError("[BuildInventoryUI] 缺少 GameSystems、InventoryComponent 或 PlayerStats。");
             return;
         }
 
-        InventoryComponent inventory = systems.GetComponent<InventoryComponent>();
-        if (inventory == null)
-        {
-            Debug.LogError("[BuildInventoryUI] " + SystemsObjectName + " 上没有 InventoryComponent，中止");
-            return;
-        }
+        Destroy("InventoryCanvas");
+        EnsureEventSystem();
 
-        // 先拆掉上次生成的，保证重复执行结果一致
-        DestroyIfExists("InventoryCanvas");
-        DestroyIfExists("EventSystem");
+        GameObject canvasGo = new GameObject("InventoryCanvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+        Canvas canvas = canvasGo.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 30;
+        CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920,1080); scaler.matchWidthOrHeight = .5f;
 
-        CreateEventSystem();
+        Image dim = CreateImage("Dimmer", canvasGo.transform, null, new Vector2(0,0), Vector2.zero, Vector2.zero);
+        Stretch(dim.rectTransform,0,0,0,0); dim.color = new Color(0,0,0,.32f);
 
-        GameObject panel = CreateCanvas();
-        ScrollRect scroll = CreateScrollArea(panel.transform, out RectTransform content);
+        Image panel = CreateImage("InventoryPanel", canvasGo.transform, S("WindowFrame"), new Vector2(1580,820), Vector2.zero, new Vector2(.5f,.5f));
+        panel.type = Image.Type.Sliced;
 
+        TMP_Text title = Text("Title", panel.transform, "背  包", 42, Cream, TextAlignmentOptions.Center,
+            new Vector2(310,72), new Vector2(90,-34), new Vector2(0,1)); Outline(title);
+
+        Button close = Button("CloseButton", panel.transform, S("Close"), new Vector2(86,86), new Vector2(-18,-18), new Vector2(1,1), false);
+        close.image.preserveAspect = true;
+
+        InventoryCharacterPreview preview = CreateCharacterPreview(panel.transform, player.transform, equipment);
+        CreateTabs(panel.transform, out Button all, out Button weapons, out Button consumables, out Button quest);
+        ScrollRect scroll = CreateGrid(panel.transform, out RectTransform content);
         InventorySlotUI[] slots = CreateSlots(content, Columns * Rows);
         WeaponDetailUI detail = CreateDetail(panel.transform);
-        CreateTitle(panel.transform);
-        CreateHint(panel.transform);
+        TMP_Text capacity = Text("Capacity", panel.transform, "0 / 40", 24, Ink, TextAlignmentOptions.Left,
+            new Vector2(180,44), new Vector2(565,42), new Vector2(0,0));
 
         InventoryUI ui = systems.GetComponent<InventoryUI>();
-        if (ui == null)
-        {
-            ui = systems.AddComponent<InventoryUI>();
-        }
+        if (ui == null) ui = systems.AddComponent<InventoryUI>();
+        ui.Bind(panel.gameObject, inventory, scroll, content, slots, detail);
+        ui.BindPresentation(capacity, 40);
+        ui.BindCategories(new[] { all, weapons, consumables, quest }, S("TabNormal"), S("TabSelected"));
+        UnityEventTools.AddPersistentListener(close.onClick, ui.Close);
+        UnityEventTools.AddPersistentListener(all.onClick, ui.ShowAll);
+        UnityEventTools.AddPersistentListener(weapons.onClick, ui.ShowWeapons);
+        UnityEventTools.AddPersistentListener(consumables.onClick, ui.ShowConsumables);
+        UnityEventTools.AddPersistentListener(quest.onClick, ui.ShowQuestItems);
 
-        // Bind 内部会把面板置为关闭态，所以存盘后场景里背包就是收起来的
-        ui.Bind(panel, inventory, scroll, content, slots, detail);
-
-        EditorSceneManager.MarkSceneDirty(scene);
-        EditorSceneManager.SaveScene(scene);
-        AssetDatabase.SaveAssets();
-
-        Debug.Log("[BuildInventoryUI] 完成：Canvas + EventSystem + 滚动区 + 详情区 + " + slots.Length + " 个格子");
+        EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+        Debug.Log("[BuildInventoryUI] RPG 背包 UI 已重建：角色预览、拖动旋转、分类、容量、详情与装备接线完成。");
     }
 
-    // -----------------------------------------------------------------
-    // 搭件
-    // -----------------------------------------------------------------
-
-    private static void CreateEventSystem()
+    private static InventoryCharacterPreview CreateCharacterPreview(Transform parent, Transform player, EquipmentComponent equipment)
     {
-        // 场景里原本没有 EventSystem，按钮点不动就是缺了它
-        new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+        Image area = CreateImage("CharacterPreviewArea", parent, S("Parchment"), new Vector2(500,620), new Vector2(52,-130), new Vector2(0,1));
+        area.type = Image.Type.Sliced;
+        RawImage raw = new GameObject("CharacterViewport", typeof(RectTransform), typeof(RawImage)).GetComponent<RawImage>();
+        raw.transform.SetParent(area.transform,false); Stretch(raw.rectTransform,35,78,35,30); raw.color = Color.white;
+        TMP_Text hint = Text("RotateHint",area.transform,"↔  按住鼠标左右拖动，旋转角色",18,Ink,TextAlignmentOptions.Center,
+            new Vector2(420,46),new Vector2(40,24),new Vector2(0,0));
+        InventoryCharacterPreview preview = area.gameObject.AddComponent<InventoryCharacterPreview>();
+        preview.Bind(raw,player,equipment);
+        return preview;
     }
 
-    private static GameObject CreateCanvas()
+    private static void CreateTabs(Transform parent, out Button all, out Button weapons, out Button consumables, out Button quest)
     {
-        GameObject canvasObject = new GameObject(
-            "InventoryCanvas",
-            typeof(Canvas),
-            typeof(CanvasScaler),
-            typeof(GraphicRaycaster));
-
-        Canvas canvas = canvasObject.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-        CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920f, 1080f);
-        scaler.matchWidthOrHeight = 0.5f;
-
-        GameObject panel = new GameObject("InventoryPanel", typeof(RectTransform), typeof(Image));
-        panel.transform.SetParent(canvasObject.transform, false);
-
-        RectTransform rect = panel.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0.5f, 0.5f);
-        rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.sizeDelta = new Vector2(PanelWidth, PanelHeight);
-        rect.anchoredPosition = Vector2.zero;
-
-        panel.GetComponent<Image>().color = PanelColor;
-
-        return panel;
+        GameObject tabs = Rect("CategoryTabs",parent,new Vector2(860,72),new Vector2(575,-112),new Vector2(0,1));
+        all = Tab("All",tabs.transform,"全部",0);
+        weapons = Tab("Weapons",tabs.transform,"武器",1);
+        consumables = Tab("Consumables",tabs.transform,"道具",2);
+        quest = Tab("Quest",tabs.transform,"任务物品",3);
     }
 
-    /// <summary>
-    /// 滚动区。物品超过场景里摆好的格子数时，多出来的格子塞进 Content，
-    /// ContentSizeFitter 把 Content 撑高，ScrollRect 就能滚了。
-    /// </summary>
-    private static ScrollRect CreateScrollArea(Transform panel, out RectTransform content)
+    private static Button Tab(string name, Transform parent, string label, int index)
     {
-        GameObject areaObject = new GameObject("ScrollArea", typeof(RectTransform), typeof(ScrollRect));
-        areaObject.transform.SetParent(panel, false);
+        Button b = Button(name,parent,S(index==0?"TabSelected":"TabNormal"),new Vector2(205,64),new Vector2(index*215,0),new Vector2(0,1));
+        TMP_Text t = Text("Label",b.transform,label,23,Ink,TextAlignmentOptions.Center,Vector2.zero,Vector2.zero,new Vector2(.5f,.5f)); Stretch(t.rectTransform,8,6,8,6);
+        return b;
+    }
 
-        RectTransform areaRect = areaObject.GetComponent<RectTransform>();
-        areaRect.anchorMin = new Vector2(0f, 0f);
-        areaRect.anchorMax = new Vector2(1f, 1f);
-        areaRect.offsetMin = new Vector2(12f, BottomInset);
-        areaRect.offsetMax = new Vector2(-(12f + DetailWidth + DetailGap), -TopInset);
-
-        // --- Viewport ---
-        GameObject viewportObject = new GameObject("Viewport", typeof(RectTransform), typeof(RectMask2D));
-        viewportObject.transform.SetParent(areaObject.transform, false);
-
-        RectTransform viewportRect = viewportObject.GetComponent<RectTransform>();
-        viewportRect.anchorMin = Vector2.zero;
-        viewportRect.anchorMax = Vector2.one;
-        viewportRect.offsetMin = Vector2.zero;
-        viewportRect.offsetMax = Vector2.zero;
-
-        // --- Content ---
-        GameObject contentObject = new GameObject(
-            "Content",
-            typeof(RectTransform),
-            typeof(GridLayoutGroup),
-            typeof(ContentSizeFitter));
-
-        contentObject.transform.SetParent(viewportObject.transform, false);
-
-        content = contentObject.GetComponent<RectTransform>();
-        // 竖滚的标准摆法：顶部对齐 + 横向拉伸，高度交给 ContentSizeFitter
-        content.anchorMin = new Vector2(0f, 1f);
-        content.anchorMax = new Vector2(1f, 1f);
-        content.pivot = new Vector2(0.5f, 1f);
-        content.anchoredPosition = Vector2.zero;
-        content.sizeDelta = new Vector2(0f, 0f);
-
-        GridLayoutGroup layout = contentObject.GetComponent<GridLayoutGroup>();
-        layout.cellSize = new Vector2(CellSize, CellSize);
-        layout.spacing = new Vector2(Spacing, Spacing);
-        layout.padding = new RectOffset((int)SidePadding, (int)(SidePadding + ScrollbarWidth), 0, 0);
-        layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        layout.constraintCount = Columns;
-        layout.childAlignment = TextAnchor.UpperCenter;
-
-        ContentSizeFitter fitter = contentObject.GetComponent<ContentSizeFitter>();
-        fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
-        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-        Scrollbar scrollbar = CreateScrollbar(areaObject.transform);
-
-        ScrollRect scroll = areaObject.GetComponent<ScrollRect>();
-        scroll.content = content;
-        scroll.viewport = viewportRect;
-        scroll.horizontal = false;
-        scroll.vertical = true;
-        scroll.movementType = ScrollRect.MovementType.Clamped;
-        scroll.scrollSensitivity = 30f;
-        scroll.verticalScrollbar = scrollbar;
-        scroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.Permanent;
-
+    private static ScrollRect CreateGrid(Transform parent, out RectTransform content)
+    {
+        Image paper = CreateImage("ItemsPanel",parent,S("Parchment"),new Vector2(930,545),new Vector2(570,-190),new Vector2(0,1)); paper.type=Image.Type.Sliced;
+        GameObject area = Rect("ScrollArea",paper.transform,Vector2.zero,Vector2.zero,Vector2.zero); Stretch(area.GetComponent<RectTransform>(),24,24,24,24);
+        ScrollRect scroll = area.AddComponent<ScrollRect>(); scroll.horizontal=false; scroll.vertical=true; scroll.movementType=ScrollRect.MovementType.Clamped;
+        GameObject viewport=Rect("Viewport",area.transform,Vector2.zero,Vector2.zero,Vector2.zero); Stretch(viewport.GetComponent<RectTransform>(),0,0,0,0); viewport.AddComponent<RectMask2D>();
+        GameObject c=Rect("Content",viewport.transform,Vector2.zero,Vector2.zero,new Vector2(0,1));
+        content=c.GetComponent<RectTransform>(); content.anchorMax=new Vector2(1,1); content.pivot=new Vector2(.5f,1); content.sizeDelta=Vector2.zero;
+        GridLayoutGroup grid=c.AddComponent<GridLayoutGroup>(); grid.cellSize=new Vector2(136,116); grid.spacing=new Vector2(12,8); grid.constraint=GridLayoutGroup.Constraint.FixedColumnCount; grid.constraintCount=Columns; grid.childAlignment=TextAnchor.UpperCenter;
+        ContentSizeFitter fitter=c.AddComponent<ContentSizeFitter>(); fitter.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
+        scroll.viewport=viewport.GetComponent<RectTransform>(); scroll.content=content;
         return scroll;
     }
 
-    private static Scrollbar CreateScrollbar(Transform parent)
+    private static InventorySlotUI[] CreateSlots(Transform parent,int count)
     {
-        GameObject scrollbarObject = new GameObject(
-            "Scrollbar",
-            typeof(RectTransform),
-            typeof(Image),
-            typeof(Scrollbar));
-
-        scrollbarObject.transform.SetParent(parent, false);
-
-        RectTransform rect = scrollbarObject.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, 0f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(1f, 0.5f);
-        rect.sizeDelta = new Vector2(ScrollbarWidth, -4f);
-        rect.anchoredPosition = new Vector2(-2f, 0f);
-
-        scrollbarObject.GetComponent<Image>().color = ScrollbarTrackColor;
-
-        GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
-        slidingArea.transform.SetParent(scrollbarObject.transform, false);
-
-        RectTransform slidingRect = slidingArea.GetComponent<RectTransform>();
-        slidingRect.anchorMin = Vector2.zero;
-        slidingRect.anchorMax = Vector2.one;
-        slidingRect.offsetMin = Vector2.zero;
-        slidingRect.offsetMax = Vector2.zero;
-
-        GameObject handleObject = new GameObject("Handle", typeof(RectTransform), typeof(Image));
-        handleObject.transform.SetParent(slidingArea.transform, false);
-
-        RectTransform handleRect = handleObject.GetComponent<RectTransform>();
-        handleRect.anchorMin = Vector2.zero;
-        handleRect.anchorMax = Vector2.one;
-        handleRect.offsetMin = new Vector2(2f, 2f);
-        handleRect.offsetMax = new Vector2(-2f, -2f);
-
-        handleObject.GetComponent<Image>().color = ScrollbarHandleColor;
-
-        Scrollbar scrollbar = scrollbarObject.GetComponent<Scrollbar>();
-        scrollbar.direction = Scrollbar.Direction.BottomToTop;
-        scrollbar.handleRect = handleRect;
-        scrollbar.targetGraphic = handleObject.GetComponent<Image>();
-
-        return scrollbar;
-    }
-
-    // -----------------------------------------------------------------
-    // 详情区
-    // -----------------------------------------------------------------
-
-    private static WeaponDetailUI CreateDetail(Transform panel)
-    {
-        GameObject detailObject = new GameObject("WeaponDetail", typeof(RectTransform));
-        detailObject.transform.SetParent(panel, false);
-
-        RectTransform rect = detailObject.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, 0f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(1f, 0.5f);
-        rect.sizeDelta = new Vector2(DetailWidth, -(TopInset + BottomInset));
-        rect.anchoredPosition = new Vector2(-12f, (BottomInset - TopInset) * 0.5f);
-
-        GameObject hint = MakeText(
-            "EmptyHint",
-            detailObject.transform,
-            "选择一件物品\n查看详情",
-            16f,
-            TextAlignmentOptions.Center);
-
-        hint.GetComponent<TextMeshProUGUI>().color = MutedColor;
-        Stretch(hint.GetComponent<RectTransform>(), 12f, 12f, 12f, 12f);
-
-        // --- 图标 ---
-        GameObject iconObject = new GameObject("Icon", typeof(RectTransform), typeof(Image));
-        iconObject.transform.SetParent(detailObject.transform, false);
-
-        RectTransform iconRect = iconObject.GetComponent<RectTransform>();
-        iconRect.anchorMin = new Vector2(0.5f, 1f);
-        iconRect.anchorMax = new Vector2(0.5f, 1f);
-        iconRect.pivot = new Vector2(0.5f, 1f);
-        iconRect.sizeDelta = new Vector2(96f, 96f);
-        iconRect.anchoredPosition = new Vector2(0f, -12f);
-
-        Image iconImage = iconObject.GetComponent<Image>();
-        iconImage.preserveAspect = true;
-        iconImage.raycastTarget = false;
-        iconImage.enabled = false;
-
-        // --- 名字 ---
-        GameObject nameObject = MakeText("Name", detailObject.transform, string.Empty, 20f, TextAlignmentOptions.Center);
-        RectTransform nameRect = nameObject.GetComponent<RectTransform>();
-        nameRect.anchorMin = new Vector2(0f, 1f);
-        nameRect.anchorMax = new Vector2(1f, 1f);
-        nameRect.pivot = new Vector2(0.5f, 1f);
-        nameRect.sizeDelta = new Vector2(-16f, 30f);
-        nameRect.anchoredPosition = new Vector2(0f, -116f);
-
-        // --- 攻击力 ---
-        GameObject damageObject = MakeText("Damage", detailObject.transform, string.Empty, 18f, TextAlignmentOptions.Center);
-        damageObject.GetComponent<TextMeshProUGUI>().color = DamageColor;
-
-        RectTransform damageRect = damageObject.GetComponent<RectTransform>();
-        damageRect.anchorMin = new Vector2(0f, 1f);
-        damageRect.anchorMax = new Vector2(1f, 1f);
-        damageRect.pivot = new Vector2(0.5f, 1f);
-        damageRect.sizeDelta = new Vector2(-16f, 26f);
-        damageRect.anchoredPosition = new Vector2(0f, -150f);
-
-        // --- 描述 ---
-        GameObject descriptionObject = MakeText("Description", detailObject.transform, string.Empty, 14f, TextAlignmentOptions.TopLeft);
-        descriptionObject.GetComponent<TextMeshProUGUI>().color = MutedColor;
-
-        RectTransform descriptionRect = descriptionObject.GetComponent<RectTransform>();
-        descriptionRect.anchorMin = new Vector2(0f, 0f);
-        descriptionRect.anchorMax = new Vector2(1f, 1f);
-        descriptionRect.offsetMin = new Vector2(12f, 68f);
-        descriptionRect.offsetMax = new Vector2(-12f, -184f);
-
-        // --- 装备按钮 ---
-        GameObject buttonObject = new GameObject(
-            "EquipButton",
-            typeof(RectTransform),
-            typeof(Image),
-            typeof(Button));
-
-        buttonObject.transform.SetParent(detailObject.transform, false);
-
-        RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
-        buttonRect.anchorMin = new Vector2(0.5f, 0f);
-        buttonRect.anchorMax = new Vector2(0.5f, 0f);
-        buttonRect.pivot = new Vector2(0.5f, 0f);
-        buttonRect.sizeDelta = new Vector2(DetailWidth - 48f, 44f);
-        buttonRect.anchoredPosition = new Vector2(0f, 14f);
-
-        Image buttonBackground = buttonObject.GetComponent<Image>();
-        buttonBackground.color = ButtonColor;
-
-        TextMeshProUGUI buttonLabel = MakeText(
-            "Label",
-            buttonObject.transform,
-            "装备",
-            18f,
-            TextAlignmentOptions.Center).GetComponent<TextMeshProUGUI>();
-
-        Stretch(buttonLabel.GetComponent<RectTransform>(), 0f, 0f, 0f, 0f);
-
-        Button equipButton = buttonObject.GetComponent<Button>();
-        equipButton.targetGraphic = buttonBackground;
-
-        WeaponDetailUI detail = detailObject.AddComponent<WeaponDetailUI>();
-        detail.Bind(
-            hint,
-            iconImage,
-            nameObject.GetComponent<TextMeshProUGUI>(),
-            descriptionObject.GetComponent<TextMeshProUGUI>(),
-            damageObject.GetComponent<TextMeshProUGUI>(),
-            equipButton);
-
-        // 持久化监听：序列化进场景，Play 模式直接生效
-        UnityEventTools.AddPersistentListener(equipButton.onClick, detail.OnEquipClicked);
-
-        return detail;
-    }
-
-    // -----------------------------------------------------------------
-    // 格子
-    // -----------------------------------------------------------------
-
-    private static InventorySlotUI[] CreateSlots(Transform content, int count)
-    {
-        InventorySlotUI[] slots = new InventorySlotUI[count];
-        for (int i = 0; i < count; i++)
+        InventorySlotUI[] result=new InventorySlotUI[count];
+        for(int i=0;i<count;i++)
         {
-            slots[i] = CreateSlot(content, i);
+            GameObject root=Rect("Slot"+i,parent,new Vector2(136,116),Vector2.zero,Vector2.zero);
+            Button b=root.AddComponent<Button>();
+            Image background=CreateImage("Background",root.transform,S("SlotNormal"),new Vector2(108,108),Vector2.zero,new Vector2(.5f,.5f));
+            background.type=Image.Type.Simple; background.preserveAspect=true; b.targetGraphic=background;
+            Image icon=CreateImage("Icon",root.transform,null,new Vector2(70,70),Vector2.zero,new Vector2(.5f,.5f)); icon.preserveAspect=true; icon.enabled=false; icon.raycastTarget=false;
+            TMP_Text name=Text("Name",root.transform,"",1,new Color(1,1,1,0),TextAlignmentOptions.Center,new Vector2(1,1),Vector2.zero,new Vector2(.5f,.5f));
+            TMP_Text amount=Text("Amount",root.transform,"",18,Color.white,TextAlignmentOptions.BottomRight,new Vector2(42,25),new Vector2(-15,10),new Vector2(1,0)); Outline(amount);
+            InventorySlotUI slot=root.AddComponent<InventorySlotUI>(); slot.Bind(icon,name,amount); slot.BindVisuals(background,S("SlotNormal"),S("SlotSelected")); UnityEventTools.AddPersistentListener(b.onClick,slot.Click); result[i]=slot;
         }
-
-        return slots;
+        return result;
     }
 
-    private static InventorySlotUI CreateSlot(Transform parent, int index)
+    private static WeaponDetailUI CreateDetail(Transform parent)
     {
-        GameObject slotObject = new GameObject(
-            "Slot" + index,
-            typeof(RectTransform),
-            typeof(Image),
-            typeof(Button));
-
-        slotObject.transform.SetParent(parent, false);
-
-        Image background = slotObject.GetComponent<Image>();
-        background.color = SlotColor;
-
-        Button button = slotObject.GetComponent<Button>();
-        button.targetGraphic = background;
-
-        // --- 图标 ---
-        GameObject iconObject = new GameObject("Icon", typeof(RectTransform), typeof(Image));
-        iconObject.transform.SetParent(slotObject.transform, false);
-
-        RectTransform iconRect = iconObject.GetComponent<RectTransform>();
-        iconRect.anchorMin = new Vector2(0.5f, 1f);
-        iconRect.anchorMax = new Vector2(0.5f, 1f);
-        iconRect.pivot = new Vector2(0.5f, 1f);
-        iconRect.sizeDelta = new Vector2(60f, 60f);
-        iconRect.anchoredPosition = new Vector2(0f, -10f);
-
-        Image iconImage = iconObject.GetComponent<Image>();
-        iconImage.preserveAspect = true;
-        iconImage.raycastTarget = false;
-        iconImage.enabled = false;
-
-        // --- 名字 ---
-        GameObject nameObject = MakeText("Name", slotObject.transform, string.Empty, 15f, TextAlignmentOptions.Center);
-        RectTransform nameRect = nameObject.GetComponent<RectTransform>();
-        nameRect.anchorMin = new Vector2(0f, 0f);
-        nameRect.anchorMax = new Vector2(1f, 0f);
-        nameRect.pivot = new Vector2(0.5f, 0f);
-        nameRect.sizeDelta = new Vector2(-8f, 40f);
-        nameRect.anchoredPosition = new Vector2(0f, 6f);
-
-        // --- 数量 ---
-        GameObject amountObject = MakeText("Amount", slotObject.transform, string.Empty, 14f, TextAlignmentOptions.BottomRight);
-        RectTransform amountRect = amountObject.GetComponent<RectTransform>();
-        amountRect.anchorMin = new Vector2(1f, 0f);
-        amountRect.anchorMax = new Vector2(1f, 0f);
-        amountRect.pivot = new Vector2(1f, 0f);
-        amountRect.sizeDelta = new Vector2(40f, 22f);
-        amountRect.anchoredPosition = new Vector2(-4f, 4f);
-
-        InventorySlotUI slot = slotObject.AddComponent<InventorySlotUI>();
-        slot.Bind(iconImage, nameObject.GetComponent<TextMeshProUGUI>(), amountObject.GetComponent<TextMeshProUGUI>());
-
-        // 持久化监听：点格子 -> InventoryUI 会转发给详情区
-        UnityEventTools.AddPersistentListener(button.onClick, slot.Click);
-
-        return slot;
+        Image bg=CreateImage("ItemDetail",parent,S("Parchment"),new Vector2(930,112),new Vector2(570,40),new Vector2(0,0)); bg.type=Image.Type.Sliced;
+        GameObject empty=Text("EmptyHint",bg.transform,"选择物品查看详情",18,Ink,TextAlignmentOptions.Center,Vector2.zero,Vector2.zero,new Vector2(.5f,.5f)).gameObject; Stretch(empty.GetComponent<RectTransform>(),20,15,20,15);
+        Image icon=CreateImage("Icon",bg.transform,null,new Vector2(76,76),new Vector2(22,18),new Vector2(0,0)); icon.enabled=false; icon.preserveAspect=true;
+        TMP_Text name=Text("Name",bg.transform,"",22,Ink,TextAlignmentOptions.TopLeft,new Vector2(230,30),new Vector2(112,-14),new Vector2(0,1));
+        TMP_Text damage=Text("Damage",bg.transform,"",17,new Color(.72f,.28f,.08f,1),TextAlignmentOptions.Left,new Vector2(220,26),new Vector2(112,24),new Vector2(0,0));
+        TMP_Text desc=Text("Description",bg.transform,"",15,Ink,TextAlignmentOptions.TopLeft,new Vector2(330,72),new Vector2(350,-20),new Vector2(0,1));
+        Button equip=Button("EquipButton",bg.transform,S("RedButton"),new Vector2(190,62),new Vector2(-28,25),new Vector2(1,0));
+        TMP_Text label=Text("Label",equip.transform,"装备",23,Color.white,TextAlignmentOptions.Center,Vector2.zero,Vector2.zero,new Vector2(.5f,.5f)); Stretch(label.rectTransform,5,5,5,5); Outline(label);
+        WeaponDetailUI detail=bg.gameObject.AddComponent<WeaponDetailUI>(); detail.Bind(empty,icon,name,desc,damage,equip); UnityEventTools.AddPersistentListener(equip.onClick,detail.OnEquipClicked); return detail;
     }
 
-    // -----------------------------------------------------------------
-
-    private static void CreateTitle(Transform parent)
-    {
-        GameObject title = MakeText("Title", parent, "背包", 28f, TextAlignmentOptions.Center);
-        RectTransform rect = title.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0f, 1f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(0.5f, 1f);
-        rect.sizeDelta = new Vector2(-24f, TitleHeight);
-        rect.anchoredPosition = new Vector2(0f, -12f);
-    }
-
-    private static void CreateHint(Transform parent)
-    {
-        GameObject hint = MakeText("Hint", parent, "按 I 或 ESC 关闭", 16f, TextAlignmentOptions.Center);
-        hint.GetComponent<TextMeshProUGUI>().color = MutedColor;
-
-        RectTransform rect = hint.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0f, 0f);
-        rect.anchorMax = new Vector2(1f, 0f);
-        rect.pivot = new Vector2(0.5f, 0f);
-        rect.sizeDelta = new Vector2(-24f, HintHeight);
-        rect.anchoredPosition = new Vector2(0f, 8f);
-    }
-
-    private static GameObject MakeText(string name, Transform parent, string text, float size, TextAlignmentOptions alignment)
-    {
-        GameObject go = new GameObject(name, typeof(RectTransform), typeof(TextMeshProUGUI));
-        go.transform.SetParent(parent, false);
-
-        TextMeshProUGUI tmp = go.GetComponent<TextMeshProUGUI>();
-        tmp.text = text;
-        tmp.fontSize = size;
-        tmp.alignment = alignment;
-        tmp.color = TextColor;
-        tmp.raycastTarget = false;
-
-        return go;
-    }
-
-    private static void Stretch(RectTransform rect, float left, float bottom, float right, float top)
-    {
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = new Vector2(left, bottom);
-        rect.offsetMax = new Vector2(-right, -top);
-    }
-
-    private static void DestroyIfExists(string name)
-    {
-        GameObject existing = GameObject.Find(name);
-        if (existing != null)
-        {
-            Object.DestroyImmediate(existing);
-        }
-    }
+    private static Sprite S(string name){return AssetDatabase.LoadAllAssetsAtPath(AtlasPath).OfType<Sprite>().FirstOrDefault(x=>x.name==name);}
+    private static GameObject Rect(string name,Transform parent,Vector2 size,Vector2 pos,Vector2 anchor){GameObject go=new GameObject(name,typeof(RectTransform));go.transform.SetParent(parent,false);RectTransform r=go.GetComponent<RectTransform>();r.anchorMin=r.anchorMax=anchor;r.pivot=anchor;r.sizeDelta=size;r.anchoredPosition=pos;return go;}
+    private static Image CreateImage(string name,Transform parent,Sprite sprite,Vector2 size,Vector2 pos,Vector2 anchor){GameObject go=Rect(name,parent,size,pos,anchor);Image image=go.AddComponent<Image>();image.sprite=sprite;return image;}
+    private static Button Button(string name,Transform parent,Sprite sprite,Vector2 size,Vector2 pos,Vector2 anchor,bool sliced=true){Image image=CreateImage(name,parent,sprite,size,pos,anchor);image.type=sliced?Image.Type.Sliced:Image.Type.Simple;Button b=image.gameObject.AddComponent<Button>();b.targetGraphic=image;return b;}
+    private static TMP_Text Text(string name,Transform parent,string value,float size,Color color,TextAlignmentOptions align,Vector2 rectSize,Vector2 pos,Vector2 anchor){GameObject go=Rect(name,parent,rectSize,pos,anchor);TextMeshProUGUI t=go.AddComponent<TextMeshProUGUI>();t.text=value;t.fontSize=size;t.color=color;t.alignment=align;t.font=_font;t.raycastTarget=false;return t;}
+    private static void Stretch(RectTransform r,float l,float b,float rr,float t){r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=new Vector2(l,b);r.offsetMax=new Vector2(-rr,-t);}
+    private static void Outline(TMP_Text t){t.outlineColor=Ink;t.outlineWidth=.18f;}
+    private static void Destroy(string name){GameObject go=GameObject.Find(name);if(go!=null)Object.DestroyImmediate(go);}
+    private static void EnsureEventSystem(){if(Object.FindObjectOfType<EventSystem>(true)==null)new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));}
 }
+#endif

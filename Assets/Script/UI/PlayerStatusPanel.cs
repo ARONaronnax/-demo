@@ -29,6 +29,13 @@ namespace Demo.UI
             Refresh();
         }
 
+        private void Start()
+        {
+            // 不同 GameObject 之间的 Awake/OnEnable 顺序不保证固定。
+            // 到 Start 时所有场景对象的 Awake 已完成，可安全取得玩家初始满血值。
+            Refresh();
+        }
+
         private void OnDisable()
         {
             EventBus.Unsubscribe<EntityDamagedEvent>(OnEntityDamaged);

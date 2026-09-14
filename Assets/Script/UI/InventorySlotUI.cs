@@ -17,6 +17,9 @@ namespace Demo.UI
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text nameLabel;
         [SerializeField] private TMP_Text amountLabel;
+        [SerializeField] private Image backgroundImage;
+        [SerializeField] private Sprite normalSprite;
+        [SerializeField] private Sprite selectedSprite;
 
         /// <summary>当前显示的物品，空格子为 null。</summary>
         public InventoryItem Item { get; private set; }
@@ -50,6 +53,20 @@ namespace Demo.UI
             amountLabel = amount;
         }
 
+        public void BindVisuals(Image background, Sprite normal, Sprite selected)
+        {
+            backgroundImage = background;
+            normalSprite = normal;
+            selectedSprite = selected;
+            SetSelected(false);
+        }
+
+        public void SetSelected(bool selected)
+        {
+            if (backgroundImage != null)
+                backgroundImage.sprite = selected && selectedSprite != null ? selectedSprite : normalSprite;
+        }
+
         public void SetItem(InventoryItem item)
         {
             if (item == null || item.Data == null)
@@ -73,6 +90,7 @@ namespace Demo.UI
         public void Clear()
         {
             Item = null;
+            SetSelected(false);
 
             nameLabel.text = string.Empty;
             amountLabel.text = string.Empty;

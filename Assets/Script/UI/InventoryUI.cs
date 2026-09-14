@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Demo.Core;
 using Demo.Inventory;
+using Demo.Data;
+using TMPro;
 
 namespace Demo.UI
 {
@@ -31,9 +33,15 @@ namespace Demo.UI
         [SerializeField] private InventorySlotUI[] slots;
         [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private WeaponDetailUI detail;
+        [SerializeField] private TMP_Text capacityLabel;
+        [SerializeField, Min(1)] private int capacity = 40;
+        [SerializeField] private Image[] categoryBackgrounds;
+        [SerializeField] private Sprite categoryNormalSprite;
+        [SerializeField] private Sprite categorySelectedSprite;
 
-        [SerializeField] private KeyCode toggleKey = KeyCode.I;
-        [SerializeField] private KeyCode closeKey = KeyCode.Escape;
+        private ItemType? _filter;
+
+        [SerializeField] private KeyCode toggleKey = KeyCode.Tab;
 
         private readonly List<InventorySlotUI> _pool = new List<InventorySlotUI>();
 
@@ -70,6 +78,26 @@ namespace Demo.UI
             ApplyOpenState();
         }
 
+        public void BindPresentation(TMP_Text capacityText, int maximumSlots = 40)
+        {
+            capacityLabel = capacityText;
+            capacity = Mathf.Max(1, maximumSlots);
+            RefreshCapacity();
+        }
+
+        public void BindCategories(Button[] buttons, Sprite normal, Sprite selected)
+        {
+            categoryBackgrounds = buttons != null ? System.Array.ConvertAll(buttons, b => b != null ? b.image : null) : null;
+            categoryNormalSprite = normal;
+            categorySelectedSprite = selected;
+            RefreshCategoryVisuals(0);
+        }
+
+        public void ShowAll() { SetFilter(null, 0); }
+        public void ShowWeapons() { SetFilter(ItemType.Weapon, 1); }
+        public void ShowConsumables() { SetFilter(ItemType.Consumable, 2); }
+        public void ShowQuestItems() { SetFilter(ItemType.Quest, 3); }
+
         private void Awake()
         {
             BuildPool();
@@ -99,10 +127,6 @@ namespace Demo.UI
                 return;
             }
 
-            if (IsOpen && Input.GetKeyDown(closeKey))
-            {
-                Close();
-            }
         }
 
         public void Open()
@@ -175,7 +199,17 @@ namespace Demo.UI
             IReadOnlyList<InventoryItem> items = inventory != null ? inventory.GetItems() : null;
             int count = items != null ? items.Count : 0;
 
-            int visible = Mathf.Max(count, _minimumSlots);
+            var filtered = new List<InventoryItem>();
+            for (int i = 0; i < count; i++)
+            {
+                InventoryItem item = items[i];
+                if (item != null && item.Data != null && (!_filter.HasValue || item.Data.itemType == _filter.Value))
+                {
+                    filtered.Add(item);
+                }
+            }
+
+            int visible = Mathf.Max(filtered.Count, _minimumSlots);
             EnsureSlotCount(visible);
 
             for (int i = 0; i < _pool.Count; i++)
@@ -192,15 +226,43 @@ namespace Demo.UI
 
                 slot.gameObject.SetActive(true);
 
-                if (i < count)
+                if (i < filtered.Count)
                 {
-                    slot.SetItem(items[i]);
+                    slot.SetItem(filtered[i]);
                 }
                 else
                 {
                     slot.Clear();
                 }
             }
+
+            RefreshCapacity();
+        }
+
+        private void SetFilter(ItemType? filter, int selectedIndex)
+        {
+            _filter = filter;
+            RefreshCategoryVisuals(selectedIndex);
+            if (detail != null) detail.Clear();
+            for (int i = 0; i < _pool.Count; i++) _pool[i].SetSelected(false);
+            Refresh();
+        }
+
+        private void RefreshCategoryVisuals(int selectedIndex)
+        {
+            if (categoryBackgrounds == null) return;
+            for (int i = 0; i < categoryBackgrounds.Length; i++)
+            {
+                if (categoryBackgrounds[i] != null)
+                    categoryBackgrounds[i].sprite = i == selectedIndex ? categorySelectedSprite : categoryNormalSprite;
+            }
+        }
+
+        private void RefreshCapacity()
+        {
+            if (capacityLabel == null) return;
+            int used = inventory != null && inventory.GetItems() != null ? inventory.GetItems().Count : 0;
+            capacityLabel.text = used + " / " + capacity;
         }
 
         /// <summary>把场景里摆好的那批格子收进池子，只需要做一次。</summary>
@@ -232,6 +294,9 @@ namespace Demo.UI
 
         private void OnSlotClicked(InventorySlotUI slot)
         {
+            for (int i = 0; i < _pool.Count; i++)
+                _pool[i].SetSelected(_pool[i] == slot);
+
             if (detail != null)
             {
                 detail.Show(slot.Item);

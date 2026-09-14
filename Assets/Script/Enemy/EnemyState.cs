@@ -14,12 +14,14 @@
         public readonly bool HasTarget;
         public readonly float DistanceToTarget;
         public readonly bool HasLineOfSight;
+        public readonly bool IsFacingTarget;
 
-        public EnemySensors(bool hasTarget, float distanceToTarget, bool hasLineOfSight)
+        public EnemySensors(bool hasTarget, float distanceToTarget, bool hasLineOfSight, bool isFacingTarget = true)
         {
             HasTarget = hasTarget;
             DistanceToTarget = distanceToTarget;
             HasLineOfSight = hasLineOfSight;
+            IsFacingTarget = isFacingTarget;
         }
     }
 

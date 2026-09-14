@@ -41,7 +41,8 @@ public static class BuildFantasyHUD
         EditorApplication.delayCall += () =>
         {
             if (!Application.isBatchMode &&
-                AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFolder + "/GameHUD.prefab") == null)
+                (AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFolder + "/GameHUD.prefab") == null ||
+                 AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFolder + "/InteractionPromptPanel.prefab") == null))
             {
                 Build();
             }
@@ -61,12 +62,13 @@ public static class BuildFantasyHUD
         GameObject minimap = SavePrefab("MiniMapPanel", BuildMiniMap());
         GameObject dialogue = SavePrefab("DialoguePanel", BuildDialogue());
         GameObject quest = SavePrefab("QuestSummaryPanel", BuildQuestSummary());
-        GameObject hud = SavePrefab("GameHUD", BuildHud(player, menu, minimap, dialogue, quest));
+        GameObject interaction = SavePrefab("InteractionPromptPanel", BuildInteractionPrompt());
+        GameObject hud = SavePrefab("GameHUD", BuildHud(player, menu, minimap, dialogue, quest, interaction));
 
         WireScene(hud);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        Debug.Log("[BuildFantasyHUD] 已生成 6 个 UI Prefab 并接入 Desert 场景。");
+        Debug.Log("[BuildFantasyHUD] 已生成 7 个 UI Prefab 并接入 Desert 场景。");
     }
 
     [MenuItem("Tools/Demo UI/Capture Fantasy HUD Preview")]
@@ -182,7 +184,7 @@ public static class BuildFantasyHUD
 
     private static GameObject BuildPlayerStatus()
     {
-        GameObject root = RectObject("PlayerStatusPanel", null, new Vector2(690,220), new Vector2(0,0), new Vector2(0,0), new Vector2(0,0));
+        GameObject root = RectObject("PlayerStatusPanel", null, new Vector2(690,220), new Vector2(28,24), new Vector2(0,0), new Vector2(0,0));
         PlayerStatusPanel view = root.AddComponent<PlayerStatusPanel>();
 
         Image frame = ImageObject("HpWoodFrame", root.transform, S("HpFrame"), new Vector2(520,122), new Vector2(182,36), new Vector2(0,0));
@@ -192,11 +194,11 @@ public static class BuildFantasyHUD
         fill.fillMethod = Image.FillMethod.Horizontal;
         fill.fillOrigin = 0;
 
-        Image portrait = ImageObject("PlayerPortrait", root.transform, S("PlayerPortrait", PortraitPath), new Vector2(164,164), new Vector2(20,42), new Vector2(0,0));
-        portrait.preserveAspect = true;
         Image portraitFrame = ImageObject("PortraitFrame", root.transform, S("PortraitFrame"), new Vector2(202,202), new Vector2(0,18), new Vector2(0,0));
         portraitFrame.preserveAspect = true;
         portraitFrame.raycastTarget = false;
+        Image portrait = ImageObject("PlayerPortrait", root.transform, S("PlayerPortrait", PortraitPath), new Vector2(154,154), new Vector2(24,46), new Vector2(0,0));
+        portrait.preserveAspect = true;
         ImageObject("Heart", root.transform, S("Heart"), new Vector2(74,74), new Vector2(174,57), new Vector2(0,0)).preserveAspect = true;
 
         TMP_Text hp = TextObject("HpValue", frame.transform, "100 / 100", 31, Color.white, TextAlignmentOptions.Center,
@@ -260,10 +262,10 @@ public static class BuildFantasyHUD
         ColorBlock cb = advance.colors; cb.highlightedColor = new Color(1f,.98f,.86f,1f); cb.pressedColor = new Color(.9f,.82f,.68f,1f); advance.colors = cb;
         UnityEventTools.AddPersistentListener(advance.onClick, view.Advance);
 
-        Image portrait = ImageObject("NpcPortrait", visual.transform, S("NpcPortrait", PortraitPath), new Vector2(210,210), new Vector2(7,25), new Vector2(0,0));
-        portrait.preserveAspect = true;
         Image pframe = ImageObject("PortraitFrame", visual.transform, S("PortraitFrame"), new Vector2(240,240), new Vector2(-6,9), new Vector2(0,0));
         pframe.preserveAspect = true; pframe.raycastTarget = false;
+        Image portrait = ImageObject("NpcPortrait", visual.transform, S("NpcPortrait", PortraitPath), new Vector2(182,182), new Vector2(23,38), new Vector2(0,0));
+        portrait.preserveAspect = true;
 
         Image nameplate = ImageObject("Nameplate", visual.transform, S("Nameplate"), new Vector2(310,64), new Vector2(245,218), new Vector2(0,0));
         nameplate.type = Image.Type.Sliced;
@@ -295,17 +297,31 @@ public static class BuildFantasyHUD
 
     private static GameObject BuildQuestSummary()
     {
-        GameObject root = RectObject("QuestSummaryPanel", null, new Vector2(440,160), new Vector2(-330,-174), Vector2.one, Vector2.one);
+        GameObject root = RectObject("QuestSummaryPanel", null, new Vector2(420,154), new Vector2(236,72), new Vector2(0,.5f), new Vector2(0,.5f));
         QuestSummaryPanel view = root.AddComponent<QuestSummaryPanel>();
-        GameObject visual = RectObject("Visual", root.transform, new Vector2(440,160), Vector2.zero, Vector2.zero, Vector2.zero);
-        Image bg = ImageObject("Parchment", visual.transform, S("Tooltip"), new Vector2(440,160), Vector2.zero, Vector2.zero);
+        GameObject visual = RectObject("Visual", root.transform, new Vector2(420,154), Vector2.zero, Vector2.zero, Vector2.zero);
+        Image bg = ImageObject("Parchment", visual.transform, S("Tooltip"), new Vector2(420,154), Vector2.zero, Vector2.zero);
         bg.type = Image.Type.Sliced;
-        TMP_Text title = TextObject("Title", bg.transform, "任务日志", 24, Ink, TextAlignmentOptions.TopLeft,
-            new Vector2(360,36), new Vector2(38,-22), new Vector2(0,1)); title.fontStyle = FontStyles.Bold;
-        TMP_Text summary = TextObject("Summary", bg.transform, "暂无任务", 21, Ink, TextAlignmentOptions.TopLeft,
-            new Vector2(360,70), new Vector2(38,-65), new Vector2(0,1)); summary.enableWordWrapping = true;
+        TMP_Text title = TextObject("Title", bg.transform, "当前任务", 23, Cream, TextAlignmentOptions.Center,
+            new Vector2(172,38), new Vector2(25,-9), new Vector2(0,1));
+        title.fontStyle = FontStyles.Bold; AddTextOutline(title, Ink, new Vector2(1.5f,-1.5f));
+        TMP_Text summary = TextObject("Summary", bg.transform, "暂无任务", 20, Ink, TextAlignmentOptions.TopLeft,
+            new Vector2(352,72), new Vector2(34,-62), new Vector2(0,1)); summary.enableWordWrapping = true;
         view.Bind(visual, summary, null);
-        visual.SetActive(false);
+        return root;
+    }
+
+    private static GameObject BuildInteractionPrompt()
+    {
+        GameObject root = RectObject("InteractionPromptPanel", null, new Vector2(520,82), new Vector2(0,92), new Vector2(.5f,0), new Vector2(.5f,0));
+        InteractionPromptPanel view = root.AddComponent<InteractionPromptPanel>();
+        GameObject visual = RectObject("Visual", root.transform, new Vector2(520,82), Vector2.zero, Vector2.zero, Vector2.zero);
+        Image bg = ImageObject("Frame", visual.transform, S("Tooltip"), new Vector2(520,82), Vector2.zero, Vector2.zero);
+        bg.type = Image.Type.Sliced;
+        TMP_Text prompt = TextObject("PromptText", bg.transform, "<b>[ E ]</b>  交互", 24, Ink, TextAlignmentOptions.Center,
+            Vector2.zero, Vector2.zero, new Vector2(.5f,.5f));
+        Stretch(prompt.rectTransform, new Vector2(34,12), new Vector2(-34,-12));
+        view.Bind(visual, prompt);
         return root;
     }
 
@@ -347,6 +363,10 @@ public static class BuildFantasyHUD
         QuestSummaryPanel questView = hud.GetComponentInChildren<QuestSummaryPanel>(true);
         questView.Bind(FindChild(questView.transform,"Visual").gameObject, FindChild(questView.transform,"Summary").GetComponent<TMP_Text>(), quest);
         hud.GetComponentInChildren<TopRightMenu>(true).Bind(inventory, questView);
+
+        InteractionPromptPanel interactionView = hud.GetComponentInChildren<InteractionPromptPanel>(true);
+        interactionView.Bind(FindChild(interactionView.transform,"Visual").gameObject,
+            FindChild(interactionView.transform,"PromptText").GetComponent<TMP_Text>());
 
         GameObject inventoryCanvasObject = GameObject.Find("InventoryCanvas");
         Canvas inventoryCanvas = inventoryCanvasObject != null ? inventoryCanvasObject.GetComponent<Canvas>() : null;
