@@ -1,6 +1,4 @@
-# ---------------------------------------------------------------
-# Unity 生成目录（必须忽略，否则仓库会膨胀到几个 GB）
-# ---------------------------------------------------------------
+# Unity generated directories
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -10,15 +8,10 @@
 /[Uu]ser[Ss]ettings/
 /[Mm]emoryCaptures/
 
-# ---------------------------------------------------------------
-# 资源元数据：只有当对应资源也被忽略时才忽略 .meta
-# 正常情况下 .meta 必须提交，否则场景和预制体的引用会全部断裂
-# ---------------------------------------------------------------
+# Keep Unity metadata for tracked assets
 !/[Aa]ssets/**/*.meta
 
-# ---------------------------------------------------------------
 # IDE
-# ---------------------------------------------------------------
 .vs/
 .idea/
 .vscode/
@@ -36,25 +29,28 @@
 *.opendb
 *.VC.db
 
-# ---------------------------------------------------------------
-# Unity 生成的其他文件
-# ---------------------------------------------------------------
+# Generated logs, test output and temporary patches
+*.log
+TestResults*.xml
+_patch_*.txt
+*.bak
+*.bak.meta
+
+# Other Unity-generated files
 sysinfo.txt
 *.stackdump
 crashlytics-build.properties
 
-# Addressables 打包产物
+# Addressables build output
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
-# JetBrains Rider 自动生成
+# JetBrains Rider generated files
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
-# 导出的包
+# Exported packages
 *.unitypackage
 
-# ---------------------------------------------------------------
-# 操作系统
-# ---------------------------------------------------------------
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini
