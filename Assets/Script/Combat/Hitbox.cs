@@ -55,7 +55,6 @@ namespace Demo.Combat
             Transform hitboxTransform = transform;
             Transform ownerRoot = hitboxTransform.root;
             Vector3 center = hitboxTransform.TransformPoint(localOffset);
-            float damage = ResolveDamage();
 
             int count = Physics.OverlapSphereNonAlloc(
                 center,
@@ -97,7 +96,7 @@ namespace Demo.Combat
                 Vector3 hitPoint = col.ClosestPoint(center);
                 Vector3 direction = (targetTransform.position - center).normalized;
                 var info = new DamageInfo(
-                    damage,
+                    ResolveDamage(),
                     gameObject,
                     hitPoint,
                     direction,
