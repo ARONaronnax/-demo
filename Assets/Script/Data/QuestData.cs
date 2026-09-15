@@ -23,7 +23,7 @@ namespace Demo.Data
         [Tooltip("留空 = 任意敌人都计数")]
         public string targetEnemyTypeId;
 
-        [Header("奖励（本切片不发放）")]
+        [Header("汇报奖励")]
         public ItemData rewardItem;
         public int rewardAmount;
     }

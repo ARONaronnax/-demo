@@ -26,6 +26,7 @@ namespace Demo.UI
         private void OnEnable()
         {
             EventBus.Subscribe<EntityDamagedEvent>(OnEntityDamaged);
+            EventBus.Subscribe<EntityHealedEvent>(OnEntityHealed);
             Refresh();
         }
 
@@ -39,6 +40,7 @@ namespace Demo.UI
         private void OnDisable()
         {
             EventBus.Unsubscribe<EntityDamagedEvent>(OnEntityDamaged);
+            EventBus.Unsubscribe<EntityHealedEvent>(OnEntityHealed);
         }
 
         public void SetPortrait(Sprite sprite)
@@ -49,6 +51,11 @@ namespace Demo.UI
         private void OnEntityDamaged(EntityDamagedEvent e)
         {
             if (e.IsPlayer) SetValue(e.RemainingHp, health != null ? health.MaxHp : e.RemainingHp);
+        }
+
+        private void OnEntityHealed(EntityHealedEvent e)
+        {
+            if (e.IsPlayer) SetValue(e.CurrentHp, e.MaxHp);
         }
 
         private void Refresh()

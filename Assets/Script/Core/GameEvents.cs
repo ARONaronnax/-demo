@@ -108,6 +108,30 @@ namespace Demo.Core
         }
     }
 
+    public readonly struct QuestTurnedInEvent
+    {
+        public readonly QuestData Quest;
+
+        public QuestTurnedInEvent(QuestData quest)
+        {
+            Quest = quest;
+        }
+    }
+
+    public readonly struct QuestRewardGrantedEvent
+    {
+        public readonly QuestData Quest;
+        public readonly ItemData Item;
+        public readonly int Amount;
+
+        public QuestRewardGrantedEvent(QuestData quest, ItemData item, int amount)
+        {
+            Quest = quest;
+            Item = item;
+            Amount = amount;
+        }
+    }
+
     public readonly struct EntityDamagedEvent
     {
         public readonly string TargetName;
@@ -185,6 +209,32 @@ namespace Demo.Core
         public EquipRequestedEvent(WeaponData weapon)
         {
             Weapon = weapon;
+        }
+    }
+
+    public readonly struct UseConsumableRequestedEvent
+    {
+        public readonly ConsumableData Consumable;
+
+        public UseConsumableRequestedEvent(ConsumableData consumable)
+        {
+            Consumable = consumable;
+        }
+    }
+
+    public readonly struct EntityHealedEvent
+    {
+        public readonly float Amount;
+        public readonly float CurrentHp;
+        public readonly float MaxHp;
+        public readonly bool IsPlayer;
+
+        public EntityHealedEvent(float amount, float currentHp, float maxHp, bool isPlayer)
+        {
+            Amount = amount;
+            CurrentHp = currentHp;
+            MaxHp = maxHp;
+            IsPlayer = isPlayer;
         }
     }
 

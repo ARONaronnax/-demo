@@ -25,13 +25,18 @@ namespace Demo.UI
             EventBus.Subscribe<QuestAcceptedEvent>(OnQuestChanged);
             EventBus.Subscribe<QuestProgressChangedEvent>(OnQuestChanged);
             EventBus.Subscribe<QuestCompletedEvent>(OnQuestChanged);
+            EventBus.Subscribe<QuestTurnedInEvent>(OnQuestChanged);
+            Refresh();
         }
+
+        private void Start() { Refresh(); }
 
         private void OnDisable()
         {
             EventBus.Unsubscribe<QuestAcceptedEvent>(OnQuestChanged);
             EventBus.Unsubscribe<QuestProgressChangedEvent>(OnQuestChanged);
             EventBus.Unsubscribe<QuestCompletedEvent>(OnQuestChanged);
+            EventBus.Unsubscribe<QuestTurnedInEvent>(OnQuestChanged);
         }
 
         public void Toggle()
@@ -44,6 +49,7 @@ namespace Demo.UI
         private void OnQuestChanged(QuestAcceptedEvent e) { Refresh(); }
         private void OnQuestChanged(QuestProgressChangedEvent e) { Refresh(); }
         private void OnQuestChanged(QuestCompletedEvent e) { Refresh(); }
+        private void OnQuestChanged(QuestTurnedInEvent e) { Refresh(); }
 
         private void Refresh()
         {

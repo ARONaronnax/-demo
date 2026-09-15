@@ -336,6 +336,7 @@ namespace Demo.UI
         {
             // 只在打开期间被订阅，所以这里不用再判断开关状态
             Refresh();
+            if (detail != null) detail.Clear();
         }
     }
 }

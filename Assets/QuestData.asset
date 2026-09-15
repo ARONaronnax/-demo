@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: KillMonsters
   title: "\u8BA8\u4F10\u9B54\u7269"
-  description: 
-  objectiveText: "\u51FB\u8D25 3 \u53EA\u9B54\u7269"
+  description: "\u897F\u8FB9\u7684\u9B54\u7269\u5A01\u80C1\u7740\u6751\u5B50\uFF0C\u5E2E\u52A9\u70E6\u607C\u7684\u6751\u6C11\u6E05\u9664\u5B83\u4EEC\u3002"
+  objectiveText: "\u6E05\u7406\u6751\u5916\u7684 3 \u53EA\u9B54\u7269"
   requiredAmount: 3
   targetEnemyTypeId: 
-  rewardItem: {fileID: 0}
-  rewardAmount: 0
+  rewardItem: {fileID: 11400000, guid: a231fa54a33e4fd9a84156f4a7ee2e11, type: 2}
+  rewardAmount: 2

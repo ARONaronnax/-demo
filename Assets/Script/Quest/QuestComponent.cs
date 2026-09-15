@@ -28,6 +28,7 @@ namespace Demo.Quest
             _system.Accepted += OnAccepted;
             _system.ProgressChanged += OnProgressChanged;
             _system.Completed += OnCompleted;
+            _system.TurnedIn += OnTurnedIn;
         }
 
         private void OnDisable()
@@ -37,6 +38,7 @@ namespace Demo.Quest
             _system.Accepted -= OnAccepted;
             _system.ProgressChanged -= OnProgressChanged;
             _system.Completed -= OnCompleted;
+            _system.TurnedIn -= OnTurnedIn;
         }
 
         public bool IsActive(Data.QuestData quest)
@@ -72,6 +74,11 @@ namespace Demo.Quest
             return ok;
         }
 
+        public bool TurnIn(Data.QuestData quest)
+        {
+            return _system.TurnIn(quest);
+        }
+
         public string DescribeForHud()
         {
             if (primaryQuest == null)
@@ -83,12 +90,21 @@ namespace Demo.Quest
 
             if (status == QuestStatus.NotStarted)
             {
-                return primaryQuest.title + "：未接受";
+                return "探索村庄，和烦恼的村民对话";
             }
 
-            return primaryQuest.title + "：" +
-                _system.GetProgress(primaryQuest) + "/" + primaryQuest.requiredAmount +
-                (status == QuestStatus.Completed ? "  已完成" : "  （进行中）");
+            if (status == QuestStatus.Completed)
+            {
+                return "任务完成，找村民汇报";
+            }
+
+            if (status == QuestStatus.TurnedIn)
+            {
+                return "委托完成：村庄恢复了平静";
+            }
+
+            return primaryQuest.objectiveText + "（" +
+                _system.GetProgress(primaryQuest) + "/" + primaryQuest.requiredAmount + "）";
         }
 
         private void OnEnemyDied(EnemyDiedEvent e)
@@ -115,6 +131,16 @@ namespace Demo.Quest
         private void OnCompleted(Data.QuestData quest)
         {
             EventBus.Publish(new QuestCompletedEvent(quest));
+        }
+
+        private void OnTurnedIn(Data.QuestData quest)
+        {
+            EventBus.Publish(new QuestTurnedInEvent(quest));
+
+            if (quest != null && quest.rewardItem != null && quest.rewardAmount > 0)
+            {
+                EventBus.Publish(new QuestRewardGrantedEvent(quest, quest.rewardItem, quest.rewardAmount));
+            }
         }
     }
 }

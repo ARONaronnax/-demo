@@ -30,6 +30,8 @@ namespace Demo.Tests
         // 测试也就跟着订阅总线来观察。
         private int _requestedCount;
         private WeaponData _requestedWeapon;
+        private int _useRequestedCount;
+        private ConsumableData _requestedConsumable;
 
         private void OnEquipRequested(EquipRequestedEvent e)
         {
@@ -37,13 +39,22 @@ namespace Demo.Tests
             _requestedWeapon = e.Weapon;
         }
 
+        private void OnUseRequested(UseConsumableRequestedEvent e)
+        {
+            _useRequestedCount++;
+            _requestedConsumable = e.Consumable;
+        }
+
         [SetUp]
         public void SetUp()
         {
             _requestedCount = 0;
             _requestedWeapon = null;
+            _useRequestedCount = 0;
+            _requestedConsumable = null;
 
             EventBus.Subscribe<EquipRequestedEvent>(OnEquipRequested);
+            EventBus.Subscribe<UseConsumableRequestedEvent>(OnUseRequested);
 
             _sword = ScriptableObject.CreateInstance<WeaponData>();
             _sword.displayName = "蜥蜴战士之刃";
@@ -86,6 +97,7 @@ namespace Demo.Tests
         {
             // 静态总线是全局的，漏退订会污染后面所有测试
             EventBus.Unsubscribe<EquipRequestedEvent>(OnEquipRequested);
+            EventBus.Unsubscribe<UseConsumableRequestedEvent>(OnUseRequested);
 
             if (_root != null)
             {
@@ -165,11 +177,11 @@ namespace Demo.Tests
         // ---------------------------------------------------------
 
         [Test]
-        public void Show_NonWeapon_HidesDamageAndEquipButton()
+        public void Show_Consumable_HidesDamageAndShowsUseButton()
         {
             _detail.Show(new InventoryItem(_potion, 2));
 
-            Assert.IsFalse(_equipButton.gameObject.activeSelf, "药水没有装备按钮");
+            Assert.IsTrue(_equipButton.gameObject.activeSelf, "药水应复用操作按钮显示使用入口");
             Assert.AreEqual(string.Empty, _damageLabel.text, "药水没有攻击力");
         }
 
@@ -224,6 +236,7 @@ namespace Demo.Tests
             Assert.AreEqual(string.Empty, _damageLabel.text);
             Assert.IsFalse(_iconImage.enabled);
             Assert.IsNull(_detail.CurrentWeapon);
+            Assert.IsNull(_detail.CurrentConsumable);
         }
 
         [Test]
@@ -260,12 +273,14 @@ namespace Demo.Tests
         }
 
         [Test]
-        public void EquipClicked_WithNonWeapon_PublishesNothing()
+        public void ActionClicked_WithConsumable_PublishesUseRequest()
         {
             _detail.Show(new InventoryItem(_potion, 1));
             _detail.OnEquipClicked();
 
             Assert.AreEqual(0, _requestedCount, "没选中武器时点装备不该有反应");
+            Assert.AreEqual(1, _useRequestedCount);
+            Assert.AreSame(_potion, _requestedConsumable);
         }
 
         [Test]
@@ -274,6 +289,7 @@ namespace Demo.Tests
             _detail.OnEquipClicked();
 
             Assert.AreEqual(0, _requestedCount);
+            Assert.AreEqual(0, _useRequestedCount);
         }
 
         [Test]
@@ -286,7 +302,9 @@ namespace Demo.Tests
             _detail.OnEquipClicked();
 
             Assert.AreEqual(0, _requestedCount);
+            Assert.AreEqual(1, _useRequestedCount);
             Assert.IsNull(_detail.CurrentWeapon);
+            Assert.AreSame(_potion, _detail.CurrentConsumable);
         }
     }
 }

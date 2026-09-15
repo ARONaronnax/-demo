@@ -21,6 +21,11 @@ namespace Demo.Combat
 
         private void Awake()
         {
+            ResetToFull();
+        }
+
+        public void ResetToFull()
+        {
             CurrentHp = maxHp;
         }
 
@@ -48,6 +53,21 @@ namespace Demo.Combat
             {
                 Damaged(info);
             }
+        }
+
+        /// <summary>恢复生命并返回实际恢复量；死亡或满血时不会恢复。</summary>
+        public float Heal(float amount)
+        {
+            if (!IsAlive || amount <= 0f || CurrentHp >= maxHp)
+            {
+                return 0f;
+            }
+
+            float before = CurrentHp;
+            CurrentHp = Mathf.Min(maxHp, CurrentHp + amount);
+            float restored = CurrentHp - before;
+            EventBus.Publish(new EntityHealedEvent(restored, CurrentHp, maxHp, isPlayer));
+            return restored;
         }
     }
 }

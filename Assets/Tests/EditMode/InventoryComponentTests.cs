@@ -3,6 +3,7 @@ using UnityEngine;
 using Demo.Core;
 using Demo.Data;
 using Demo.Inventory;
+using Demo.Combat;
 
 namespace Demo.Tests
 {
@@ -17,6 +18,8 @@ namespace Demo.Tests
     {
         private WeaponData _sword;
         private WeaponData _axe;
+        private ConsumableData _potion;
+        private HealthComponent _health;
 
         private GameObject _root;
         private InventoryComponent _inventory;
@@ -29,9 +32,16 @@ namespace Demo.Tests
         {
             _sword = MakeWeapon("蜥蜴战士之刃");
             _axe = MakeWeapon("战斧");
+            _potion = ScriptableObject.CreateInstance<ConsumableData>();
+            _potion.displayName = "回复药水";
+            _potion.healAmount = 20;
+            _potion.maxStack = 10;
 
             _root = new GameObject("InventoryComponentTest");
+            _health = _root.AddComponent<HealthComponent>();
+            _health.ResetToFull();
             _inventory = _root.AddComponent<InventoryComponent>();
+            _inventory.BindHealth(_health);
 
             // EditMode 下 AddComponent 不触发 OnEnable，得自己开
             _inventory.Listen();
@@ -61,6 +71,7 @@ namespace Demo.Tests
             Object.DestroyImmediate(_root);
             Object.DestroyImmediate(_sword);
             Object.DestroyImmediate(_axe);
+            Object.DestroyImmediate(_potion);
         }
 
         private void OnInventoryChanged(InventoryChangedEvent e)
@@ -226,6 +237,28 @@ namespace Demo.Tests
             EventBus.Publish(new ItemPickedUpEvent(_axe, 1));
 
             Assert.IsTrue(_inventory.HasItem(_axe));
+        }
+
+        [Test]
+        public void UsePotion_RestoresTwentyHpAndConsumesOne()
+        {
+            _inventory.System.AddItem(_potion, 2);
+            _health.TakeDamage(new DamageInfo(50f, null, Vector3.zero, Vector3.zero));
+
+            EventBus.Publish(new UseConsumableRequestedEvent(_potion));
+
+            Assert.AreEqual(70f, _health.CurrentHp);
+            Assert.AreEqual(1, _inventory.GetAmount(_potion));
+        }
+
+        [Test]
+        public void UsePotion_AtFullHealth_DoesNotConsumeIt()
+        {
+            _inventory.System.AddItem(_potion, 1);
+
+            EventBus.Publish(new UseConsumableRequestedEvent(_potion));
+
+            Assert.AreEqual(1, _inventory.GetAmount(_potion));
         }
 
         [Test]

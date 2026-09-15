@@ -29,6 +29,7 @@ namespace Demo.Dialogue
 
         private readonly DialogueSystem _system = new DialogueSystem();
         private QuestData _pendingQuestOffer;
+        private QuestData _pendingQuestTurnIn;
 
         public bool IsRunning
         {
@@ -90,6 +91,13 @@ namespace Demo.Dialogue
 
             DialogueData data = npc.SelectDialogue();
             Log("BeginFor: SelectDialogue 返回 " + (data != null ? data.name : "null"));
+
+            _pendingQuestTurnIn = null;
+            if (questComponent != null && questComponent.PrimaryQuest != null &&
+                questComponent.GetStatus(questComponent.PrimaryQuest) == Quest.QuestStatus.Completed)
+            {
+                _pendingQuestTurnIn = questComponent.PrimaryQuest;
+            }
 
             Begin(data);
         }
@@ -223,6 +231,14 @@ namespace Demo.Dialogue
             }
 
             _pendingQuestOffer = null;
+
+            if (_pendingQuestTurnIn != null && questComponent != null)
+            {
+                bool turnedIn = questComponent.TurnIn(_pendingQuestTurnIn);
+                Log("OnEnded: 汇报任务 " + _pendingQuestTurnIn.name + " 返回 " + turnedIn);
+            }
+
+            _pendingQuestTurnIn = null;
 
             EventBus.Publish(new DialogueEndedEvent(data));
         }

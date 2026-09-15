@@ -28,6 +28,7 @@ namespace Demo.UI
 
         /// <summary>当前选中的武器；选中的不是武器时为 null。</summary>
         public WeaponData CurrentWeapon { get; private set; }
+        public ConsumableData CurrentConsumable { get; private set; }
 
         /// <summary>给编辑器脚本和测试用的注入点（Inspector 里拖也行）。</summary>
         public void Bind(
@@ -81,6 +82,7 @@ namespace Demo.UI
 
             // 先决定"这是不是武器"，后面显示什么全看它
             CurrentWeapon = data as WeaponData;
+            CurrentConsumable = data as ConsumableData;
 
             if (CurrentWeapon != null)
             {
@@ -92,6 +94,16 @@ namespace Demo.UI
                 if (equipButton != null)
                 {
                     equipButton.gameObject.SetActive(true);
+                    SetActionButtonText("装备");
+                }
+            }
+            else if (CurrentConsumable != null)
+            {
+                if (damageLabel != null) damageLabel.text = string.Empty;
+                if (equipButton != null)
+                {
+                    equipButton.gameObject.SetActive(true);
+                    SetActionButtonText("使用");
                 }
             }
             else
@@ -114,6 +126,7 @@ namespace Demo.UI
         public void Clear()
         {
             CurrentWeapon = null;
+            CurrentConsumable = null;
 
             if (emptyHint != null)
             {
@@ -155,12 +168,23 @@ namespace Demo.UI
         /// </summary>
         public void OnEquipClicked()
         {
-            if (CurrentWeapon == null)
+            if (CurrentWeapon != null)
             {
+                EventBus.Publish(new EquipRequestedEvent(CurrentWeapon));
                 return;
             }
 
-            EventBus.Publish(new EquipRequestedEvent(CurrentWeapon));
+            if (CurrentConsumable != null)
+            {
+                EventBus.Publish(new UseConsumableRequestedEvent(CurrentConsumable));
+            }
+        }
+
+        private void SetActionButtonText(string value)
+        {
+            if (equipButton == null) return;
+            TMP_Text label = equipButton.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) label.text = value;
         }
     }
 }

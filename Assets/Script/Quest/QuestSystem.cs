@@ -22,6 +22,7 @@ namespace Demo.Quest
         public event Action<QuestData> Accepted;
         public event Action<QuestData, int, int> ProgressChanged;
         public event Action<QuestData> Completed;
+        public event Action<QuestData> TurnedIn;
 
         public QuestStatus GetStatus(QuestData quest)
         {
@@ -112,6 +113,26 @@ namespace Demo.Quest
             }
 
             return false;
+        }
+
+        /// <summary>向委托人汇报。只有目标已完成的任务能交付，且只能交付一次。</summary>
+        public bool TurnIn(QuestData quest)
+        {
+            Entry entry = Find(quest);
+
+            if (entry == null || entry.Status != QuestStatus.Completed)
+            {
+                return false;
+            }
+
+            entry.Status = QuestStatus.TurnedIn;
+
+            if (TurnedIn != null)
+            {
+                TurnedIn(quest);
+            }
+
+            return true;
         }
 
         private Entry Find(QuestData quest)

@@ -127,6 +127,36 @@ namespace Demo.Tests
         }
 
         [Test]
+        public void TurnIn_CompletedQuest_MovesToTurnedInAndOnlySucceedsOnce()
+        {
+            var system = new QuestSystem();
+            int turnedInCount = 0;
+            system.TurnedIn += q => turnedInCount++;
+
+            system.Accept(_quest);
+            for (int i = 0; i < _quest.requiredAmount; i++)
+            {
+                system.ReportKill("Werewolf");
+            }
+
+            Assert.IsTrue(system.TurnIn(_quest));
+            Assert.AreEqual(QuestStatus.TurnedIn, system.GetStatus(_quest));
+            Assert.IsFalse(system.TurnIn(_quest));
+            Assert.AreEqual(1, turnedInCount);
+        }
+
+        [Test]
+        public void TurnIn_BeforeObjectiveCompleted_IsRejected()
+        {
+            var system = new QuestSystem();
+            system.Accept(_quest);
+            system.ReportKill("Werewolf");
+
+            Assert.IsFalse(system.TurnIn(_quest));
+            Assert.AreEqual(QuestStatus.InProgress, system.GetStatus(_quest));
+        }
+
+        [Test]
         public void ReportKill_WithTargetFilter_IgnoresOtherTypes()
         {
             _quest.targetEnemyTypeId = "LizardWarrior";

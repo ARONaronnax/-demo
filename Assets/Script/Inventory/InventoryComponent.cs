@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Demo.Core;
 using Demo.Data;
+using Demo.Combat;
 
 namespace Demo.Inventory
 {
@@ -16,6 +17,8 @@ namespace Demo.Inventory
     {
         private readonly InventorySystem _system = new InventorySystem();
         private bool _listening;
+
+        [SerializeField] private HealthComponent playerHealth;
 
         /// <summary>当前拿在手上的武器。装备是把东西从背包挪到手上，得记住上一把是谁。</summary>
         private WeaponData _equipped;
@@ -36,6 +39,11 @@ namespace Demo.Inventory
         public bool HasItem(ItemData data, int amount = 1)
         {
             return _system.HasItem(data, amount);
+        }
+
+        public void BindHealth(HealthComponent health)
+        {
+            playerHealth = health;
         }
 
         private void OnEnable()
@@ -67,6 +75,8 @@ namespace Demo.Inventory
 
             EventBus.Subscribe<ItemPickedUpEvent>(OnItemPickedUp);
             EventBus.Subscribe<WeaponEquippedEvent>(OnWeaponEquipped);
+            EventBus.Subscribe<QuestRewardGrantedEvent>(OnQuestRewardGranted);
+            EventBus.Subscribe<UseConsumableRequestedEvent>(OnUseConsumableRequested);
 
             _system.Changed += OnInventoryChanged;
         }
@@ -83,6 +93,8 @@ namespace Demo.Inventory
 
             EventBus.Unsubscribe<ItemPickedUpEvent>(OnItemPickedUp);
             EventBus.Unsubscribe<WeaponEquippedEvent>(OnWeaponEquipped);
+            EventBus.Unsubscribe<QuestRewardGrantedEvent>(OnQuestRewardGranted);
+            EventBus.Unsubscribe<UseConsumableRequestedEvent>(OnUseConsumableRequested);
 
             _system.Changed -= OnInventoryChanged;
         }
@@ -127,6 +139,28 @@ namespace Demo.Inventory
             }
 
             _system.AddItem(e.Item, e.Amount);
+        }
+
+        private void OnQuestRewardGranted(QuestRewardGrantedEvent e)
+        {
+            if (e.Item != null && e.Amount > 0)
+            {
+                _system.AddItem(e.Item, e.Amount);
+            }
+        }
+
+        private void OnUseConsumableRequested(UseConsumableRequestedEvent e)
+        {
+            if (e.Consumable == null || playerHealth == null || !_system.HasItem(e.Consumable))
+            {
+                return;
+            }
+
+            // 满血或死亡时不浪费药水；只有确实恢复了生命才扣除一瓶。
+            if (playerHealth.Heal(e.Consumable.healAmount) > 0f)
+            {
+                _system.RemoveItem(e.Consumable);
+            }
         }
 
         private void OnInventoryChanged()

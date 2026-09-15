@@ -16,6 +16,7 @@ namespace Demo.Interaction
         [SerializeField] private DialogueData dialogueBeforeQuest;
         [SerializeField] private DialogueData dialogueQuestActive;
         [SerializeField] private DialogueData dialogueQuestCompleted;
+        [SerializeField] private DialogueData dialogueQuestTurnedIn;
 
         [Header("引用")]
         [Tooltip("场景中的 DialogueRunner")]
@@ -43,6 +44,12 @@ namespace Demo.Interaction
                     dialogueQuestCompleted != null)
                 {
                     return dialogueQuestCompleted;
+                }
+
+                if (questComponent.GetStatus(questComponent.PrimaryQuest) == Quest.QuestStatus.TurnedIn &&
+                    dialogueQuestTurnedIn != null)
+                {
+                    return dialogueQuestTurnedIn;
                 }
 
                 if (questComponent.IsActive(questComponent.PrimaryQuest) &&
